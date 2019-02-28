@@ -1,0 +1,271 @@
+\bfsection{1.6 非特異曲線}
+
+\bfsubsection{補題 6.4}
+\barquo{
+$Y$を準射影多様体、$P,Q \in Y$として、$K(Y)$の部分環として$\calo_Q \subset \calo_P$とする。このとき$P = Q$である。
+}
+\begin{proof} 準射影多様体と書いてあるが、すべての多様体$Y$について示すことにする。すべての多様体はある準射影多様体に同型なので、(確かめよ) これは本質的な変更ではないだろうと思う。
+  \begin{description}
+    \item[Step 1] $Y$がアファイン多様体の場合。座標環$A(Y)$を単に$A$と書く。極大イデアル$\frakm$, $\frakn \subset A$をそれぞれ$P,Q$に対応するものとすると、$\calo_P = A_{\frakm}$, $\calo_Q = A_{\frakn}$である。仮定により$A_{\frakn} \subset A_{\frakm}$である。したがって特に$x \mapsto x$は準同形$A_{\frakn} \to A_{\frakm}$を定める。(これが単射であることは証明に使わない)
+    $x \in A \setminus \frakn$としよう。$x \in A_{\frakn}$は単元なので、$x \in A_{\frakm}$
+    だと思っても単元である。よって$x \in A \setminus \frakm$であり、このことから$\frakm \subset \frakn$がわかる。ところが$\frakm$は極大イデアルなので$\frakm = \frakn$である。したがって命題3.2(b)より$P = Q$である。
+    \item[Step 2] $Y$が射影多様体の場合。$Y \subset \P^n$とおく。$\P^n$に対する線形作用を考えよう。
+    \lem{
+    ($\P^n$への線形作用) \\
+    $A \in GL_{n+1}(k)$とする。$P \in \P^n$に対し、代表元$Q \in \A^{n+1} \setminus \{0\}$をとり、$AP \in \P^n$を$AQ$により代表される同値類として定める。これはwell-definedであり、これにより$\P^n$に群$GL_{n+1}(k)$の作用が定まる。かつ、$A \colon \P^n \to \P^n$とみなすと$A$は多様体の圏の同型射である。
+    }
+    \begin{proof}
+$A$は正則行列なので、$AQ \in  \A^{n+1} \setminus \{0\}$である。また、$A$は線形写像なので、$AQ \in \P^n$は代表元$Q$のとりかたによらない。したがってこの作用はwell-definedである。群作用になっていることはあきらか。$A \colon \P^n \to \P^n$は多項式によって定義される写像なので射であり、可逆なので同型射。
+    \end{proof}
+    \lem{
+    $P,Q  \in \P^n$とする。$U_0 \subset \P^n$を$x_0 \neq 0$により定まる開部分集合とする。このとき
+    \[
+    AP \in U_0 , \quad AQ \in U_0
+    \]
+    となるような$A \in GL_{n+1}(k)$が存在する。
+    }
+    \begin{proof}
+背理法による。すべての$A \in GL_{n+1}(k)$に対して$  AP \notin U_0$または$  AQ \notin U_0$が成り立つと仮定する。代表元をとり$P = (p_0, \cdots , p_n)$, $Q = (q_0, \cdots , q_n)$と表す。$I = \setmid{i}{p_i \neq 0}$, $J = \setmid{j}{q_j \neq 0}$とおく。
+
+ベクトルの$i$行目と$j$行目を入れ替える操作を表す行列$D_{ij} \in GL_{n+1}(k)$を考えると、とくに
+\[
+\forall i \quad D_{i0}P \notin U_0  \; \text{または} \;  D_{i0}Q \notin U_0
+\]
+が成りたつ。したがってすべての$i$について$i \notin I$または$i \notin J$である。
+そこでベクトルの$i$行目に$j$行目の$c \in k$倍を加える操作を表す行列を$E_{ij}(c)$とすると、$E_{ij}(c) \in GL_{n+1}(k)$であり、任意の$i \in I$と$j \in J$に対して
+\begin{align*}
+  &D_{j0} E_{ji}(1) P \in U_0 \\
+  &D_{j0} E_{ji}(1) Q = D_{j0}Q \in U_0
+\end{align*}
+となるので背理法の仮定に矛盾。
+    \end{proof}
+    引用部の証明に戻る。$AP \in U_0 ,  AQ \in U_0$なる$A \in GL_{n+1}(k)$をとり、$V = A^{-1}U_0$とする。このとき$V \opsub \P^n$は$P,Q$の共通の開近傍であり、またアファイン多様体$\A^n$と同型である。
+    $\calo_{P,Y} = \calo_{P,V \cap Y}$, $\calo_{Q,Y} = \calo_{Q,V \cap Y}$なので同型$V \to \A^n$をとればアファインの場合に帰着できて、$P = Q$がいえる。
+    \item[Step 3] $Y$が準射影多様体または準アファイン多様体の場合。$Y \opsub \ol{Y}$であるから、$\calo_{P,Y} = \calo_{P,\ol{Y}}$, $\calo_{Q,Y} = \calo_{Q,\ol{Y}}$が成り立ち、既に示した場合に帰着される。
+  \end{description}
+\end{proof}
+
+
+\bfsubsection{補題 6.5}
+\barquo{
+$\frakn = \frakm_R \cap B$としよう。すると$\frakn$は$B$の極大イデアルであり、
+}
+\begin{rem}
+  次の補題をまず用意する。
+  \lem{
+  $A$は整域、$K$はその商体、$L$は$K$の代数拡大体とし、$B$は$L$における$A$の整閉包であるとする。このとき、$B$の商体は$L$である。
+  }
+  \begin{proof}
+    あきらかだが、一応示す。$x \in L$とする。$L/K$は代数拡大なので、
+    \[
+    x^m + a_1 x^{m-1} + \cdots + a_m = 0
+    \]
+    なる$a_1 , \cdots , a_m \in K$がある。$A$の商体が$K$なので、ある$d \in A \sm \{0\}$であって、任意の$i$について$da_i \in A$となるようなものがとれる。このとき
+    \[
+    (dx)^m + a_1d (dx)^{m-1} + \cdots + a_md^m = 0
+    \]
+    だから、$dx$は$A$上整。よって、$B$の定義により$dx \in B$である。以上により、$B$の商体が$L$であることがいえた。
+  \end{proof}
+  引用部の証明に戻る。
+$B$はDedekind環なので、$\frakn \neq (0)$を示せば十分である。背理法による。$\frakn = \frakm_R \cap B = 0$と仮定しよう。$x \in K$が与えられたとする。これは$B \sm \{0\} \subset R \sm \frakm_R$を意味する。上の補題により、$\Frac B = K$だから、$bx \in B$なる$b \in B \sm \{0\}$がある。
+このとき、$b \in R^{\tm}$なので、$x \in R$である。ゆえに$R = K$であるが、これは$R$がDVRであるという仮定に反する。
+\end{rem}
+
+\bfsubsection{補題 6.5}
+\barquo{
+$B$は$R$に支配される。ところが$B_{\frakn}$も$K/k$の離散付値環だから、
+}
+\begin{proof}
+  \textblue{誤植であろう。} $B$とあるのは、おそらく$B_{\frakn}$の間違い。証明は、
+  \begin{align*}
+    (\frakm_R \cap B_{\frakn}) \cap B &= \frakm_R \cap B = \frakn \\
+    \frakn B_{\frakn} \cap B &= \frakn
+  \end{align*}
+  から、$\frakm_R \cap B_{\frakn} = \frakn B_{\frakn}$がいえる。
+
+  $B$はDedekind環なので、$B_{\frakn}$はDVR、とくに付値環である。あと$\Frac B = K$を示す必要があるが、それは既に示した。
+\end{proof}
+
+\bfsubsection{系 6.6}
+\barquo{
+$K/k$の任意の離散付値環は、ある非特異アファイン曲線上のある点の局所環に同型である。
+}
+\begin{rem}
+  $K/k$の離散付値環$R$が与えられたとする。このとき補題6.5の証明で構成した$B$と同型なアファイン座標環をもつ多様体$Y$がある。ここで、$\Frac B = K$なので、$Y$の函数体が$K$となっていることを注意しておく。
+\end{rem}
+
+
+\bfsubsection{系 6.6 直後}
+\barquo{
+$C_K$が無限集合であることに注意せよ。これは、$C_K$が$K$を函数体に持つ任意の非特異曲線の局所環をすべて含んでおり、またこれらの局所環はすべて異なっていて(6.4) かつ無限個ある(Ex.4.8)からである。
+}
+\begin{rem}
+  $C_K$が無限集合であることを示すだけなら演習問題4.8を使う必要はない。つまり、1次元多様体$Y$が与えられたとき、$Y$には補有限位相が入っているので、$Y$の既約性より$Y$が有限集合ではないことがわかる。
+\end{rem}
+
+
+\bfsubsection{系 6.6 直後}
+\barquo{
+$U \subset C_K$が$C_K$の開部分集合のとき、$U$上の正則函数の環を$\calo(U) = \bigcap_{P \in U} R_P$と定める。元$f \in \calo(U)$は、$R_P$の極大イデアルを法とした$f$の剰余を$f(P)$とすることにより$U$から$k$への函数を定める。
+}
+\begin{rem}
+  この定義から、抽象非特異曲線$X = C_K$の点$P \in X$での局所環は$R_P$そのものであることがわかる。また、$f$が$X$の開集合$U$上の正則関数であるとき、補題6.5により$f \colon U \to k$は ($k$にザリスキ位相を入れて) $U$上の連続関数でもある。
+\end{rem}
+
+
+
+\bfsubsection{命題 6.7}
+\barquo{
+したがって、(4.3)により$Y$はアファインであるとして良い。
+}
+\begin{proof}
+  アファインの場合に示せたとして、任意の1次元非特異多様体$Y$について示そう。
+
+  $\vp_Y \colon Y \to C_K$を$\vp_Y(P) = \calo_{P,Y}$なる写像とする。$U \subset C_K$を$\vp_Y$の像とする。
+  命題4.3により、空でないアファイン開集合$V \opsub Y$がある。$V$での局所環と$Y$での局所環は同型なので$V$は非特異多様体であり、演習3.12から$\dim V = \dim Y = 1$である。したがって、$\vp_Y$の$V$への制限を$\vp_V \colon V \to C_K$とし、$W$をその像とすると$W \opsub C_K$である。したがって$W \subset U$より、$C_K$の位相の定義より$U \opsub C_K$である。
+\end{proof}
+
+
+
+
+\bfsubsection{命題 6.7}
+\barquo{
+これらの局所環はすべて離散付値環であるから、$U$は実際には$A$を含む$K/k$の離散付値環すべてからなる。
+}
+\begin{proof}
+  $A$を含む$K/k$のDVR, $R$が与えられたとする。$R = \calo_{P,Y}$なる$P \in Y$があることを示そう。$\frakn = \frakm_R \cap A$とおく。もし$\frakn = 0$ならば、$A \sm \{0\} \subset R^{\tm}$である。$K$は$A$の商体なので、$R = K$となり矛盾。
+  よって$\frakn \neq 0$であるので、$\dim A = 1$より$\frakn \subset A$は極大イデアル。$Y$は非特異多様体であり、$A$の極大イデアルは$Y$の点に対応することから$A_{\frakn}$は正則局所環。したがって定理6.2Aより$A_{\frakn}$はDVRである。あきらかに$A_{\frakn} \subset R$であり、$R$は$A_{\frakn}$を支配する。よって付値環の極大性より$A_{\frakn} = R$である。
+\end{proof}
+
+
+
+\bfsubsection{命題 6.7}
+\barquo{
+$\vp$が同型であることを示すには、任意の開集合上で正則函数が同じものであることを確かめればよい、ところがこれは、$U$上の正則函数の定義および、任意の開集合$V \subset Y$について$\calo(V) = \bigcap_{P \in V} \calo_{P,Y}$であるという事実から従う。
+}
+\begin{proof}
+  ここでは、$Y$はアファイン多様体という仮定は失効していることに気をつける。$\vp \colon Y \to U$と$\vp^{-1} \colon U \to Y$がともに射であることを確かめればよい。
+  \begin{description}
+    \item[Step 1] まず$\vp \colon Y \to U$が連続写像であることを示したいが、これはあきらかである。なぜなら$U$の閉集合とは、全体または有限集合であり、任意の多様体$Y$において1点集合は閉だからだ。
+    \item[Step 2] $\vp \colon Y \to U$が射であることを示そう。$W \opsub U$と$W$上の正則函数$f$が与えられたとする。
+    \[
+\xymatrix{
+Y \ar[r]^-{\vp} & U \\
+\vp^{-1}(W) \ar[dr]_-{f \circ \vp} \ar[u] \ar[r]^-{\vp} & W \ar[u] \ar[d]^-f \\
+{} & k
+}
+    \]
+    まず
+    \begin{align*}
+      \calo(W) &= \bigcap_{R \in W} R \\
+      &= \bigcap_{P \in \vp^{-1}(W)} \calo_{P,Y} \\
+      &= \calo (\vp^{-1}(W))
+    \end{align*}
+    である。したがって、$W$上の正則函数を$\vp^{-1}(W)$上の有理関数だとみなすだけの写像$\calo(W) \to \calo(\vp^{-1}(W)) \st f \mapsto f^{+}$は同型である。ここで
+    \begin{align*}
+      f \circ \vp (P) &= f(\calo_{P,Y}) \\
+      &= f^{+} \mod \frakm_P \\
+      &= f^{+} (P)
+    \end{align*}
+    だから、$\vp$は射であり、かつ$\vp^{*} \colon \calo(W) \to \calo(\vp^{-1}(W))$は同型である。
+    \item[Step 3] $\dim Y = 1$より$Y$の位相は補有限位相なので、$\vp \colon Y \to U$が閉写像であることはあきらか。よって$\vp^{-1}$は連続である。$\vp^{-1}$が射であることも、$\vp^*$が同型であったことからただちに従う。
+  \end{description}
+\end{proof}
+
+
+
+\bfsubsection{命題 6.8}
+\barquo{
+このとき$\vp$が$X$から$\P^n$への射に延長されることを示せば十分である。というのは、$\P^n$への射に延長されれば像は必然的に$Y$に含まれるからである。したがって$Y = \P^n$の場合に帰着される。
+}
+\begin{proof}
+  $Y = \P^n$のとき延長の存在と一意性が示せたとする。一般の場合に、多様体$Y$と射$\vp \colon X \sm P \to Y$が与えられたとする。$Y \to \P^n$との合成は延長することができ、$\ol{\vp} \colon X \to \P^n$を得る。延長の存在をいうために問題なのは$\ol{\vp}(P) \in Y$が成り立つかどうかである。なお、延長の一意性は$Y \to \P^n$が単射であることからただちに従う。
+
+  $C_K$は無限集合であり、$X \opsub C_K$より(空ではないので)$X$も無限集合。したがって$X \sm P$を含むような$X$の閉部分集合は$X$自身しかない。したがって$X \sm P$の$X$における閉包は$X$に一致する。そこで、$\P^n$または$X$における閉包をオーバーラインで表すことにすると
+  \begin{align*}
+    \ol{\vp}(X) &= \ol{\vp}( \ol{X \sm P}) \\
+    &\subset \ol{  \ol{\vp}(X \sm P) } \\
+    &= \ol{Y} \\
+    &= Y
+  \end{align*}
+  である。よって$\ol{\vp} \colon X \to Y$とみなすことができる。
+\end{proof}
+
+
+
+\bfsubsection{命題 6.8}
+\barquo{
+一意性は構成によりあきらかである((4.1)からも従う)。
+}
+\begin{rem}
+  補題4.1では多様体の間の射が空でない開集合上で一致していれば元々等しいことを主張していた。しかし、ここでは$X$は抽象非特異曲線であり、これが今までの意味での「多様体」と同じと見なせるかどうかはわからない。そこで補題4.1の証明を見てみると、射$\vp \colon X \to \P^n$と$\psi \colon X \to \P^n$があったとき、射$\vp \tm \psi \colon X \to \P^n \tm \P^n$が誘導されることを確かめればよいことがわかる。これは演習3.15および演習3.16と関連する。これらの演習で鍵になっていたのは「正則函数を束ねたものが射である」という補題3.6であったことを思い出そう。そこで補題3.6の類似を証明する。この補題から引用部を示す議論は省略する。
+  \end{rem}
+  \begin{comment}
+  \lem{
+  (閉部分集合とアファイン座標環のイデアルの対応) \\
+  $Y \subset \A^n$をアファイン多様体とする。部分集合$F \subset Y$があるとする。このとき、次は同値。
+  \begin{description}
+    \item[(1)] $F$は$Y$の閉部分集合。
+    \item[(2)] ある$A(Y)$のイデアル$D$が存在して、
+    \[
+F = Z(D) = \setmid{x \in Y}{\forall f \in D \; f(x) = 0}
+    \]
+    が成り立つ。
+  \end{description}
+  }
+  \begin{proof} ${}$
+    \begin{description}
+      \item[(1)$\To$(2)] $Y \clsub \A^n$より、$k[x_1, \cdots , x_n]$のイデアル$J$であって、$F = Z(J)$なるものがある。このとき
+      \begin{align*}
+        Z(J) \subset Y &\iff Z(J) \subset Z(I(Y)) \\
+        &\iff I(Y) \subset I(Z(J)) \\
+        &\iff I(Y) \subset \sqrt{J}
+      \end{align*}
+      より、$I(Y) \subset \sqrt{J}$がわかる。そこで$D = \sqrt{J} / I(Y)$とおけば条件を満たすことはあきらか。
+      \item[(2)$\To$(1)] $D \subset A(Y)$を$k[x_1, \cdots , x_n]$のイデアル$J$に持ち上げる。$I(Y) \subset J$である。
+      このとき$F = Z(J) \subset Y$であることをみるのはやさしい。よって$F \clsub Y$である。
+    \end{description}
+  \end{proof}
+\end{comment}
+  \lem{
+  (補題3.6の類似) \\
+  $X$を抽象非特異曲線、$Y \subset \A^n$を準アファイン多様体とする。集合の間の写像$\psi \colon X \to Y$は、各$i$について$x_i \circ \psi $が$X$上の正則函数であるとき、またそのときに限って射である。ここで$x_1 , \cdots , x_n$は$\A^n$上の座標函数である。
+  }
+  \begin{proof}
+    $\psi$が射であると仮定すれば$x_i \circ \psi $が$X$上の正則函数となるのはあきらか。逆を示そう。すべての$i$について$x_i \circ \psi $が$X$上の正則函数であるとする。このとき任意の多項式$f \in k[x_1, \cdots ,x_n] = k[x]$に対して、$f \circ \psi$は$X$上の正則函数である。この状況で$\psi$が連続かつ正則函数を引き戻しで保つことを示そう。
+
+    まず連続性をいう。$Y$の閉部分集合$F$が与えられたとする。$F =Y \cap  Z(J)$なるイデアル$J \subset k[x]$がある。したがって
+    \begin{align*}
+      \psi^{-1}(F) &= \psi^{-1}\left( \bigcap_{f \in J} \setmid{x \in Y}{f(x) = 0} \right) \\
+      &= \bigcap_{f \in J} \setmid{w \in X}{(f \circ \psi)(w) = 0}
+    \end{align*}
+    である。$f \circ \psi$は$X$上正則なので、とくに連続である。よって$\psi^{-1}(F) \clsub X$がわかる。
+
+    次に$\psi$による正則函数の引き戻しが正則であることをみる。$Y$上の有理関数$(U,f) \in \coprod_{U \opsub Y} \calo(U)$が与えられたとする。$\psi^{-1}(U) = \emptyset$の場合は考える必要はない。$x \in \psi^{-1}(U)$が与えられたとして、$x $の周りで$f \circ \psi$が正則であることをみれば十分。いま$\psi(x) \in U$より、
+    $f$は$U$上正則だから、ある$x$の開近傍$V \subset U$と多項式$g$と$V$上でゼロにならない多項式$h$とが存在して、
+    \[
+    \forall x \in V \quad f(x) = \f{g(x)}{h(x)}
+    \]
+    が成り立つ。したがって$y \in \psi^{-1}(V)$について
+    \[
+    f \circ \psi (y) = \f{g(\psi(y))}{h(\psi(y))}
+    \]
+    である。いま仮定により$g \circ \psi$と$h \circ \psi$はそれぞれ$X$上正則なので、正則函数の定義からそれは$\bigcap_{P \in X} R_P$の元である。$h$は$V$上でゼロにならないので、$h \circ \psi$は$\psi^{-1}(V)$上でゼロにならない。
+    つまり、任意の$P \in \psi^{-1}(V)$に対して$h \circ \psi \notin \frakm_P$であるが、$R_P$は局所環なので$h \circ \psi \in R_P^{\tm}$である。
+    したがって$f \circ \psi \in \bigcap_{P \in \psi^{-1}(V)} R_P$がわかる。これは、$f \circ \psi$が$\psi^{-1}(V)$上の正則函数であることを意味する。
+  \end{proof}
+
+
+
+
+  \bfsubsection{命題 6.8}
+  \barquo{
+ここで$U_k$はアファインであり、アファイン座標環は
+\[
+k[x_0/x_k, \cdots , x_n/x_k]
+\]
+に等しい。これらの函数の引き戻しは$f_{0k}, \cdots , f_{nk}$であり、構成により$P$において正則である。
+  }
+\begin{rem}
+$x_i/x_k$の$\ol{\vp}$による引き戻しは$x_i/ x_k \circ \ol{\vp}$という形をしている。$\ol{\vp}(P)$の$k$成分は$1$なので、これは$f_{ik}$に等しく、$f_{ik} \in R_P$より$P$において正則である。    
+\end{rem}

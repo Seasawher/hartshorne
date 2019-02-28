@@ -1,0 +1,1445 @@
+\bfsection{2.1 層}
+
+\bfsubsection{定義-前層 直後}
+\barquo{
+すると前層はちょうど圏$\Top(X)$からAbel群のなす圏$\Ab$への反変函手となる。
+}
+\begin{rem}
+\textblue{それはおかしい。}直前の定義では前層$\scrf$に対して$\scrf(\emptyset) = 0$という条件を課していたが、これは一般の反変関手$\Top(X) \to \Ab$については成り立たない。成り立たない例は、たとえば次の可換図式
+\[
+\xymatrix{
+U \ar[d]_i & \scrf U \ar@{=}[r] & \Z \\
+V & \scrf V \ar[u]^{\scrf i} \ar@{=}[r] & \Z \ar[u]_{id}
+}
+\]
+で定められる反変関手$\scrf \colon \Top(X) \to \Ab$で与えられる。
+
+これではHartshorne自身どういう定義にしたいかがわからないので困ってしまう。他の文献も調べたが、Wedhorn\cite{Wedhorn}やG\"{o}rts Wedhorn\cite{GW}では単に反変関手であるとする定義を採用しているし、Liu\cite{Liu}では空集合を$0$に送るという定義を採用していて、両方の流儀があった。ただしネット上では単に反変関手とする定義が優勢なようだったが…。したがって、前層の定義をどうするかというのは非常に悩ましいところだが、ここでひとつ注意しておきたいことがある。『前層の定義としてどちらを採用しても、層の定義にはまったく影響しない』ということだ。なぜなら、層の条件として課される貼り合わせの一意性が、空集合の送り先が$0$であることを保証しているからだ。
+
+具体的には、層$\scrf \colon \Top(X) \to \Ab$があるとき、空集合の開被覆として空集合により添え字づけられた集合族$\{V_i\}_{i \in \emptyset}$をとればよい。このときすべての$s \in \scrf(\emptyset)$について
+\[
+\forall i  \quad s|_{V_i} = 0
+\]
+が成立するので、貼り合わせの一意性より$s=0$となる。よって$\scrf(\emptyset)=0$が従う。
+
+それで我々のとる立場であるが、このPDFでは『前層はただの反変関手』という定義を採用することにしたい。理由は、圏論的な文脈では前層とは『（小さな）圏から集合の圏への反変関手』と定義されることが多く、その定義と整合性をとりたいからである。
+\end{rem}
+
+
+
+\bfsubsection{定義-前層 直後}
+\barquo{
+用語として、$\scrf$を前層としたとき、$\scrf(U)$を開集合$U$上の前層$\scrf$の切断といい、
+}
+\begin{rem}
+  原著では『As a matter of terminology, if $\scrf$ is a presheaf on $X$, we refer to $\scrf(U)$ as
+the sections of the presheaf $\scrf$ over the open set $U$, 』と書いてあるところである。普通は$\scrf(U)$の元のことを切断というようだが、こういう使い方もするのかもしれない。
+\end{rem}
+
+
+\bfsubsection{定義-層}
+\barquo{
+位相空間$X$上の前層$\scrf$は、$\scrf$が前層の条件に加えて以下の条件を満たすとき層という。
+}
+\begin{rem}
+この層の条件では、$U$や$V_i$といったものは空でも構わない。普段、$U$が空かどうかを常にチェックするのは面倒なので省略することが多いが、気をつけるべき時もある。以下、注意すべき例を挙げる。
+\begin{description}
+  \item[例-定数前層] たとえば、あるAbel群$A$をとり、任意の$U$について$\scrf(U) = A$であるとし、制限写像は恒等写像であるとすれば
+  $\scrf$は$X$上の前層だが、$A \neq 0$ならば層ではない。$\scrf$は貼り合わせの存在条件を満たしているのだが、開被覆$\emptyset  = \bigcup_{i \in \emptyset} V_i$をとると貼り合わせの一意性をみたさないことがわかる。開被覆の添え字集合が空でなければ条件を満たすので、かなり惜しい例であるといえる。
+  \item[例-空集合で修正した定数前層] それでは、
+\[
+\scrf(U) = \begin{cases}
+A  &(U \neq \emptyset) \\
+\scrf(\emptyset) = 0
+\end{cases}
+\]
+  とし、制限写像を自然に定めたらどうだろうか。この$\scrf$は前層であり、貼り合わせの一意性を満たす。しかし、今度は一般に貼り合わせの存在条件を満たさなくなる。たとえば、$V_i \neq \emptyset$かつ$U = V_1 \cup V_2$かつ$V_1 \cap V_2 = \emptyset$であるような開被覆を考えるとよい。したがってやはり層にならない。
+\end{description}
+このように、空集合になりうることが問題になる局面もある。何かの前層が層になるかどうかを確認するとき、貼り合わせの一意性を確かめるのに、$U = \emptyset$は分けて考えたほうがより丁寧だろう。貼り合わせの存在条件は、前件にも後件にも添え字集合が現れるので、$U$が空かどうかを気にする必要はないと思われる。その代わり、各$V_i \cap V_j $が空かどうかは気にしなければならない。
+\end{rem}
+
+\begin{comment}
+\begin{rem}
+このあと役に立つかどうかはわからないが、次のような言い換えがある。$X$上の$\Ab$-前層$\scrf$が層であるとは、任意の開集合$U \subset X$とその開被覆$U = \bigcup_i U_i$に対して、次の図式
+\[
+\xymatrix{
+0 \ar[r] & \scrf(U) \ar[r]^-{d} & \prod_{i} \scrf(U_i) \ar[r]^-{e} & \prod_{i,j} \scrf(U_{ij})
+}
+\]
+が完全系列であることである。ただし$U_{ij}=U_i \cap U_j$であり、かつ$d$, $e$は
+\[
+d(s)=(s|_{U_i})_i \quad e((s_i)_i) = (s_i|_{U_{ij}} - s_j|_{U_{ij}})
+\]
+により定まる準同形である。
+\end{rem}
+\end{comment}
+
+
+
+
+\bfsubsection{例 1.0.3}
+\barquo{
+すべての連結開集合$U$に対して$\scra (U) \cong A$であることに注意しよう。
+}
+\begin{rem}
+  連続写像$f \in \scra (U)$による$U$の像は連結であり、したがって$A$は離散空間なので1点集合である。ゆえに$f \mapsto f(U)$という同型が作れる。
+\end{rem}
+
+
+
+
+\bfsubsection{例 1.0.3}
+\barquo{
+すべての連結成分が開集合であるような開集合$U$では(これは局所連結な位相空間では常に正しい)
+}
+\begin{rem}
+次の命題が知られている。
+  \prop{
+  位相空間$X$について、次は同値である。
+  \begin{description}
+    \item[(1)] $X$は局所連結である。つまり各点で連結集合からなる基本近傍系をもつ。
+    \item[(2)] 任意の$U \opsub X$の各連結成分は$U$の開部分集合である。
+    \item[(3)] $X$は連結開集合からなる開基をもつ。
+  \end{description}
+  }
+  \begin{proof}
+    証明はやさしいが、内田\cite{内田}定理25.6を参照のこと。
+  \end{proof}
+\end{rem}
+
+
+
+
+\bfsubsection{定義-茎}
+\barquo{
+$\scrf$の$P$における茎$\scrf_P$を、$P$を含むすべての開集合$U$に対する群$\scrf(U)$と制限写像$\rho$がなす順系に関する順極限と定義する。
+}
+\begin{rem}
+  各点$P \in X$を決めるごとに、$P$の開近傍の全体が包含射に関してなす圏$\Top(X,P)$(ここだけの記号)の反対圏は有向集合とみなせる。したがって前層
+  が誘導する関手$\scrf \colon \Top(X,P)^{op} \to \Ab$はAbel群の順系である。したがって順極限
+  \[
+  \scrf_P = \coprod_{P \in U } \scrf(U) / \sim
+  \]
+  がある。ここで、$\sim$は$ \coprod_{P \in U } \scrf(U)$上で
+  \[
+(U,s) \sim (V,t) \iff  \exists W \subset U \cap V \st s|_W = t|_W
+  \]
+  により定められる関係である。順系の性質からこれが同値関係になることは認める。
+\end{rem}
+
+
+
+\bfsubsection{定義-前層の射}
+\barquo{
+射$\vp \colon \scrf \to \scrg$とは各開集合$U$に対するAbel群の写像$\vp(U) \colon \scrf(U) \to \scrg(U)$からなるもので
+}
+\begin{rem}
+  圏論の言葉が好みであれば、射$\vp \colon \scrf \to \scrg$とは$\Top(X)^{op}$から$\Ab$への関手のあいだの自然変換であるといえばよい。
+\end{rem}
+
+
+
+
+\bfsubsection{命題 1.1 直前}
+\barquo{
+$X$上の前層の射$\vp \colon \scrf \to \scrg$は$X$上の任意の点$P$に対して茎の射$\vp_P \colon \scrf_P \to \scrg_P$を導くことに注意する。
+}
+\begin{rem}
+順極限の普遍性により、任意の$U \in \Top(X,P)$について次の図式
+\[
+\xymatrix{
+\scrf(U) \ar[d] \ar[r]^-{\vp(U)} & \scrg(U) \ar[d] \\
+\scrf_P \ar[r]^-{\vp_P} & \scrg_P
+}
+\]
+が可換になるような$\vp_P$の存在と一意性がいえる。ただし$\scrf(U) \to \scrf_P$は自然な入射である。合成を保つことと恒等射を恒等射に送ることはあきらかなので、順極限は関手圏$[\Top(X,P)^{op} , \Ab]$から$\Ab$への関手であることがわかる。
+\end{rem}
+
+
+\begin{comment}
+ついでに言うと、次の命題が成り立つことが知られている。
+\end{rem}
+
+\prop{
+順極限が定める関手$\rlim \colon [\Top(X,P)^{op} , \Ab] \to \Ab$について、次が成り立つ。$[\Top(X,P)^{op} , \Ab]$における図式
+\[
+\xymatrix{
+0 \ar[r] & A \ar[r]^{r} & B \ar[r]^s & C \ar[r] & 0
+}
+\]
+があって
+\[
+\xymatrix{
+0 \ar[r] & A(U) \ar[r]^{r(U)} & B(U) \ar[r]^{s(U)} & C(U) \ar[r] & 0
+}
+\]
+がすべての$U \in \Top(X,P)$に対して完全ならば、次の図式
+\[
+\xymatrix{
+0 \ar[r] & \rlim A \ar[r]^{\ra{r}} & \rlim B \ar[r]^{\ra{s}} & \rlim C \ar[r] & 0
+}
+\]
+も完全である。
+}
+\begin{proof}
+  Rotman\cite{Rotman}命題5.33を参照のこと。
+\end{proof}
+\end{comment}
+
+
+\bfsubsection{命題 1.1}
+\barquo{
+$\vp \colon \scrf \to \scrg$を位相空間$X$の上の層の射とする。$\vp$が同型射であるのは茎に誘導された写像$\vp_P \colon \scrf_P \to \scrg_P$が$X$上のすべての点$P$に対して同型射であるとき、またそのときに限る。
+}
+\begin{rem}
+G\"{o}rts Wedhorn\cite{GW}命題2.23を真似て、次の形で示そう。
+\end{rem}
+
+\prop{
+$X$が位相空間、$\scrf$と$\scrg$はAbel群に値をとる$X$上の前層であるとする。$\vp \colon \scrf \to \scrg$は前層の射とする。このとき、次が成り立つ。
+\begin{description}
+  \item[(1)] $\scrf$が層であるとする。このとき次が成り立つ。
+  \begin{gather*}
+  \forall x \in X \quad \vp_x \colon \scrf_x \to \scrg_x \; \text{は単射} \\ \iff  \forall U \opsub X \quad \vp_U \colon \scrf(U) \to \scrg(U) \text{は単射}
+\end{gather*}
+  \item[(2)] $\scrf$も$\scrg$も層であるとする。このとき次が成り立つ。
+  \begin{gather*}
+  \forall x \in X \quad \vp_x \colon \scrf_x \to \scrg_x \; \text{は全単射} \\ \iff   \forall U \opsub X \quad \vp_U \colon \scrf(U) \to \scrg(U) \text{は全単射}
+\end{gather*}
+\end{description}
+}
+
+\begin{proof} ${}$
+\begin{description}
+  \item[(1)] ($\Rightarrow$)を示そう。任意の$U \opsub X$について図式
+  \[
+  \xymatrix{
+\scrf(U) \ar[r] \ar[d]_-{\vp_U} & \prod_{x \in U} \scrf_x \ar[d]^-{\prod_x \vp_x} \\
+\scrg(U) \ar[r] & \prod_{x \in U} \scrg_x
+  }
+  \]
+  は可換なので、$\scrf$が層であるとき写像
+  \[
+  \scrf(U) \to \prod_{x \in U} \scrf_x, \quad s \mapsto (s_x)_{x \in U}
+  \]
+  が単射であることをみればよい。ただし$s_x$は$U$上の切断$s$の$x$における芽である。実際、もし任意の$x \in U$について$s_x = 0$ならば、ある$x$の開近傍$V_x \subset U$が$x$ごとに存在して$s |_{V_x} = 0$である。$U=\bigcup_x V_x$よりこれは開被覆となる。したがって、$\scrf$が層であるという仮定から$s=0$でなくてはならない。よってこれは単射。
+
+  ($\Leftarrow$)を示そう。順極限が完全列を保つこと(Rotman\cite{Rotman}命題5.33)による。つまり、任意の$x \in U$について
+  \[
+  \xymatrix{
+    0 \ar[r] & \scrf(U) \ar[r]^-{\vp_U}  & \scrg(U)
+  }
+  \]
+  が完全なので、順極限をとって
+  \[
+  \xymatrix{
+    0 \ar[r] & \scrf_x \ar[r]^-{\vp_x}  & \scrg_x
+  }
+  \]
+  も完全。
+  \item[(2)]
+($\Rightarrow$ $\vp_U$が単射)と($\vp_x$が単射 $\Leftarrow$) は(1)で既に示している。($\vp_x$が全射 $\Leftarrow$)は順極限が完全列を保つことからあきらか。
+
+  ($\Rightarrow$ $\vp_U$は全射) を示そう。任意に開集合$U$が与えられたとし、$t \in \scrg(U)$とする。$x \in U$に対して、$t$の$x$における芽$t_x \in \scrg_x$は仮定より$\vp_x$の像に入る。したがって$\vp_x(s_x) = t_x$なる茎の元$s_x \in \scrf_x$がある。芽$s_x$の代表元$\kakko{U^x,s^x}$であって、
+  \[
+  x \in U^x \opsub U, \quad s^x \in \scrf(U^x) , \quad
+  \]
+  なるものをとる。このとき
+  \[
+  \xymatrix{
+\scrf(U^x) \ar[r] \ar[d]_-{\vp_{U^x}} &  \scrf_x \ar[d]^-{ \vp_x} \\
+\scrg(U^x) \ar[r] &  \scrg_x
+  }
+  \]
+  は可換なので、
+  \begin{align*}
+    t_x &= \vp_x(s_x) \\
+    &= \vp_x(\kakko{U^x,s^x}_x) \\
+    &= \kakko{U^x,\vp_{U^x}(s^x) }_x
+  \end{align*}
+  が成り立つ。よって$t \in \scrg(U)$と$\vp_{U^x}(s^x) \in \scrf(U^x)$は点$x$における芽が等しいので
+  \[
+  x \in V^x \opsub U_x, \quad \vp_{U^x}(s^x)|_{V^x} = t|_{V^x}
+  \]
+  なる$V_x$がある。$\vp$は前層の射なので$t|_{V^x} = \vp_{U^x}(s^x)|_{V^x} = \vp_{V^x}(s^x|_{V^x})$である。$V^x$は$U$の開被覆を与える。
+  ここで任意の$x , y \in U$に対して
+  \begin{align*}
+    \vp_{V^x \cap V^y} (s^x|_{V^x \cap V^y}) &=   \vp_{U^x}(s^x)|_{V^x \cap V^y} \\
+    &=  (\vp_{U^x}(s^x)|_{V^x} )|_{V^x \cap V^y} \\
+    &= (t|_{V^x})|_{V^x \cap V^y} \\
+    &= t|_{V^x \cap V^y} \\
+    &= (t|_{V^y})|_{V^x \cap V^y} \\
+    &= \cdots \\
+    &= \vp_{V^x \cap V^y} (s^y|_{V^x \cap V^y})
+  \end{align*}
+  が成り立つ。(1)より、$\scrf$が層なので$\vp_{V^x \cap V^y}$は単射。したがって
+  \begin{gather*}
+s^x|_{V^x \cap V^y} = s^y|_{V^x \cap V^y} \\
+(s^x|_{V^x}) |_{V^x \cap V^y} = (s^y|_{V^y})|_{V^x \cap V^y}
+  \end{gather*}
+  である。$\scrf$は層なので、$U$全体にわたって$s^x|_{V^x}$を貼り合わせることができて、
+  \[
+  s^x|_{V^x} = s|_{V^x}
+  \]
+  なる$s \in \scrf(U)$の存在がいえる。このとき任意の$x \in U$に対して
+  \begin{align*}
+    \kakko{U,\vp_U(s)}_x &= \vp_x(\kakko{U,s}_x) \\
+    &= \vp_x(\kakko{V^x,s^x|_{V^x}}_x) \\
+    &= t_x
+  \end{align*}
+  である。ゆえに$\vp_U(s) - t $は$\scrg(U) \to \prod_{x \in U} \scrg_x$の核に入るが、$\scrg$は層なのでこれは単射。したがって$\vp_U(s)=t$であり、$\vp_U$の全射性がいえた。
+\end{description}
+\end{proof}
+
+
+
+
+\bfsubsection{定義-前層核}
+\barquo{
+$\vp \colon \scrf \to \scrg$を前層の射とする。$\vp$の前層核、$\vp$の前層余核、$\vp$の前層像をそれぞれ$U \mapsto \ker(\vp(U))$, $U \mapsto \coker(\vp(U))$, $U \mapsto \im (\vp(U))$で与えられる前層と定義する。
+}
+\begin{rem}
+  これらが本当に前層であることを確認しよう。$\vp$が射であることにより任意の射$i \colon U \to V$に対して次が可換。
+  \[
+  \xymatrix{
+  \scrf(U) \ar[r]^-{\vp_U} & \scrg(U) \\
+  \scrf(V) \ar[r]^-{\vp_V} \ar[u]^-{\scrf i} & \scrg(V) \ar[u]_-{\scrg i}
+  }
+  \]
+  したがって
+  \begin{gather*}
+    \scrf i (\Ker \vp_V) \subset \Ker \vp_U \\
+        \scrg i (\Im \vp_V) \subset \Im \vp_U
+  \end{gather*}
+  である。さらに$\scrg i$は$\Coker \vp_V \to \Coker \vp_U$を誘導する。これらの射の対応に関して合成を保つこと、恒等射を保つことはあきらかなので、たしかに前層になる。また、定義の仕方により$\Ker \vp \to \scrf$、$\scrg \to \Coker \vp$、$\Im \vp \to \scrg$は前層の射である。
+
+  さて、以上で前層であることを確認したが、これは本当に$\Ker$や$\Coker$で書くに値するものなのだろうか、という疑問に答えておく必要がある。ここでは前加法圏や加法圏といった言葉を出すのはまだ避けたいので、$\Ker$や$\Coker$の一般的な定義は行わずに前層の圏に限定して話をする。
+\end{rem}
+
+\prop{
+($\Ker$の普遍性) \\
+$\vp \colon \scrf \to \scrg$が$X$上の前層の射であるとする。任意に前層$\scrh$と射$\psi \colon \scrh \to \scrf$が与えられ、$\vp \circ \psi=0$を満たすとする。このとき次の図式
+\[
+\xymatrix{
+\scrh \ar@{.>}[dr]_-{i} \ar[drr]^-{\psi} \ar[ddr]_-{\psi}  & {} & { } \\
+{} & \Ker \vp \ar[r] \ar[d] & \scrf \ar[d]^-{0} \\
+{} & \scrf \ar[r]^-{\vp} & \scrg
+}
+\]
+を可換にするような射$i$が存在し、一意である。
+
+ただし、$0$というのは任意の開集合$U$に対して$0$写像を返すようなものである。これが前層の射であることはあきらか。
+}
+
+\begin{proof}
+
+開集合$U$が与えられるごとに、Abel群の圏における$\Ker$の普遍性により、次の図式
+\[
+\xymatrix{
+\scrh(U) \ar@{.>}[dr]_-{i_U} \ar[drr]^-{\psi_U} \ar[ddr]_-{\psi_U}  & {} & { } \\
+{} & \Ker \vp_U \ar[r] \ar[d] & \scrf \ar[d]^-{0} \\
+{} & \scrf(U) \ar[r]^-{\vp_U} & \scrg(U)
+}
+\]
+を可換にするような$i_U$が存在していることがわかる。あとは$i_U$が自然変換になっているか(前層が誘導する制限写像と交換するか)をみればよい。なぜなら、一意性はあきらかだからである。自然変換$\psi$の値域の制限なので,元をとって議論すればすぐにわかるのだが、それでは$\Coker$も同様、などと言えなくなってしまう。射の性質だけで議論を行おう。開集合の包含射$j \colon V \to U$が与えられたとする。まず$\ker \colon \Ker \vp \to \scrf$は射なので、次が可換。
+\[
+\xymatrix{
+\Ker \vp_U \ar[r]^-{(\Ker \vp)j } \ar[d]_{\ker_U} & \Ker \vp_V \ar[d]^-{\ker_V} \\
+\scrf(U) \ar[r]^-{\scrf j} & \scrg(V)
+}
+\]
+加えて、$i$の定義と$\psi$の自然性により次は可換。
+\[
+\xymatrix{
+{} & \scrh(U) \ar[dl]_-{i_U} \ar[r]^-{\scrh j} \ar[dd]^-{\psi_U} & \scrh(V) \ar[dr]^-{i_V} \ar[dd]^-{\psi_V} & {} \\
+\Ker \vp_U \ar[dr]_-{\ker_U} & {} & {} & \Ker \vp_V \ar[dl]^-{\ker_V} \\
+{} & \scrf(U) \ar[r]^-{\scrf j} & \scrg(V) & {}
+}
+\]
+したがって、
+\begin{align*}
+  \ker_V \circ (\ker \vp)j \circ i_U &= \scrf i \circ \ker_U \circ i_U \\
+  &= \ker_V \circ i_V \circ \scrh j
+\end{align*}
+である。ここで$\ker_V$はモノ射だから(元をとってもいいし、Abel群の圏での核の普遍性からもいえる)$(\ker \vp)j \circ i_U =i_V \circ \scrh j $である。したがって自然性がいえた。
+\end{proof}
+
+
+\prop{
+($\Coker$の普遍性) \\
+$\vp \colon \scrf \to \scrg$が$X$上の前層の射であるとする。任意に前層$\scrh$と射$\psi \colon \scrg \to \scrh$が与えられ、$\psi \circ \vp =0$を満たすとする。このとき次の図式
+\[
+\xymatrix{
+{} & {} & \scrh \\
+\scrg \ar[r] \ar[rru]^-{\psi} & \Coker \vp \ar@{.>}[ru]_-k & {} \\
+\scrf \ar[u]^-0 \ar[r]^-{\vp} & \scrg \ar[u] \ar[uur]_-{\psi} & {}
+}
+\]
+を可換にするような射$k$が存在し、一意である。
+}
+\begin{proof}
+  $\Ker$のときと同様。各自試みよ。$\scrg(U) \to \Coker \vp_U$がエピ射であることが重要である。
+\end{proof}
+
+また$\Im$については、任意の開集合$U$について$\Im(\vp_U) = \Ker(\scrg \to \Coker \vp_U)$であることから容易に予想されるように、次が成り立つ。
+
+\prop{
+($\Im$は$\Ker$と$\Coker$で書ける) \\
+$\vp \colon \scrf \to \scrg$が$X$上の前層の射であるとする。前層の射$\scrg \to \Coker \vp$を$\psi$と書くことにする。このとき、前層として
+\[
+\Im \vp = \Ker (\psi)
+\]
+が成り立つ。
+}
+\begin{proof}
+  すべての$U \opsub X$について、Abel群として$(\Im \vp)_U =\Im (\vp_U) = \Ker (\psi_U) = (\Ker \psi)_U$であることはあきらか。加えて、単なる包含写像であるためAbel群の準同形として$\ker \psi_U = \im \vp_U$が成り立つ。よって$\ker \psi \colon \Ker \psi \to \scrg$と$\im \vp \colon \Im \vp \to \scrg$はまったく同一の自然変換である。
+
+ここで、$\Ker$の普遍性により次の図式
+\[
+\xymatrix{
+\Im \vp \ar@{.>}[dr]_-{\beta} \ar[drr]^-{\im \vp} \ar[ddr]_-{\im \vp}  & {} & { } \\
+{} & \Ker \psi \ar[r]_-{\ker \psi} \ar[d]^-{\ker \psi} & \scrg \ar[d]^-{0} \\
+{} & \scrg \ar[r]^-{\coker \vp} & \Coker \vp
+}
+\]
+を可換にするような自然変換$\beta$がある。ところが自然変換として$\ker \psi = \im \vp$であるので、$(\ker \psi)_U$の単射性により、つねに$\beta_U = id$でなくてはならない。これは、恒等射が自然変換であることを意味する。
+
+
+
+\end{proof}
+
+
+\bfsubsection{定義-前層核 直後}
+\barquo{
+$\vp \colon \scrf \to \scrg$を層の射とするとき、$\vp$の前層核は層になるが、
+}
+\begin{proof}
+開集合$U \subset X$とその開被覆$U = \bigcup_i U_i$が与えられたとしよう。
+
+貼り合わせの一意性: $s \in \Ker \vp_U$であって、$s|_{U_i}=0$なるものが与えられたとせよ。このとき$\Ker \vp \to \scrf$は射なので
+\[
+\xymatrix{
+\Ker \vp_U \ar[r] \ar[d] & \scrf(U) \ar[d] \\
+\Ker \vp_{U_i} \ar[r] & \scrf(U_i)
+}
+\]
+は可換である。よって
+\begin{align*}
+  0 &= (\ker \vp)_{U_i} (s|_{U_i}) \\
+  &= (\ker \vp)_U (s)|_{U_i}
+\end{align*}
+である。したがって$\scrf$は層なので$(\ker \vp)_U (s) = 0 \in \scrf(U)$である。$(\ker \vp)_U$は単射だから$s=0$である。
+
+貼り合わせの存在: $s_i \in \Ker \vp_{U_i}$であって
+\[
+s_i|_{U_i \cap U_j} = s_j|_{U_i \cap U_j}
+\]
+なるものが与えられたとする。このとき$\Ker \vp \to \scrf$は射なので
+\begin{align*}
+  (\ker \vp)_{U_i} (s_i)|_{U_i \cap U_j} &= (\ker \vp)_{U_i \cap U_j} (s_i |_{U_i \cap U_j}) \\
+  &= (\ker \vp)_{U_i \cap U_j} (s_j |_{U_i \cap U_j}) \\
+  &= (\ker \vp)_{U_j} (s_j)|_{U_i \cap U_j}
+\end{align*}
+が成り立つ。$\scrf$は層なので$(\ker \vp)_{U_i}(s_i) \in \scrf(U_i)$を貼り合わせることにより
+\[
+s|_{U_i} = (\ker \vp)_{U_i}(s_i)
+\]
+なる$s \in \scrf(U)$の存在がいえる。ここで$\vp \colon \scrf \to \scrg$は自然変換なので、
+\[
+\xymatrix{
+\scrf(U) \ar[r]^-{\vp_U} \ar[d] & \scrg(U) \ar[d] \\
+\scrf(U_i) \ar[r]^-{\vp_{U_j}} & \scrg(U_i)
+}
+\]
+は可換。ゆえに
+\begin{align*}
+  \vp_U(s)|_{U_i} &= \vp_{U_i} (s|_{U_i}) \\
+  &= \vp_{U_i} ( (\ker \vp)_{U_i} (s_i) ) \\
+  &= 0
+\end{align*}
+である。$\scrg$は層なので、$\vp_U(s) = 0 \in \scrg(U)$である。よって、ある$\wt{s} \in \Ker \vp_U$が存在して$s = (\ker \vp)_U (\wt{s})$である。このとき
+\begin{align*}
+  (\ker \vp)_{U_i} (\wt{s}|_{U_i}) &= (\ker \vp)_U (\wt{s}) |_{U_i} \\
+  &= s|_{U_i} \\
+  &= (\ker \vp)_{U_i} (s_i)
+\end{align*}
+である。$(\ker \vp)_{U_i}$は単射なので$\wt{s}|_{U_i} = s_i$が成り立つ。
+\end{proof}
+
+
+
+
+
+\bfsubsection{命題-定義 1.2}
+\barquo{
+与えられた前層$\scrf$に対して、次の性質を持つような層$\scrf^+$および射$\grt \colon \scrf \to \scrf^+$が存在する: 任意の層$\scrg$および任意の射$\vp \colon \scrf \to \scrg$に対して、$\vp = \psi \circ \grt$であるような射$\psi \colon \scrf^+ \to \scrg$が一意的に存在する。さらに対$(\scrf^+, \grt)$は同型を除いて一意的である。$\scrf^+$を前層$\scrf$
+に付随した層という。
+}
+
+\begin{rem}
+圏論的にいうと、これは層の圏から前層の圏への忘却関手$U \colon \Sh \to \PSh$が左随伴をもつことをいっている。随伴の定義を確認しておこう。
+\end{rem}
+
+\prop{
+\thispagestyle{empty}%このページのページ番号を消去
+$\bfc$, $\bfd$は圏であり、関手$G \colon \bfc \to \bfd$があるとする。このとき次は同値。
+\begin{description}
+  \item[(1)] $G$は右随伴(左随伴をもつ関手)である。すなわち、ある関手$F \colon \bfd \to \bfc$と自然同型
+  \[
+\Phi \colon \Hom_C(F -, -) \to \Hom_D(-, G -)
+  \]
+  が存在する。これは、任意の$X \in \bfc$と$Y \in \bfd$に対して
+  \[
+  \Phi_{Y,X} \colon \Hom_C(F Y, X) \to \Hom_D(Y, G X)
+  \]
+  が全単射であり、かつ$X$についても$Y$についても自然性を満たすことを意味する。
+
+  \item[(2)] ある関手$F \colon \bfd \to \bfc$と、余単位射といわれる自然変換$\ve \colon FG \to 1_{\bfc}$と、単位射といわれる自然変換$\eta \colon 1_{\bfd} \to GF$が存在して、三角恒等式を満たす。すなわち、次の図式が可換となる。
+  \[
+  \xymatrix{
+  F \ar[r]^{F \eta} \ar[dr]_{id} & FGF \ar[d]^{\ve F} & G \ar[dr]_{id} \ar[r]^{\eta G} & GFG \ar[d]^{G \ve} \\
+  {} & F & {} & G
+  }
+  \]
+
+  \item[(3)] 任意の$\bfd$の対象$Y$に対して、$Y$から$G$への普遍射$(X, \vp \colon Y \to G(X))$が存在する。ここで$(X, \vp \colon Y \to G(X))$が普遍射であるというのは、任意の対象$A \in \bfc$と射$g \colon Y \to G(A)$に対して、次の図式
+  \[
+  \xymatrix{
+  Y \ar[dr]_-{g} \ar[r]^-{\vp} & G(X) \ar@{.>}[d]^-{Gf} & X \ar@{.>}[d]^-{f} \\
+  {} & G(A) & A
+  }
+  \]
+  が可換になるような$f$が一意的に存在することを意味する。
+\end{description}
+}
+
+\begin{proof}
+たとえばS.Mac Lane\cite{MacLane}第4章1節 定理2を参照のこと。
+\end{proof}
+
+
+\begin{proof}
+  命題1.2の証明をしよう。段階を踏んで示す。
+\begin{description}
+  \item[Step 1] 位相空間$X$上の前層$\scrf$が与えられたとし、開集合$U \subset X$に対して、集合$\scrf^{+}(U)$を構成しよう。記号を用意しておく。点$x$に対して、$x$の開近傍であるようなすべての$V \opsub U$についての$\scrf(V)$の集合としての直和$\coprod_{x \in V \subset U} \scrf(V)$を考える。元$(V,s) \in \coprod_{x \in V \subset U} \scrf(V)$に対して、
+  芽の直和への写像$\ol{s} \colon V \to \coprod_{x \in V} \scrf_x$を
+  \[
+  \ol{s} (y) = s_y
+  \]
+  で定める。そうして、
+  \[
+  \scrf^{+}(U) = \setmid{
+  f \colon U \to \coprod_{x \in U}\scrf_x
+  }
+  {
+  \forall x \in U \; \exists (V,s) \in \coprod_{x \in V \subset U} \scrf(V) \st f|_{V} = \ol{s}
+  }
+  \]
+  と定める。この定義が本文でのものと一致することは容易に確かめられるだろう。直感的には、$\scrf^{+}(U)$というのは、各点$x \in X$に対して$x$での芽を対応させるような写像の貼り合わせで得られるような写像の全体である。
+\item[Step 2] $U \opsub X$に対して、
+\[
+\Phi(U) = \setmid{f \colon U \to \coprod_{x \in U} \scrf_x    }{ f(x) \in \scrf_x     }
+\]
+とする。このとき$\scrf_x$がそれぞれAbel群なので、$\Phi(U)$はAbel群である。また、通常の写像の制限写像に関して前層になっている。のみならず、$\Phi$は層でもある。そこで、$\scrf^{+}(U) \subset \Phi(U)$が部分Abel群であることを示そう。
+
+%まず、$e \in \Phi(U)$を単位元とする。$e \colon U \to \coprod_{x \in U} \scrf_x$は、つねに$0$を返すような写像である。したがって、任意の$x \in U$に対して$(U, 0) \in \coprod_{x \in V \subset U} \scrf(V)$
+%をとれば$e|_U = e = \ol{0}$が成り立つので、$e \in \scrf^+(U)$がいえた。したがって$\scrf^+(U)$は単位元を持つ。
+
+$\scrf^{+}(U)$が空でないことは明らかなので、$\scrf^+(U)$が和と逆元で閉じていることを示せば十分。$f_i \in \scrf^+(U) \; (i=1,2)$とする。このとき、$x \in U$に対して、
+\[
+f_i |_{V_i} = \ol{s_i}
+\]
+なる$(V_i, s_i) \in \coprod_{x \in V \subset U} \scrf(V)$がある。すると$y \in V_1 \cap V_2$に対して
+\begin{align*}
+  (f_1 - f_2)(y) &= \ol{s_1}(y) - \ol{s_2}(y) \\
+  &= {s_1}_y - {s_2}_y \\
+  &= (s_1|_{V_1 \cap V_2})_y - (s_2|_{V_1 \cap V_2})_y &(\scrf_x \text{の定義から}) \\
+  &= (s_1|_{V_1 \cap V_2} - s_2|_{V_1 \cap V_2})_y
+\end{align*}
+が成り立つので、$(V_1 \cap V_2 , s_1|_{V_1 \cap V_2} - s_2|_{V_1 \cap V_2} ) \in \coprod_{x \in V \subset U} \scrf(V)$に関して$(f_1 - f_2)|_{V_1 \cap V_2} = \ol{s_1|_{V_1 \cap V_2} - s_2|_{V_1 \cap V_2}}$である。
+$x \in U$は任意だったので、$\scrf^+(U)$が和と逆元に関して閉じていることがいえた。
+ゆえに、$\scrf^+(U)$は$\Phi(U)$の部分Abel群である。
+\item[Step 3] 層$\Phi$の制限写像が、$\scrf^+$の制限写像を誘導することをみよう。$f \in \scrf^+(U)$と$V \opsub U$が与えられたとして、$g = f|_V \in \Phi(V)$が$g \in \scrf^+(V)$を満たすことをいえばよい。$x \in V$とする。$x \in U$なので、$f \in \scrf^+(U)$によりある$(W,s ) \in \coprod_{x \in W \subset U} \scrf(W)$
+が存在して、$f|_W = \ol{s}$を満たす。このとき$(W \cap V, s|_{W \cap V}) \in \coprod_{x \in E \subset V} \scrf(E)$であって、
+\[
+g|_{V \cap W} = \ol{s|_{W \cap V}}
+\]
+である。なぜなら、$y \in W \cap V$に対して
+\begin{align*}
+  (g|_{W \cap V})(y) &= g(y) \\
+  &= f(y) \\
+  &= \ol{s}(y) \\
+  &= s_y \\
+  &= (s|_{W \cap V})_y \\
+  &= \ol{s|_{W \cap V}}(y)
+\end{align*}
+が成り立つからである。したがって$g \in \scrf^+(V)$であり、層$\Phi$の制限写像から誘導される制限写像がある。したがって$\scrf^+$が前層であることがいえた。
+\item[Step 4] $\scrf^+$が層であることを示そう。開集合$U \subset X$と開被覆$U = \bigcup_{i} U_i$が与えられたとする。
+
+貼り合わせの一意性は、層$\Phi$への単射があることから従う。つまり、$s \in \scrf^+(U)$が$s|_{U_i} =0$を満たしたとすると、$\Phi$が層なので、$s \in \Phi(U)$と見なしたときに$s = 0$でなくてはならない。したがって、$s = 0 \in \scrf^+(U)$である。これで貼り合わせの一意性がいえた。
+
+貼り合わせの存在を示そう。$f_i \in \scrf^+(U_i)$がすべての$i,j$に対して$f_i |_{U_i \cap U_j} = f_j |_{U_i \cap U_j}$を満たしたとする。$\Phi$は層なのである$f_i \in \Phi(U)$が存在して、
+\[
+\forall i \quad f|_{U_i} = f_i
+\]
+を満たす。$f \in \scrf^+(U)$を示したい。$x \in U$とする。$x \in U_k$なる$k$がある。$f_k \in \scrf^+(U_k)$より、ある$(V,s) \in \coprod_{x \in V \subset U_k} \scrf(V)$が存在して
+\[
+f_k |_V = \ol{s}
+\]
+を満たす。このとき
+\begin{align*}
+  f|_V &= (f|_{U_k})|_V \\
+  &= f_k |_V \\
+  &= \ol{s}
+\end{align*}
+なので、$V$は$U$の開集合とも思えるので$f \in \scrf^+(U)$である。$f$が$f_i \in \scrf^+(U_i)$の貼り合わせを与えていることはあきらか。
+
+\item[Step 5] 射$\grt \colon \scrf \to \scrf^+$を構成しよう。$U \opsub X$が与えられたとする。$\grt_U \colon \scrf(U) \to \scrf^+(U) $を$\grt_U (s) = \ol{s}$で定義する。$\grt_U$がAbel群の準同形であることはあきらか。準同形の族$\{ \grt_U \}$が自然変換$\scrf \to \scrf^+$を定めることをみたい。それには次の図式
+\[
+\xymatrix{
+\scrf(U) \ar[r]^-{\grt_U} \ar[d] & \scrf^+(U) \ar[d] \\
+\scrf(V) \ar[r]^-{\grt_V} & \scrf^+(V)
+}
+\]
+が可換であることを確かめればよい。いま$x \in V$と$s \in \scrf(U)$に対して
+\begin{align*}
+  (\grt_U s)|_V (x) &= \grt_U s (x) \\
+  &= \ol{s}(x) \\
+  &= s_x \\
+  (\grt_V (s|_V))(x) &= \ol{s|_V}(x) \\
+  &= (s|_V)(x) \\
+  &= s_x
+\end{align*}
+だから、これは確かめられた。よって射$\grt \colon \scrf \to \scrf^+$が構成できた。
+\item[Step 6] $\scrf^+$が求められる普遍性を満たしていることを示そう。任意に層$\scrg$と射$\vp \colon \scrf \to \scrg$が与えられたとする。
+\[
+\xymatrix{
+\scrf(U) \ar[r]^-{\grt_U} \ar[rd]^-{\vp_U} & \scrf^+(U) \ar@{.>}[d]^-{\psi_U} \\
+{} & \scrg(U)
+}
+\]
+最初の段階として、$f \in \scrf^+(U)$に対して$\psi_U(f) \in \scrg(U)$を構成したい。
+まず、これまでの議論により次がいえることに気をつける。
+\lem{
+(層の切断は芽を返す写像) \\
+$X$は位相空間、$\scrf$は$X$上の層であるとする。$X$上の層$\Phi$を
+\[
+\Phi(U) = \setmid{f \colon U \to \coprod_{x \in U } \scrf_x}{ f(x) \in \scrf_x}
+\]
+と通常の制限写像によるものとして定めておく。このとき、$U \opsub X$に対して写像$p_U \colon \scrf(U) \to \Phi(U)$を$p_U (s) = \ol{s}$で定めると、$p_U$は自然変換であり、$p_U \colon \scrf(U) \to \Phi(U)$は単射。おおざっぱにいうと、層$\scrf$の切断$s \in \scrf(U)$は$x \in U$に対して芽$s_x$を返す写像だと思うことができる。とくに、芽を考えることは代入することと同じとみなせる。
+}
+\begin{proof}
+  ここまでくるとほとんど当たり前である。各$p_U \colon \scrf(U) \to \Phi(U)$がAbel群の準同形であることはあきらか。$\scrf$は層なので$\scrf(U) \to \prod_{x \in U} \scrf_x \st s \mapsto (s_x)_{x \in U}$は単射であり、したがって$p_U$も単射。また、$p$は射$\grt \colon \scrf \to \scrf^+$と、包含写像の族が誘導する射$\scrf^+ \to \Phi$の合成なので射である。
+\end{proof}
+
+$\psi_U$の構成に戻る。$x \in U$をとると、$f \in \scrf^+(U)$によりある$(V^x, s^x) \in \coprod_{x \in W \subset V^x} \scrf(W)$が存在して
+$f|_{V^x} = \ol{s^x}$を満たす。このとき$t^x \in \scrg(V^x)$を
+\[
+t^x = \vp_{V^x} (s^x)
+\]
+で定めることができる。$t^x$を貼り合わせたいので、任意の$x,y \in X$に対して$t^x|_{V^x \cap V^y} = t^y|_{V^x \cap V^y}$が成り立つことをみよう。$\scrg$は層と仮定したので、$\scrg$の切断は写像だと思える。よって、任意の$z \in V^x \cap V^y$に対して
+\[
+(t^x)_z = (t^y)_z
+\]
+であることを示せば十分である。任意の$z$の開近傍$W$に対して次の図式
+\[
+\xymatrix{
+\scrf(W) \ar[r]^-{\vp_W} \ar[d] & \scrg(W) \ar[d] \\
+\scrf_z \ar[r]^-{\vp_z} & \scrg_z
+}
+\]
+が可換であることに注意して、実際に計算すると
+\begin{align*}
+  (t^x)_z &= \vp_{V^x} (s^x)_z \\
+  &= \vp_z((s^x)_z )  \\
+  &= \vp_z (\ol{s^x}(z)) \\
+  &= \vp_z(f(z))
+\end{align*}
+である。$\vp_z(f(z))$は$x$に依らないので、同様に続けて$(t^x)_z = (t^y)_z$がいえる。ゆえに、$\scrg$は層なので$t^x \in  \scrg(V^x)$の貼り合わせ$t \in \scrg(U)$が存在して$t|_{V^x} = t^x$を満たす。そこで、$\psi_U(f) = t$と定める。
+\item[Step 7] $\psi$の定義がwell-definedであることを示そう。$\scrg$は層なので、$\psi_U(f) = t$の各点$x \in U$での芽を計算して、それが$f$と$\vp$にしか依らないことを確認すればよい。実行してみると
+\begin{align*}
+  t_x &= (t|_{V^x})_x \\
+  &= (t^x)_x \\
+  &= \vp_{V^x}(s^x)_x \\
+  &= \vp_x((s^x)_x) \\
+  &= \vp_x(\ol{s^x}(x)) \\
+  &= \vp_x(f(x))
+\end{align*}
+であるから、写像としてwell-definedであることがいえた。
+\item[Step 8] 各$\psi_U \colon \scrf^+(U) \to\scrg(U)$がAbel群の準同形になっていることを示そう。任意に$f,g \in \scrf^+(U)$が与えられたとする。このとき$x \in U$での芽を考えると
+\begin{align*}
+  \ol{\psi_U(f) + \psi_U(g) - \psi_U(f + g)}(x) &= \psi_U(f)_x + \psi_U(g)_x - \psi_U(f + g)_x \\
+  &= \vp_x(f(x)) + \vp_x(g(x)) - \vp_x((f+g)(x)) \\
+  &= 0
+\end{align*}
+となる。ゆえに$\scrg$は層なので、各点での芽が一致することから$\psi_U(f) + \psi_U(g) = \psi_U(f + g)$が成り立つ。
+\item[Step 9] $\psi$が自然変換であることを示そう。$V \subset U$とする。次の図式
+\[
+\xymatrix{
+\scrf^+(U) \ar[r]^-{\psi_U} \ar[d] & \scrg(U) \ar[d] \\
+\scrf^+(V) \ar[r]^-{\psi_V} & \scrg(V)
+}
+\]
+が可換であることをいえばよい。与えられた$f \in \scrf(U)$と$x \in V$について
+\begin{align*}
+  (\psi_U(f)|_V)_x &= \psi_U(f)_x \\
+  &= \vp_x(f(x)) \\
+  \psi_V(f|_V)_x &= \vp_x (f|_V (x)) \\
+  &= \vp_x(f(x))
+\end{align*}
+が成り立つ。$\scrg$は層なので、各点での芽が一致することをいえば$\scrg(V)$の元として一致していることがわかる。よって示すべきことがいえた。
+\item[Step 10] $\psi$の一意性を示そう。射$\psi \colon \scrf^+ \to \scrg$であって$\vp = \psi \circ \grt$を満たすものが任意に与えられたとする。ただし$\scrg$は層で、$\vp \colon \scrf \to \scrg$は射であるという状況はいままでと同じである。$\scrg$は層なので、$f \in \scrf^+(U)$と$x \in U$が与えられたとして、$\psi_U(f)_x$が$\vp$によって自由度なしに決定されてしまうことをみればよい。
+
+$\psi$は射だったので、各点$x \in X$に対し、$x$の開近傍$U$をとれば
+\[
+\xymatrix{
+\scrf^+(U) \ar[r]^-{\psi_U} \ar[d] & \scrg(U) \ar[d] \\
+\scrf^+_x \ar[r]^-{\psi_x} & \scrg_x
+}
+\]
+は可換である。したがって
+\[
+\psi_U(f)_x = \psi_x(f_x)
+\]
+である。ここで$f \in \scrf^+(U)$により、ある$(V,s) \in \coprod_{x \in V \subset U} \scrf(V)$が存在して、$f|_V = \ol{s}$である。ここで$\ol{s} \in \scrf^+(V)$であり、芽をとれば$f_x = \ol{s}_x$である。さらに$\grt_V(s) = \ol{s}$だから、
+\begin{align*}
+  \psi_U(f)_x &= \psi_x(f_x) \\
+  &= \psi_x((\ol{s})_x ) \\
+  &= \psi_x (\grt_V(s)_x ) \\
+  &= \psi_x (\grt_x (s_x) ) \\
+  &= (\psi \circ \grt )_x (s_x) \\
+  &= \vp_x (s_x) \\
+  &= \vp_x ( \ol{s} (x) ) \\
+  &= \vp_x (f|_V (x)) \\
+  &= \vp_x (f(x))
+\end{align*}
+となる。よって$\psi$は図式の可換性から一意に定まる。
+\end{description}
+
+\end{proof}
+
+
+
+
+\bfsubsection{命題-定義 1.2}
+\barquo{
+なお、任意の点$P$に対して$\scrf_P = \scrf^+_P$であることに注意せよ。また、$\scrf$自身が層のとき、$\scrf^+$は$\grt$を介して$\scrf$と同型であることにも注意せよ。
+}
+\begin{proof} ${}$
+  \begin{description}
+    \item[Step 1] 次のことに気をつける。
+    \prop{
+    Abel群$A$, 位相空間$X$, 点$P \in A$が与えられたとする。このとき
+  \[
+  \scrf(U) = \begin{cases}
+  0 &(P \notin U) \\
+  A &(P \in U)
+\end{cases}
+  \]
+  とおいて、制限写像を恒等写像と零写像で自然に定めると、$\scrf$は$X$上の層になる。これには摩天楼層という名前がついている。
+    }
+    \begin{proof}
+      $\scrf$が前層になることはあきらか。空集合に気をつけつつ、層になることを見る。
+      \begin{description}
+        \item[Step 1] $\scrf(\emptyset)=0$はあきらか。
+        \item[Step 2] 貼り合わせの一意性をみる。$U \neq \emptyset$と開被覆$U = \bigcup_{i \in I} V_i$が与えられたとする。$s \in \scrf(U)$であって$s|_{V_i}=0$なるものがあったとする。$P \notin U$ならば示すことはないので、$P \in U$としてよい。このとき$P \in V_j$なる$j \in I$がある。この$j$について、$V_i$への制限写像は恒等写像である。よって$s=0$がいえる。
+        \item[Step 3] 貼り合わせ可能性をみる。開集合$U$と開被覆$U = \bigcup_{i } V_i$が与えられたとし、$s_i \in \scrf(V_i)$であって$s_i |_{V_i \cap V_j} = s_j |_{V_i \cap V_j}$なるものがあったとする。すべての$i$について$P \in V_i$であると仮定しても一般性を失わない。すると、仮定により$A$の元としてつねに$s_i = s_j$なので、$s = s_i$となる元$s \in A$がある。
+      \end{description}
+      以上により層であることが確認できた。
+    \end{proof}
+
+    \prop{
+    $\scrf$を$X$上の前層、$P \in X$とする。茎$\scrf_P$に値をとる点$P$上の摩天楼層を$\wt{\scrf_P}$と書くことにする。このとき、自然な射$i \colon \scrf \to \wt{\scrf_P}$があり、さらに前層の射$\vp \colon \scrf \to \scrg$は射$\wt{\vp} \colon \wt{\scrf_P} \to \wt{\scrg_P}$
+    を誘導する。
+    }
+    \begin{proof}
+      あきらか。暇なときにでも確かめて欲しい。
+    \end{proof}
+
+    引用部の証明に戻る。摩天楼層$\wt{\scrf_P}$は層なので、層化の普遍性により、次の図式
+    \[
+    \xymatrix{
+    \scrf \ar[r]^-{\grt} \ar[rd]_i & \scrf^+ \ar[d]^-{\psi} \\
+    {} & \wt{\scrf_P}
+    }
+    \]
+    を可換にするような$\psi$がある。すると今度は茎$\scrf^+_P$の普遍性により、
+    \[
+    \xymatrix{
+    \scrf^+ \ar[r]^{i^+} \ar[rd]_{\psi} & \wt{\scrf^+_P} \ar[d]^{\wt{\psi}} \\
+    {} & \wt{\scrf_P}
+    }
+    \]
+    を可換にするような$\wt{\psi}$が存在する。以上により可換図式
+    \[
+    \xymatrix{
+    \wt{\scrf_P} \ar[rrr]^-{\wt{\grt}} \ar@{=}[dd] & {} & {} & \wt{\scrf^+_P} \ar[dd]^-{\wt{\psi}} \\
+    {} & \scrf \ar[r]^-{\grt} \ar[lu]_-i \ar[dl]^-i & \scrf^+ \ar[ru]^-{i^+} \ar[rd]_-{\psi} & {} \\
+    \wt{\scrf_P} \ar@{=}[rrr] & {} & { } & \wt{\scrf_P}
+    }
+    \]
+    を得る。この図式をぐっとにらむと、$i = \wt{\psi} \circ \wt{\grt} \circ i$であることがわかる。$\wt{\psi} \circ \wt{\grt}$の行き先$\wt{\scrf_P}$は摩天楼層なので、茎の普遍性により$id = \wt{\psi} \circ \wt{\grt}$である。
+
+    また、再び図式をぐっとにらむことにより$\wt{\grt} \circ \wt{\psi} \circ i^+ \circ \grt = i^+ \circ \grt$
+    がわかる。$\wt{\grt} \circ \wt{\psi} \circ i^+$の行き先$\wt{\scrf^+_P}$は層なので、層化の普遍性により$\wt{\grt} \circ \wt{\psi} \circ i^+ = i^+$がわかる。さらに、$\wt{\scrf^+_P}$は摩天楼層なので、茎の普遍性から$id = \wt{\grt} \circ \wt{\psi}$である。
+
+    したがって自然同型$\wt{\scrf_P} \cong \wt{\scrf^+_P}$がわかるので、とくに$\scrf_P \cong \scrf^+_P$である。
+\begin{comment}
+    前半を示す。(層化の普遍性を使って示したいところだが、その方法は採らない。準備が足りないからである) 射$\grt \colon \scrf \to \scrf^+$は、すべての$P$の開近傍$U$について次の図式
+\[
+\xymatrix{
+\scrf(U) \ar[r]^-{\grt_U} \ar[d] & \scrf^+(U) \ar[d] \\
+\scrf_P \ar[r]^-{\grt_P} & \scrf^+_P
+}
+\]
+    が可換になるような準同形$\grt_P \colon \scrf_P \to \scrf^+_P$を誘導する。また、準同形$\psi_U \colon \scrf^+(U) \to \scrf_P$を、$\psi_U(f)=f(P)$で定める。このときすべての$P$の開近傍の列$V \subset U$について次の図式
+    \[
+    \xymatrix{
+    \scrf^+(U) \ar[r]^-{\psi_U} \ar[d] & \scrf_P  \\
+    \scrf^+(V) \ar[ur]_-{\psi_V} & {}
+    }
+    \]
+    は可換である。したがって茎の普遍性により、ある準同形$\wt{\psi}$が存在して、すべての$P$の開近傍$U$に対して次の図式
+\[
+\xymatrix{
+\scrf^+(U) \ar[r]^-{\psi_U} \ar[d] & \scrf_P  \\
+\scrf^+_P \ar[ur]_-{\wt{\psi}} & {}
+}
+\]
+が可換になる。
+
+さて$\gra \in \scrf^+_P$とする。ある$(V,f) \in \coprod_{P \in V} \scrf^+(V)$があって、$\gra = f_P$と表せる。$f \in \scrf^+(V)$なので、さらに$f|_W = \ol{s}$となるような$(W,s) \in \coprod_{P \in W \subset V} \scrf(W)$がとれる。このとき
+\begin{align*}
+  \grt_P \circ \wt{\psi} (\gra) &= \grt_P \circ \wt{\psi} (f_P) \\
+  &= \grt_P \circ \psi_V (f) \\
+  &= \grt_P (f(P)) \\
+  &= \grt_P (s_P) \\
+  &= \grt_W (s)_P \\
+  &= (\ol{s})_P \\
+  &= (f|_W)_P \\
+  &= f_P \\
+  &= \gra
+\end{align*}
+だから、$\grt_P \circ \wt{\psi} = id$がいえた。
+
+逆に$\beta \in \scrf_P$とする。$\beta = s_P$なる$(V,s) \in \coprod_{P \in V} \scrf(V)$がある。このとき
+\begin{align*}
+  \wt{\psi} \circ \grt_P(\beta ) & = \wt{\psi} \circ \grt_P(s_P) \\
+  &= \wt{\psi} (\grt_V (s)_P ) \\
+  &= \psi_V ( \grt_V (s)) \\
+  &= \psi_V (\ol{s}) \\
+  &= \ol{s}(P) \\
+  &= s_P \\
+  &= \beta
+\end{align*}
+であるから、$\wt{\psi} \circ \grt_P = id$である。これで同型がいえた。
+\end{comment}
+\item[Step 2] 後半を示す。一般には、忘却関手の左随伴（自由対象）は、このような性質を満たさない。例として、自由群を与える関手を考えてみればわかる。しかし層の圏から前層の圏への忘却関手は忠実充満なので、これが成り立つということに注意する。さて$\scrf$は層なので、層化の普遍性により次の図式
+\[
+\xymatrix{
+\scrf \ar[r]^-{\grt} \ar[rd]_-{id} & \scrf^+ \ar@{.>}[d]^-{\psi} \\
+{} & \scrf
+}
+\]
+を可換にするような$\psi$が存在する。このとき定義により$\psi \circ \grt = id$である。さらに
+\[
+\xymatrix{
+\scrf \ar[r]^-{\grt} \ar[rd]_-{\grt} & \scrf^+ \ar[d]^-{\grt \circ \psi} \\
+{} & \scrf^+
+}
+\]
+は可換なので、射の一意性から$\grt \circ \psi = id$も成り立つ。
+  \end{description}
+\end{proof}
+
+
+\bfsubsection{定義-部分層}
+\barquo{
+任意の点$P$に対して$\scrf'_P$は$\scrf_P$の部分群となっていることが従う。
+}
+\begin{rem}
+  これは順極限の完全性から従うので、$\scrf$が層であるという仮定は必要ない。前層で十分である。
+\end{rem}
+
+
+\bfsubsection{定義-層の像}
+\barquo{
+自然な射$\im \vp \to \scrg$がある。この射は実際単射(Ex. 1.4 を見よ)であり、したがって$\im \vp$は$\scrg$の部分層と同一視できる。
+}
+\begin{rem}
+正しい順序で証明を行い、循環論法にならないようにするために叙述の順序をいままでの形式(本文$\to$演習)から変更する。
+\end{rem}
+
+\prop{
+(層化と茎の合成と茎の自然同型) \\
+茎をとる関手$(\cdot)_P \colon \PSh \to \Ab$と層化してから茎をとる関手$(\cdot^{+})_P \colon \PSh \to \Ab$は自然同型である。すなわち前層の射$\vp \colon \scrf \to \scrg$が与えられたとき
+次の図式
+\[
+\xymatrix{
+(\scrf^+)_P \ar[r]^-{(\vp^+)_P} & (\scrg^+)_P \\
+\scrf_P \ar[r]^-{\vp_P} \ar[u]^-{iso} & \scrg_P \ar[u]_-{iso}
+}
+\]
+は可換である。
+}
+\begin{proof}
+面倒なので茎の上の摩天楼層と茎をとくに区別しないで書く。次の立方体の形をした図式
+\[
+\xymatrix{
+{}  & (\scrf^+)_P \ar[rr]^-{(\vp^+)_P } & {} & (\scrg^+)_P \\
+\scrf_P \ar[ru]^-{iso}  \ar[rr]^(.7){\vp_P} & { } & \scrg_P \ar[ru]^-{iso} & {} \\
+{} & \scrf^+ \ar[uu] \ar[rr]^(.7){\vp^+} & { } & \scrg^+ \ar[uu] \\
+\scrf \ar[uu]^-i \ar[rr]^-{\vp} \ar[ru] & {} & \scrg \ar[uu] \ar[ru]
+}
+\]
+を考える。この図式において、上の面以外の$5$つの面の可換性はすでに示されている。したがって、上の面と$i$の合成を考えると、茎の普遍性から上の面の可換性がいえる。よって示すべきことがいえた。
+\end{proof}
+
+
+\prop{
+(演習1.4 (a)) \\
+$\vp \colon \scrf \to \scrg$を前層のあいだの射とする。$\vp$が単射ならば、層化が誘導する射$\vp^{+} \colon \scrf^{+} \to \scrg^{+}$も単射である。
+}
+\begin{proof}
+命題1.1より、$(\vp^{+})_P \colon (\scrf^+ )_P \to (\scrg^+)_P$がすべて単射であることを示せば十分。前の命題から、次の図式
+\[
+\xymatrix{
+(\scrf^+)_P \ar[r]^-{(\vp^+)_P} & (\scrg^+)_P \\
+\scrf_P \ar[r]^-{\vp_P} \ar[u]^-{iso} & \scrg_P \ar[u]_-{iso}
+}
+\]
+は可換である。したがって、順極限の完全性より下辺の射は単射だから、示すべきことがいえる。
+\end{proof}
+
+
+\bfsubsection{定義-商層}
+\barquo{
+商層$\scrf / \scrf'$を前層$U \to \scrf(U) / \scrf'(U)$に付随する層と定義する。任意の点$P$に対して、茎$(\scrf/ \scrf')_P$は茎の商$\scrf_P / \scrf'_P$となることが分かる。
+}
+\begin{rem}
+  対応$U \to \scrf(U) / \scrf'(U)$が前層を定めることの証明は省略。後半の茎についての命題は、次の演習1.2を余核について適用すればわかる。
+\end{rem}
+
+
+\prop{
+(演習1.2(a)の拡張) \\
+前層の射$\vp \colon \scrf \to \scrg$と各点$P \in X$に対して、次が成り立つ。ただしシャープは前層としての像・余核をとっていることを表す。
+\begin{description}
+  \item[(1)] $\scrf_P$の部分群として$(\Ker \vp)_P = \Ker \vp_P$である。また$\scrg_P$の商群として$(\Coker^{\sh} \vp)_P = \Coker \vp_P$である。さらに$\scrg_P$の部分群として$(\Im^{\sh} \vp)_P = \Im \vp_P$である。
+  \item[(2)] $\scrf$と$\scrg$が層ならば、$\scrg_P$の商群として$(\Coker \vp)_P = \Coker \vp_P$である。さらに$\scrg_P$の部分群として$(\Im \vp)_P = \Im \vp_P$である。
+\end{description}
+}
+\begin{proof} ${}$
+  \begin{description}
+    \item[(1)]
+    次の前層の圏における完全列がある。
+      \[
+      \xymatrix{
+      0 \ar[r] & \Ker \vp \ar[r] & \scrf \ar[r]^-{\vp} & \scrg
+      }
+      \]
+      順極限の完全性から、任意の$P \in X$について次も完全である。
+      \[
+      \xymatrix{
+      0 \ar[r] & (\Ker \vp)_P \ar[r]  & \scrf_P \ar[r]^-{\vp_P}  & \scrg_P
+      }
+      \]
+      したがって$\scrf_P$の部分群として$\Ker \vp_P = (\Ker \vp)_P$である。つまり、次の図式
+    \[
+    \xymatrix{
+    {} & \scrf_P \\
+    (\Ker \vp)_P \ar[ru] \ar[r]  & \Ker \vp_P \ar[u]
+    }
+    \]
+    が可換になるような同型$(\Ker \vp )_P \to \Ker \vp_P$がある。
+      同様にして$\scrg_P$の商群として$\Coker \vp_P = (\Coker^{\sh} \vp)_P$であることがわかる。つまり次の図式
+\[
+\xymatrix{
+\scrg_P \ar[r] \ar[d] & (\Coker^{\sh} \vp)_P \\
+\Coker \vp_P \ar[ru]  &
+}
+\]
+が可換になるような同型$\Coker \vp_P \to (\Coker^{\sh} \vp)_P$がある。
+      最後に$\Im^{\sh}$について考える。自然な写像$\scrg \to \Coker^{\sh} \vp$を$\psi$とおく。$\psi_P \circ \vp_P = 0$より$\Im \vp_P \subset \Ker \psi_P$である。したがって、次の各行が完全であるような可換図式
+      \[
+      \xymatrix{
+0 \ar[r] & \Ker \psi_P \ar[r] & \scrg_P \ar[r]^-{\psi_P} \ar@{=}[d] & (\Coker \vp)_P \\
+0 \ar[r] & \Im \vp_P \ar[u] \ar[r]  & \scrg_P \ar[r] & \Coker \vp_P \ar[u]^-{iso}
+      }
+      \]
+      が得られる。したがって5-lemmaにより、自然な写像$\Im \vp_P \to \Ker \psi_P$は同型である。よって
+\[
+\xymatrix{
+(\Im^{\sh} \vp)_P \ar[r]  \ar@{=}[d] & \scrg_P \ar@{=}[d] \\
+(\Ker \psi)_P \ar[r]  \ar[d]_-{iso} & \scrg_P \ar@{=}[d] \\
+\Ker \psi_P \ar[r]  \ar[d]_-{iso} & \scrg_P \ar@{=}[d] \\
+\Im \vp_P \ar[r]   & \scrg_P
+}
+\]
+  は可換。したがって、$\scrg_P$の部分群として$(\Im^{\sh} \vp)_P = \Im \vp_P$である。
+      \item[(2)] 層化の茎はもとの前層の茎と同型であることから、(1)により従う。
+  \end{description}
+\end{proof}
+
+
+\bfsubsection{警告 1.2.1}
+\barquo{
+しかしながら、$\vp$が全射であるのはおのおのの$P$に対して茎の間の写像$\vp_P \colon \scrf_P \to \scrg_P$が全射であるとき、またそのときに限る、ということはいえる。さらに一般に、層と射の列が完全であるのは、茎に誘導される列が完全であるとき、またそのときに限る(Ex. 1.2) 以上のことは再び層が局所的なものであるという性質を示している。
+}
+
+\prop{
+(演習 1.2 (b)) \\
+前層の間の射$\vp \colon \scrf \to \scrg$があり、$\scrg$は層であるとする。このとき$\vp$が全射であることと、すべての$P$について$\vp_P$が全射であることは同値である。
+}
+\begin{proof}
+  命題1.1を使う。
+  \begin{align*}
+    \vp \text{が全射} &\iff \Im \vp = \scrg \\
+    &\iff \Im \vp \to \scrg \text{が同型} &(\text{演習1.4(a)より}) \\
+    &\iff \forall P \in X \quad (\Im \vp \to \scrg)_P \text{が同型} &(\text{$\scrg$が層より}) \\
+    &\iff \Im \vp_P \to \scrg_P \text{が同型} \\
+    &\iff \vp_P \text{が全射}
+  \end{align*}
+  より、示すべきことがいえる。
+\end{proof}
+
+
+
+
+
+\prop{
+(演習1.2 (c)) \\
+$3$つの層とその間の射
+\[
+\xymatrix{
+\scrf \ar[r]^{\vp} & \scrg \ar[r]^{\psi} & \scrh
+}
+\]
+があったとし、すべての$P \in X$について
+\[
+\xymatrix{
+\scrf_P \ar[r]^{\vp_P} & \scrg_P \ar[r]^{\psi_P} & \scrh_P
+}
+\]
+が完全だとする。このとき$\psi \circ \vp = 0$であって、かつ
+\[
+\xymatrix{
+\scrf \ar[r]^{\vp} & \scrg \ar[r]^{\psi} & \scrh
+}
+\]
+は完全である。
+}
+\begin{proof}
+$\Im \vp_P = \Ker \psi_P$であるから層$\Ker \psi$と$\Im \vp$はすべての茎が一致する。ゆえに同じ層である…といいたいところだが、その前に$\Ker \psi$と$\Im \vp$の間に射が存在するということを示さなくてはならない。
+  %(\textblue{反例はあるだろうか？}つまり、すべての茎が同型だが、互いに自然同型ではないような二つの層の例はあるだろうか。あるいは、ゼロでないような前層$\scrf$で、層化がゼロになるものがあるか、と言ってもよい)
+  状況から言って、$\Ker \psi$は$\Im \vp$を部分層として含んでいることが予想されるが、それはあきらかではなく、層であるということを用いて示す必要がある。
+
+  \lem{
+  (局所的にゼロならもともとゼロ) \\
+  2つの層の間の射$\vp \colon  \scrf \to \scrg$があり、すべての点$P$について$\vp_P = 0 $が成り立つとする。このとき$\vp = 0$である。
+  }
+  \begin{proof}
+    $\scrf_P$の部分群として
+    \begin{align*}
+      (\Ker \vp)_P &= \Ker \vp_P &(\text{演習1.2(a)による}) \\
+      &= \scrf_P
+    \end{align*}
+    である。したがって自然な写像$\Ker \vp \to \scrf$を$j$とおくと、$j_P$はすべて同型である。ゆえに$\scrf$と$\scrg$が層であることにより$\Ker \vp$は層なので、命題1.1より$j$は同型である。よって$\Ker \vp = \scrf$であり、これは$\vp = 0$を意味する。
+  \end{proof}
+
+
+
+
+  \lem{
+  前層の列
+  \[
+  \xymatrix{
+  \scrf \ar[r]^{\vp} & \scrg \ar[r]^{\psi} & \scrh
+  }
+  \]
+  が与えられたとし、うち$\scrg$と$\scrh$は層であるとする。このとき次は同値。
+  \begin{description}
+    \item[(1)] $\psi \circ \vp = 0$
+    \item[(2)] $\Im \vp$は$\Ker \psi$の部分層。
+  \end{description}
+  }
+  \begin{proof} ${}$
+    \begin{description}
+      \item[(2)$\To$(1)] 前層の像を$\sh$をつけて表すことにする。そうすると、次の図式
+      \[
+      \xymatrix{
+      \Im \vp \ar[r]  \ar[rd] & \Ker \psi \ar[r] \ar[d] & \scrg \ar[d]^0 \\
+      \Im^{\sh} \vp \ar[r] \ar[u] & \scrg \ar[r]^-{\psi} & \scrh
+      }
+      \]
+      は可換。よって$\psi \circ \vp = 0$である。
+      \item[(1)$\To$(2)] 前層核の普遍性から、次を可換にするような$i$がある。
+      \[
+      \xymatrix{
+      \Im^{\sh} \vp \ar[rrd] \ar[ddr] \ar[rd]^-{i} & & \\
+       & \Ker \psi \ar[r] \ar[d] & \scrg \ar[d]^-{0} \\
+       & \scrg \ar[r]^-{\psi} & \scrh
+      }
+      \]
+      $i$は単射であることに気を付ける。ここで$\scrg$と$\scrh$は層という仮定により$\Ker \psi$は層。したがって層化の普遍性により次の図式
+      \[
+      \xymatrix{
+      \Im^{\sh} \vp \ar[r] \ar[rd]_-{i} & \Im \vp \ar[d]^-{j} \\
+      & \Ker \psi
+      }
+      \]
+      を可換にするような$j$があり、$j$は単射により誘導されているので演習1.4(a)により単射である。
+
+      「部分層に同型」よりもっと強く「部分層」であるということを示したいので、まだ示すべきことがある。それは次の図式
+      \[
+      \xymatrix{
+      & \scrg \\
+      \Im \vp \ar[r]^-j \ar[ru] & \Ker \psi \ar[u]
+      }
+      \]
+      の可換性である。これは次の二つの図式
+      \[
+      \xymatrix{
+      \Im^{\sh} \vp \ar[r] \ar[rd]_-i \ar[rdd] & \Im \vp \ar[d]^-j & \Im^{\sh} \vp \ar[r] \ar[rdd] & \Im \vp \ar[dd] \\
+      {} & \Ker \psi \ar[d] & {} & { } \\
+      {} & \scrg & {} & \scrg
+      }
+      \]
+      の可換性と、層化の普遍性から従う。
+    \end{description}
+  \end{proof}
+
+  \lem{
+  (完全性の局所判定) \\
+  前層の列
+  \[
+  \xymatrix{
+  \scrf \ar[r]^{\vp} & \scrg \ar[r]^{\psi} & \scrh
+  }
+  \]
+  が与えられたとし、うち$\scrg$と$\scrh$は層であるとする。このとき次は同値。
+  \begin{description}
+    \item[(1)] 与えられた前層の列
+    $
+    \xymatrix{
+    \scrf \ar[r]^{\vp} & \scrg \ar[r]^{\psi} & \scrh
+    }
+    $
+    は完全。
+    \item[(2)] $\psi \circ \vp = 0$かつ、任意の点$P \in X$に対して
+    $
+    \xymatrix{
+    \scrf_P \ar[r]^{\vp_P} & \scrg_P \ar[r]^{\psi_P} & \scrh_P
+    }
+    $
+    は完全。
+  \end{description}
+  }
+  \begin{proof}
+    (1)$\To$(2)はすでに示されている。(2)$\To$(1)を示そう。はじめ$(\scrf / \scrf')_P = \scrf_P / \scrf'_P$を使う方針で考えたが、それだと$\scrf / \scrf' = 0$から$(\scrf / \scrf')^{\sh} = 0$がいえるか、という問題を考える必要がありそうである。したがってこの方針は採らなかった。
+
+    まず仮定から、補題を使えば$\Im \vp$は$\Ker \psi$の部分層であることがわかる。したがって、包含射$j \colon \Im \vp \to \Ker \psi$がある。茎に誘導される写像$j_P \colon (\Im \vp)_P \to (\Ker \psi)_P$を考える。
+  次の図式
+  \[
+  \xymatrix{
+  {} & {} & \scrg_P & {} & { } \\
+  (\Im \vp)_P \ar[urr] \ar[rrrr]  & {} & {} & {} & (\Ker \psi )_P \ar[llu] \\
+  {} & {} & {} & {} & {} \\
+  {} & \Im \vp_P \ar[luu]_-{iso} \ar@{=}[rr] \ar[uuur] &  { } & \Ker \psi_P \ar[luuu] \ar[uur]_-{iso}
+   }
+  \]
+  の、$=$と二つの同型を含む逆さ台形以外のところは可換である。したがって$(\Ker \psi)_P \to \scrg_P$は単射なので、「$=$と二つの同型を含む逆さ台形」の可換性がいえる。
+  よって$j_P$は同型なので$j$ははじめから同型である。ゆえに$\scrg_P$の部分群として$\Im \vp = \Ker \psi$が成り立つ。
+\end{proof}
+
+\end{proof}
+
+
+
+\prop{
+(層の条件が必要であること) \\
+ゼロでない前層$\scrf$であって、すべての茎がゼロであるようなものがある。
+}
+\begin{proof}
+  簡単のため$X = \R$としておく。$\scrf$の制限写像を$V \subsetneq U$に対して$\scrf(U) \to \scrf(V)$がゼロ写像になるように定める。そのとき、茎への自然な写像$\scrf \to \scrf_P$はゼロ写像である。(行先は摩天楼層だと考えよ) このとき次の2つの図式
+  \[
+  \xymatrix{
+\scrf \ar[r] \ar[dr] & \scrf_P \ar[d]^0 & \scrf \ar[r] \ar[rd] & \scrf_P  \ar[d]^{id} \\
+{} & \scrf_P & {} & \scrf_P
+  }
+  \]
+  は可換なので、茎の普遍性により$id = 0$, つまり$\scrf_P = 0$である。一方で、$\scrf(U) = \Z$とでもすれば$\scrf$はゼロではない。
+\end{proof}
+
+
+\bfsubsection{定義-順像・逆像}
+\barquo{
+$X$上の任意の層$\scrf$に対し、$Y$上の層の順像$f_*\scrf$を$Y$の任意の開集合$V$に対して$(f_*\scrf)(V) = \scrf(f^{-1}(V))$と置くことにより定義する。
+}
+\begin{rem}
+これが実際に前層となり、層の条件を満たしていることの証明は省略する。
+\end{rem}
+
+
+\bfsubsection{定義-順像・逆像}
+\barquo{
+$Y$上の任意の層$\scrg$に対して$X$上の層の逆像$f^{-1}\scrg$を前層$U \mapsto \lim_{V \supset f(U)} \scrg(V)$に付随する層と定義する。
+}
+\begin{rem}
+$\lim$とあるのは順極限であることを注意しておく。$f^{\sh}\scrf (U) =  \rlim_{V \supset f(U)} \scrg(V)$が実際に制限写像を誘導することを確認しておこう。$U_1 \subset U_2$とする。このとき$V \supset f(U_1)$についてなす射の族
+\[
+\xymatrix{
+\scrg(V) \ar[r] & \rlim_{V \supset f(U_1)} \scrg(V)
+}
+\]
+の自然性により、余極限の普遍性から$V \supset f(U_2)$について次の図式
+\[
+\xymatrix{
+\scrg(V) \ar[r] \ar[d] & \rlim_{V \supset f(U_1)} \scrg(V) \\
+\rlim_{V \supset f(U_2)} \scrg(V) \ar[ru] & {}
+}
+\]
+を可換にするような射$f^{\sh} \scrg(U_2) \to  f^{\sh}\scrg(U_1)$が存在する。これが関手性を満たすことの証明は省略する。
+
+なぜこのような定義になっているのか説明する。$\scrg(f(U))$で定義できるといいのだが、それはできない。$f(U)$は開集合とは限らないし、$f(U)$を含む最小の開集合も一般には存在しないためである。よってこのような定義をしているのだと思われる。
+\end{rem}
+
+
+
+
+
+
+\begin{comment}%Kan拡張
+\begin{definition}
+  $\bfc$, $\bfd$, $\bfe$は圏であるとする。関手$F \colon \bfc \to \bfe$と$K \colon \bfc \to \bfd$が与えられているとする。
+\begin{description}
+  \item[(1)] このとき、$F$の$K$に沿った左Kan拡張とは、次の図式
+  \[
+  \xymatrix{
+  \bfc \ar[rd]_K \ar[rr]^F & {} \ar@{}[d]|{\Downarrow \eta} & \bfe \\
+  {} &  \bfd \ar[ru]_{\Lan_K F} &{}
+  }
+  \]
+  に示されるような関手$\Lan_K F \colon \bfd \to \bfe$と自然変換$\eta \colon F \To \Lan_K F \cdot K$の組$(\Lan_K F, \eta)$であって、以下の普遍性を満たすものである。つまり、任意の関手$G \colon \bfd \to \bfe$
+  と自然変換$\grg \colon F \To G K$の組$(G,\grg)$に対して、自然変換$\gra \colon \Lan_K F \To G$であって図式
+  \[
+\xymatrix{
+F \ar[r]^-{\eta} \ar[rd]_-{\grg} & \Lan_K F \cdot K \ar@{.>}[d]^{\gra K} & \Lan_K F \ar@{.>}[d]^{\gra} \\
+{} & GK & G
+}
+  \]
+  を可換にするものが存在して、かつ一意である。
+  \item[(2)] このとき、$F$の$K$に沿った右Kan拡張とは、次の図式
+  \[
+  \xymatrix{
+  \bfc \ar[rd]_K \ar[rr]^F & {} \ar@{}[d]|{\Uparrow \ve} & \bfe \\
+  {} &  \bfd \ar[ru]_{\Ran_K F} &{}
+  }
+  \]
+  に示されるような関手$\Ran_K F \colon \bfd \to \bfe$と自然変換$\ve \colon \Ran_K F \cdot K \To F$の組$(\Ran_K F, \ve)$であって、次の普遍性を満たすものである。つまり、任意の関手$G \colon \bfd \to \bfe$
+  と自然変換$\grd \colon G K \To F $の組$(G,\grd)$に対して、自然変換$\beta \colon G \To \Ran_K F $であって図式
+  \[
+  \xymatrix{
+  F   & \Ran_K F \cdot K \ar[l]_-{\ve}  & \Ran_K F  \\
+  {} & GK \ar@{.>}[u]^{\beta K} \ar[lu]^-{\grd} & G \ar@{.>}[u]_{\beta}
+  }
+  \]
+  を可換にするものが存在して、かつ一意である。
+\end{description}
+
+\end{definition}
+\end{comment}
+
+\begin{comment}
+\prop{
+  (随伴はKan拡張) \\
+  圏$\bfc$, $\bfd$と関手$F \colon \bfc \to \bfd$, $G \colon \bfd \to \bfc$があり、随伴$F \dashv G$があるとする。このとき随伴の単位射を$\eta \colon 1_{\bfc} \To GF$, 余単位射を$\ve \colon FG \To 1_{\bfd}$とすると次が成り立つ。
+  \begin{description}
+\item[(1)] $(G,\eta)$は$F$に沿った$1_{\bfc}$の左Kan拡張である。したがって$G \cong \Lan_F 1_{\bfc}$が成り立つ。
+\[
+\xymatrix{
+\bfc \ar[rd]_-F \ar[rr]^-{id} & {} \ar@{}[d]|{\Downarrow \eta} & \bfc \\
+{} &  \bfd \ar[ru]_{G} & {}
+}
+\]
+\item[(2)] $(F, \ve)$は$G$に沿った$1_{\bfd}$の右Kan拡張である。したがって$F \cong \Ran_G 1_{\bfd}$が成り立つ。
+\[
+\xymatrix{
+\bfd \ar[rd]_-G \ar[rr]^-{id} & {} \ar@{}[d]|{\Uparrow \ve} & \bfd \\
+{} &  \bfc \ar[ru]_{F} & {}
+}
+\]
+  \end{description}
+}
+
+\begin{proof}
+  Riehl\cite{Riehl}命題6.5.2を参照のこと。
+\end{proof}
+\end{comment}
+
+
+
+\bfsubsection{定義-順像・逆像}
+\barquo{
+$f_*$は$X$の上の層の圏$\Ab(X)$から$Y$の上の層の圏$\Ab(Y)$への関手であることに注意せよ。同様に$f^{-1}$は$\Ab(Y)$から$\Ab(X)$への関手である。
+}
+\begin{proof} ${}$
+\begin{description}
+\item[Step 1] まず順像の関手性について説明する。$X$上の前層の間の射$\vp \colon \scrf \to \scrg$が与えられたとする。このとき$Y$上の前層の間の射$f_* \vp \colon f_* \scrf \to f_* \scrg$は
+$f_* \vp(V) = \vp_{f^{-1}(V)}$により定めればよい。これが関手性を満たすことの証明は省略する。
+\item[Step 2] $Y$上の層の射$\vp \colon \scrf \to \scrg$が与えられたとする。$U \opsub X$としよう。$\vp$は自然変換なので、すべての$V \supset f(U)$に対して次の図式
+\[
+\xymatrix{
+\rlim_{V \supset U} \scrf(V) \ar[r]^-{f^{\sh}\vp_U } & \rlim_{V \supset U} \scrg(V) \\
+\scrf(V) \ar[u] \ar[r]^-{\vp_V} & \scrg(V) \ar[u]
+}
+\]
+が可換になるような$f^{\sh}\vp_U$がある。
+
+$f^{\sh}\vp_U$が自然変換になっていることを示そう。$U_1 \subset U_2$とする。このときすべての$V \supset f(U_2)$に対して次の図式
+\[
+\xymatrix{
+  \scrf(V) \ar[rrr]^-{\vp_V} \ar[dd] \ar[rd]  & {} & {} &   \scrg(V) \ar[dd] \ar[dl] \\
+{} & f^{\sh} \scrf(U_2) \ar[r]^{f^{\sh}\vp_{U_2}} \ar[dl]  &  f^{\sh} \scrg(U_2)　\ar[rd] & {}  \\
+f^{\sh} \scrf(U_1) \ar[rrr]^{f^{\sh}\vp_{U_1}}  & {} & {} & f^{\sh} \scrg(U_1)
+}
+\]
+の底部台形以外は可換。$\scrf(V) \to \rlim_{V \supset f(U_2)} \scrf(V)$との合成を考えて余極限の普遍性を用いることにより、底部の可換性がいえる。
+関手性の証明の残りの部分(合成を保つ)の証明は省略する。したがって$\scrf$に前層$f^{\sh}\scrf$を対応させることは関手を与える。あとはこれの層化を考えればよい。
+\end{description}
+\end{proof}
+
+
+
+
+\bfsubsection{定義 層の制限}
+\barquo{
+$i \colon Z \to X$を包含写像とし、$\scrf$を$X$上の層とする。このとき、$i^{-1}\scrf$を$\scrf$の$Z$への制限と呼び、しばしば$\scrf|_Z$と書く。任意の点$P \in Z$における$\scrf|_Z$の茎は$\scrf_P$に他ならないことに注意する。
+}
+\begin{rem}
+やや一般化して、次の命題の形で示す。
+\end{rem}
+
+\prop{
+(層の逆像の茎)\\
+$f \colon X \to Y$を連続写像とし、$\scrf$は$Y$上の層であるとする。このとき$f^{-1}\scrf$の点$P \in X$における茎$(f^{-1}\scrf)_P$は$\scrf_{f(P)}$に同型である。
+}
+\begin{proof}
+  層化によって茎は変わらないので、はじめから$\scrf$は前層だとしてよいし、$f^{-1}\scrf$の代わりに層化を取る前の$f^{\sh}\scrf$について示せばよい。
+  $P \in U$が与えられたとする。$V \supset f(U)$だとする。$Q = f(P)$とおいておく。このとき次の図式
+\[
+\xymatrix{
+\scrf(V) \ar[r] \ar[d] & \scrf_Q \ar@{=}[d] \\
+f^{\sh}\scrf(U) \ar[d] \ar[r] & \scrf_Q \ar@{=}[d] \\
+(f^{\sh}\scrf)_P \ar[r]^-{\vp} & \scrf_Q
+}
+\]
+  が可換になるような準同型$\vp$がある。(この図式の2段目の$f^{\sh}\scrf(U) \to \scrf_Q$がまず誘導され、次に3段目の$\vp$が誘導されるという風に追う。自然性の確認は省略)
+
+  同じ状況$P \in U$, $V \supset f(U)$でさらに考える。このとき$Q \in V$が与えられており、$P \in U \subset f^{-1}(U)$となるように$U$をとったとも思える。このとき次の図式
+  \[
+  \xymatrix{
+  \scrf(V) \ar[d] \ar[r] & \scrf_Q \ar[d]^-{\psi} \\
+f^{\sh}\scrf(U) \ar[r] & (f^{\sh}\scrf)_P
+  }
+  \]
+  が可換になるような$\psi$がある。まとめると、次の図式
+  \[
+  \xymatrix{
+  {}  & \scrf(V) \ar[rr] \ar[ld] \ar[dd] & {} & \scrf_Q \ar@{=}[ld] \ar[dd]^-{\psi} \\
+  f^{\sh}\scrf(U) \ar[dd]  \ar[rr] & { } & \scrf_Q \ar@{=}[dd] & {} \\
+  {} & f^{\sh}\scrf(U)  \ar[rr] \ar[dl] & { } & (f^{\sh}\scrf )_P \ar@{=}[dlll] \ar[dl]^-{\vp} \\
+   (f^{\sh}\scrf )_P  \ar[rr]^-{\vp}  & {} & \scrf_Q & {}
+  }
+  \]
+  の右の面以外は可換ということになる。茎の普遍性より、右の面も可換であることがいえる。よって$\vp \circ \psi = id$である。逆の$\psi \circ \vp = id$も図式の追跡と余極限の普遍性から従う。
+\end{proof}
+
+
+
+
+
+
+\bfsubsection{演習問題 1.18}
+以下$\scrf$は$X$上の前層、$\scrg$は$Y$上の前層、$U$は$X$の開集合で$V$は$Y$の開集合とする。層化の普遍性により、$\scrf$も$\scrg$も前層であるとして逆像を前層の範囲で考えても十分である。
+\begin{description}
+  \item[Step 1] 自然変換$\ve \colon f^{\sh} f_* \to 1$を構成しよう。$f(U) \subset V$とする。このとき次の図式
+  \[
+  \xymatrix{
+  \scrf(f^{-1}(V)) \ar[r] \ar[d] & \scrf(U) \\
+  \rlim_{f(U) \subset V} \scrf(f^{-1}(V)) \ar[ru] &
+  }
+  \]
+  が可換になるような$\ve_{U} \colon \rlim_{f(U) \subset V} \scrf(f^{-1}(V)) \to \scrf(U)$がある。これが自然性を満たすことはあきらか。なお、本来は$(\ve_{\scrf})_U$などと書くべきだが煩わしいので省略した。$\ve$は各元$[s] \in f^{\sh} f_*(U)$を次のように写す。
+  \[
+  \ve_U([s]) = s|_U
+  \]
+  ただし$s \in \scrf(f^{-1}(V))$は代表元である。
+  \item[Step 2] 自然変換$\eta \colon 1 \to f_* f^{\sh} $を構成しよう。以下、本来なら$\eta_{\scrg}$などと書くべきところでも記号の乱用により$\eta$と書く。
+
+  あきらかに$f(f^{-1}(V)) \subset V$が成り立つので、自然な写像
+  \[
+  \scrg(V) \to \rlim_{f(f^{-1}(V)) \subset V' } \scrg(V')
+  \]
+  がある。これを$\eta_V$とすればよい。$\eta_V$は$\eta_V(s) = [s] $という写像である。
+  \item[Step 3] 対応$\fl \colon \Hom_X(f^{\sh}\scrg , \scrf) \to \Hom_Y(\scrg , f_*\scrf)$を構成しよう。これは$\vp \colon f^{\sh}\scrg \to \scrf$に対して合成$\vp^{\fl} = f_* \vp \circ \eta$により定める。具体的には
+  \[
+  \vp^{\fl}_V (s) = \vp_{f^{-1}(V)} ([s])
+  \]
+  と表せる。
+  \item[Step 4] 対応$\sh \colon \Hom_Y(\scrg , f_*\scrf) \to \Hom_X(f^{\sh}\scrg , \scrf)$を構成しよう。これは$\psi \colon \scrg \to f_* \scrf$に対して合成$\psi^{\sh} = \ve \colon f^{\sh} \psi$により定める。具体的には
+  \[
+  \psi^{\sh}_U([s]) = \psi_V(s) |_U
+  \]
+  と表せる。ただし$V$は$s \in \scrg(V)$なるものをとる。
+  \item[Step 5] $(\vp^{\fl})^{\sh} = \vp$を示そう。これは
+  \begin{align*}
+    (\vp^{\fl})^{\sh}_U([s]) &= \vp^{\fl}_V (s) |_U \\
+    &= \vp_{f^{-1}(V)} ([s]) |_U \\
+    &= \vp_U ( [s] |_U  ) \\
+    &= \vp_U([s])
+  \end{align*}
+  よりわかる。
+  \item[Step 6] $(\psi^{\sh})^{\fl} = \psi$を示そう。これは
+  \begin{align*}
+    (\psi^{\sh})^{\fl}_V(s) &= \psi^{\sh}_{f^{-1}(V)}([s]) \\
+    &= \psi_V(s)|_{f^{-1}(V)} \\
+    &= \psi_V(s)
+  \end{align*}
+  よりわかる。
+  \item[Step 7] この全単射を与える対応が自然性を満たすことをいおう。射$g \colon \scrf_1 \to \scrf_2$が与えられたとき次の図式
+  \[
+  \xymatrix{
+  \Hom_X(f^{\sh}\scrg, \scrf_1) \ar[r]^-{\fl} \ar[d]^-{g_*} & \Hom_Y(\scrg,f_*\scrf_1) \ar[d]^-{(f_*g)_*} \\
+  \Hom_X(f^{\sh}\scrg, \scrf_2) \ar[r]^-{\fl} & \Hom_Y(\scrg,f_*\scrf_2)
+  }
+  \]
+  が可換であることを確認すればいい。$\vp \in \Hom_X(f^{\sh}\scrg, \scrf_1)$, $s \in \scrg(V)$が与えられたとき
+  \begin{align*}
+    (f_* g)_V \circ \vp^{\fl}_V(s) &= (f_*g)_V ( \vp_{f^{-1}(V)}([s]) ) \\
+    &= g_{f^{-1}(V)} \circ \vp_{f^{-1}(V)} ([s]) \\
+    &= (g \circ \vp)_{ f^{-1}(V)} ([s]) \\
+    &= (g \circ \vp)^{\fl}_V (s)
+  \end{align*}
+  より$(f_* g) \circ \vp^{\fl} = (g \circ \vp)^{\fl}$だから示すべきことがいえた。
+    \item[Step 8] 次に$\scrg$に関する自然性を示そう。射$h \colon \scrg_1 \to \scrg_2$が与えられたとき、図式
+    \[
+    \xymatrix{
+    \Hom_X(f^{\sh}\scrg_2, \scrf) \ar[r]^-{\fl} \ar[d]^-{(f^{\sh}h)^*} & \Hom_Y(\scrg_2,f_*\scrf_) \ar[d]^-{h^*} \\
+    \Hom_X(f^{\sh}\scrg_1, \scrf) \ar[r]^-{\fl} & \Hom_Y(\scrg_1,f_*\scrf)
+    }
+    \]
+    が可換であることを確認すればよい。これは$\vp \in \Hom_X(f^{\sh}\scrg_2, \scrf)$, $s \in \scrg(V)$が与えられたとき
+    \begin{align*}
+      (\vp^{\fl} \circ h)_V (s) &= \vp^{\fl}_V \circ h_V (s) \\
+      &= \vp_{f^{-1}(V)} ( [h_V(s)]) \\
+      &= \vp_{f^{-1}(V)} \circ f^{\sh}h_{f^{-1}(V)} ([s]) \\
+      &= (\vp \circ f^{\sh}h)_{f^{-1}(V)} ([s]) \\
+      &= (\vp \circ f^{\sh}h )_V^{\fl} (s)
+    \end{align*}
+    であることからわかる。
+\end{description}
+
+\begin{rem}
+ここでは元をとり写像の対応を具体的に書くことによって示したが、前層の逆像が左Kan拡張であることを使えば元をとることなく示すことができる。
+\end{rem}

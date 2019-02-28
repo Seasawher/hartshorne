@@ -1,0 +1,246 @@
+﻿\bfsection{1.1 アファイン多様体}
+\bfsubsection{例1.1.1}
+\barquo{
+特にこの例はHausdorffでない。
+}
+\begin{proof}
+  演習1.7(d)と例1.4.7によりわかる。既約な集合の空でない二つの開集合は、つねに空でない共通部分を持つという事実(Goerts Wedhorn\cite{GW}Prop 1.15.)を用いてもよい。
+\end{proof}
+
+
+\bfsubsection{定義 例1.1.1直後}
+\barquo{
+位相空間$X$の空でない部分集合$Y$が既約であるとは、$Y$において閉であるような二つの真部分集合$Y_1$, $Y_2$を使って和集合$Y = Y_1 \cup Y_2$と表すことができないということである。空集合は既約と見なさない。
+}
+\begin{rem}
+  \textblue{定義として奇妙に思える。}$Y \subset X$という状況をわざわざ仮定しているのに$X$が全く出てこないのだ。$Y \subset X$という状況を生かしたいならば
+『$Y \subset X$が既約部分集合であるとは、$Y \subset V_1 \cup V_2$なる$V_1, V_2 \clsub X$があれば、$Y \subset V_1$または
+$Y \subset V_2$が成り立つことである』
+と定義すればよい。このとき$Y$に$X$からの相対位相を入れた位相空間が既約であることと$Y$が$X$の既約部分集合であることは同値となる。証明はやさしいので読者への演習問題とする。
+\end{rem}
+
+
+\bfsubsection{例1.1.3}
+\barquo{
+既約な空間の空でない開部分集合はいずれも既約かつ稠密である。
+}
+\begin{proof}
+  $X$は既約とする。$\emptyset \subsetneq U \opsub X$としよう。
+
+ $U \subset F \clsub X$を任意にとる。$F \cup (X - U)=X$より、$X$の既約性と$U \neq \emptyset$により$F =X$である。したがってとくに$F = \overline{U}$として、$X = \overline{U}$が成り立つ。
+
+$U = Y_1 \cup Y_2$なる$Y_i \clsub U$が与えられたとする。このとき$Y_i = F_i \cap U$なる$F_i \clsub X$がある。このとき$U \subset F_1 \cup F_2$で、$U$は稠密なので$F_1 \cup F_2 = X$である。よって$X$の既約性により$\exists j \; F_j =X$である。よって$Y_j = U$も成り立つ。よって既約性がいえた。
+\end{proof}
+
+\begin{comment}
+\bfsubsection{命題1.2}
+\barquo{
+任意のイデアル$\fraka \subset A$について$I(Z(\fraka)) = \sqrt{\fraka}$, すなわち$\fraka$の根基である。
+}
+\begin{rem}
+これは次のZariskiの補題からも示すことができる。
+\begin{claim}
+  $k$は体、$B$は$k$上の代数として有限生成で、$B$が体だとすると、$B/k$は有限次拡大。
+\end{claim}
+\end{rem}
+\end{comment}
+
+\bfsubsection{命題1.5}
+\barquo{
+ここで$Z=(Y - Y_1)^{-}$としよう。すると$Z=Y_2 \cup \cdots \cup Y_r$, また$Z=Y'_2 \cup \cdots \cup Y'_r$である。
+}
+\begin{proof}
+  ここで$Z=(Y - Y_1)^{-}$は$(Y - Y_1)$の$Y$における閉包を表していることを注意しておく。見慣れない記号を使いたくないので、以下オーバーラインを使う。また、一般に位相空間$B \subset C \subset X$があるとき$B$の$C$における閉包は$X$における閉包をオーバーラインで表したとき$\overline{B} \cap C$に等しいことは今後断り無く使う。
+
+  誤解の無いように、この証明では以下オーバーラインは$Y$における閉包を表すものと約束する。
+
+  $Y - Y_1 \subset Y_2 \cup \cdots \cup Y_r$で、右辺は$Y$の閉部分集合なので$\overline{Y - Y_1} \subset Y_2 \cup \cdots \cup Y_r$はあきらか。逆を示そう。
+
+  閉包作用素は有限個の和とは交換し、共通部分とは交換しないことを思い出すと
+  \begin{align*}
+    \overline{Y - Y_1} &= \overline{( Y_2 \cup \cdots \cup Y_r) \cap Y_1^c} \\
+    &= \overline{( Y_2 \cap Y_1^c) \cup \cdots \cup (Y_r \cap Y_1^c)} \\
+    &= \overline{Y_2 \cap Y_1^c} \cup \cdots \cup  \overline{Y_r \cap Y_1^c}
+  \end{align*}
+  ここで$j \geq 2$について$Y_j \cap Y_1^c \opsub Y_j$なので、$Y_j$の既約性により例1.1.3から$\overline{Y_j \cap Y_1^c} \cap Y_j =Y_j$である。よって$Y_j \subset \overline{Y_j \cap Y_1^c}$が成り立つ。ゆえに$Y_2 \cup \cdots \cup Y_r \subset \overline{Y - Y_1}$である。
+\end{proof}
+
+
+
+\bfsubsection{命題1.10}
+\barquo{
+$Z_0 \subset Z_1 \subset \cdots \subset Z_n$が$Y$の異なる既約閉部分集合の列ならば、$\overline{Z}_0 \subset \overline{Z}_1 \subset \cdots \subset \overline{Z}_n$は$\overline{Y}$の異なる既約閉部分集合の列だから
+}
+\begin{proof}
+  まず注意しておくべきことがある。$Y$は準アファイン多様体なので、あるアファイン多様体$X$の開部分集合である。以下、命題1.10の証明において閉包はこの$X$におけるものであるとして固定する。また、$Y \opsub X$なので実際のところ$\overline{Y} = X$である。
+
+まず$\overline{Z}_0 \subset \overline{Z}_1 \subset \cdots \subset \overline{Z}_n$が異なる集合からなるということを示そう。
+
+$Z_i \clsub Y$なので$\exists Y_i \clsub X \; s.t. \; Z_i = Y_i \cap Y$である。このとき
+\[
+\overline{Z_i} \subset \overline{Y_i \cap Y} \subset \overline{Y_i} \cap \overline{Y} = Y_i
+\]
+が成り立つ。したがって$i < j$なら
+\begin{align*}
+Z_j \setminus Z_i &= Z_j \setminus Y_i \\
+&\subset Z_j \setminus \overline{Y_i \cap Y} \\
+&= Z_j \setminus \overline{Z_i} \\
+&\subset \overline{Z_j} \setminus \overline{Z_i}
+\end{align*}
+が成り立つことがわかる。
+
+また既約性は、$Z_i \subset Y$が既約なので$Z_i \subset X$も既約であり、したがって例1.1.4より従う。
+\end{proof}
+
+
+\bfsubsection{命題1.10}
+\barquo{
+$\dim Y \leq \dim \overline{Y}$である。特に$\dim Y$は有限なので
+}
+\begin{proof}
+  これは定理1.8Aを用いて
+  \[
+  \dim Y \leq \dim \overline{Y} = \dim A(\overline{Y}) = \dim k[x_1, \cdots ,x_m] / I(\overline{Y}) \leq \dim k[x_1, \cdots ,x_m] = m < \infty
+  \]
+  と示される。
+\end{proof}
+
+
+\bfsubsection{命題1.10}
+\barquo{
+鎖$P=\overline{Z}_0 \subset \cdots \subset \overline{Z}_n$も極大となる(1.1.3).
+}
+\begin{rem}
+  次の補題をまず示す。なお、名前は一般的なものではない。
+\end{rem}
+\lem{
+(\textbf{閉既約性補題}) \\
+$X$は位相空間、$Y \opsub X$、$W \clsub X$かつ$W$は$X$からの相対位相により既約とし、$Y \cap W \neq \emptyset$であるものとする。このとき$X$における閉包をオーバーラインで表すことにすると
+$W = \overline{Y \cap W}$が成り立つ。
+}
+\begin{proof}
+  まず$\overline{Y \cap W} \subset W$はあきらかである。逆を示そう。$Y \opsub X$により$Y \cap W \opsub W$である。すると交わりが空でないという仮定から、例1.1.3により$Y \cap W$は$W$で稠密。したがって$W = \overline{Y \cap W} \cap W \subset \overline{Y \cap W}$である。これで逆がいえた。
+\end{proof}
+\begin{proof}
+  補題から引用部分を示す。列に対して$X$の既約閉部分集合$V$があり
+  \[
+\overline{Z}_0 \subset \cdots \subset \overline{Z}_i \subset V \subset \overline{Z}_{i+1} \subset \cdots \subset \overline{Z}_n
+  \]
+  を満たすとしよう。このとき$Y$との共通部分を考えると、$Z_i \clsub Y$なので列
+  \[
+  Z_0 \subset \cdots \subset Z_i \subset V \cap Y \subset Z_{i+1} \subset \cdots \subset Z_n
+  \]
+  を得る。極大性により、$V \cap Y$は$Z_i$または$Z_{i+1}$に等しいので、$X$における閉包をとることにより、補題から、$V$は$\overline{Z}_i$または$\overline{Z}_{i+1}$に等しいことが判る。これで極大性がいえた。
+\end{proof}
+\begin{rem}
+  この部分について、『極大となる』という言葉の解釈を間違えているために、不要な議論に陥っているという指摘をいただいた。その指摘が正しいことは著者(@seasawher)も賛同するところだが、致命的ではないので修正はせず、ここで指摘するにとどめる。
+\end{rem}
+
+
+\bfsubsection{命題1.10}
+\barquo{
+$\overline{Z}_i$は$\frakm$に含まれる素イデアルに対応するので$\operatorname{height} \frakm = n$である。
+}
+\begin{proof}
+  $\height \frakm \geq n$はあきらかであるので逆を示す。いま素イデアル$P_i \subset A(X)$が存在して
+  \[
+  P_r \subsetneq P_{r-1} \subsetneq \cdots \subsetneq P_0 = \frakm
+  \]
+  が成り立つと仮定する。このとき$A(X) = k[x_1,\cdots,x_m]/I(X)$のイデアルを$k[x_1,\cdots,x_m]$に持ち上げると
+  \[
+  I(X) \subset P_r \subsetneq P_{r-1} \subsetneq \cdots \subsetneq P_0 = \frakm
+  \]
+  となる。おのおの零点を考える。$Z(P_i)=W_i$とすると$W_i \clsub X$であり$W_i$は既約で
+  \[
+\{ P \} \subsetneq W_1 \subsetneq \cdots \subsetneq W_{r-1} \subsetneq W_r \subset X
+  \]
+  が成り立つ。$Y$との共通部分を考えると
+  \[
+  \{ P \} \subset W_1 \cap Y \subset \cdots \subset W_{r-1} \cap Y \subset W_r \cap Y \subset Y
+  \]
+  である。ここで$W_i \cap Y$は$W_i \cap Y \opsub W_i$により既約集合である。また閉既約性補題により、$\overline{W_i \cap Y} = W_i$であるので、この列は相異なる集合からなり
+  \[
+  \{ P \} \subsetneq W_1 \cap Y \subsetneq \cdots \subsetneq W_{r-1} \cap Y \subsetneq W_r \cap Y \subset Y
+  \]
+  が成り立つ。よって、$\dim Y = n$により$r \leq n$がいえる。したがって$\height \frakm \leq n$である。
+\end{proof}
+
+
+\bfsubsection{演習問題 1.2}
+$\vp \colon k[x,y,z] \to k[t]$を$\vp(x)=t$、$\vp(y)=t^2$、$\vp(z)=t^3$で定めるとあきらかに$I(Y)=\Ker \vp = (x^2-y,x^3-z)$となるので$I(Y)$は素イデアルで、よって$Y$はアファイン多様体。そして$\dim Y=\dim A(Y)=\dim k[t]=1$である。
+
+
+
+\bfsubsection{演習問題 1.7}
+(a)、(c)はあきらか。(b)と(d)を示す。
+
+(b) 位相空間$X$はNoether的であると仮定する。$X$の閉部分集合の族$\mathcal{A}$であって、有限交叉性を持つものが与えられたとする。$\calb = \setmid{F_1 \cap \cdots \cap F_n}{n \in \N , F_i \in \cala}$と定める。このとき$\calb$は有限個の共通部分をとる操作に関して閉じているので、Noether性により$\calb$には最小元$F_0$がある。$\cala$の定義により$F_0 \neq \emptyset$である。$F_0 = \bigcap \cala$である。$\cala$は任意だったから、$X$のコンパクト性がいえた。
+
+(d) 位相空間$X$はHausdorffかつNoetherであったと仮定する。このとき任意の$x \in X$に対して$\calf_x = \setmid{F \clsub X}{\text{$F$は$x$の近傍}}$は全体集合$X$を含むので空でない。Noether性により、$\calf_x$の極小元$F_0$があるが、$\calf_x$は有限個の共通部分をとる操作に関して閉じているので$F_0$は最小元である。Hausdorff性により、$\bigcap \calf_x = \{ x\} = F_0$であるから、$\{x \}$は$X$の開部分集合。$x$は任意だったから、
+$X$は離散集合。(b)より$X$はコンパクトなので、有限集合でもある。
+
+
+\bfsubsection{演習問題 1.10}
+\barquo{
+稠密な開部分集合$U$であって、$\dim U < \dim X$となっている例を挙げよ。
+}
+\begin{rem}
+通常のユークリッド空間の開部分集合の場合、たとえば$U \opsub \R^n$かつ$V \opsub \R^m$であって$U$と$V$が同相ならば$n=m$といった性質が成り立つ。いわば、開部分集合というのはだいたい全体と同じものなのだが、多様体の組み合わせ次元に関しては不幸にしてそういう性質は成り立たない。
+\end{rem}
+
+
+
+
+
+\bfsubsection{演習問題 1.10}
+\begin{description}
+  \item[(a)]$Y$の閉既約部分集合の鎖
+  \[
+  Z_0 \subsetneq Z_1 \subsetneq \cdots \subsetneq Z_m
+  \]
+  が与えられたとする。このとき$X$での閉包をとると$X$の閉既約な部分集合の列
+  \[
+  \ol{Z_0} \subset \ol{Z_1} \subset \cdots \subset \ol{Z_m}
+  \]
+  を得る。各$Z_i$は$Y$の閉部分集合だったので、これはすべて相異なる。よって$m \leq \dim X$であり、したがって$\dim Y \leq \dim X$である。
+  \item[(b)]$\sup \dim U_i \leq \dim X$は(a)によりあきらか。逆を示そう。
+  $X$の閉既約な部分集合の鎖
+  \[
+    Z_0 \subsetneq Z_1 \subsetneq \cdots \subsetneq Z_m
+  \]
+  が与えられたとする。族$U_i$は$X$を被覆するので$U_i \cap Z_0 \neq \emptyset$なる$i$が存在する。この$i$について
+  \[
+    Z_0 \cap U_i \subsetneq Z_1 \cap U_i \subsetneq \cdots \subsetneq Z_m \cap U_i
+  \]
+  が成り立ち、これは$U_i$における閉既約な部分集合の鎖であることが補題よりわかる。よって$m \leq \dim U_i$である。したがって$\dim X \leq \sup \dim U_i$である。
+  \item[(c)] $X=\{P,Q\}$、$\calf = \{ X, \emptyset , \{ Q \}\}$、$U = \{P \}$とすればよい。ただし$\calf$は閉集合族を表す。
+  \item[(d)] 次元が有限であることにより、$Y$の閉既約な部分集合の鎖
+  \[
+  Z_0 \subsetneq Z_1 \subsetneq \cdots \subsetneq Z_m
+  \]
+  であって、$m = \dim Y$であるものがとれる。$Y \clsub X$より$Z_i \clsub X$かつ$Z_i$は既約集合なので
+  \[
+  Z_0 \subsetneq Z_1 \subsetneq \cdots \subsetneq Z_m \subset X
+  \]
+  なる$X$の閉既約な集合の列を得る。$\dim X = \dim Y$より、$X = Y$でなくてはならない。
+  \item[(e)]$X = \N$、$U_N = \setmid{n \in X}{n < N}$、$\calf = \{\emptyset \} \cup \{ U_N\}_{N \geq 1}$とすればよい。
+\end{description}
+
+
+
+
+
+\bfsubsection{演習問題 1.11}
+$I(Y)$が素イデアルであること: $\vp \colon k[x,y,z] \to k[t]$を$\vp(x)=t^3$、$\vp(y)=t^4$、$\vp(z)=t^5$により定めると、$\Ker \vp = I(Y)$である。$\Im \vp$は整域なので$I(Y)$は素イデアル。
+
+$I(Y)$が高さ2であること: 面倒な計算を行うと$\Ker \vp = (xz-y^2,x^3-yz,z^2-x^2y)$であることが判る。$xz-y^2$はUFDであるような係数環$k[x,z]$における素元$\frakp = (x)$に関するEisenstein多項式であるから既約、したがって素元である。よって、$0 \subsetneq (xz-y^2) \subsetneq I(Y)$という素イデアルの列が得られるので、高さは2以上である。一方多項式環$k[x,y,z]$の次元は3なので、もし$I(Y)$の高さが3なら極大イデアルでなければならない。しかし$\Im \vp = k[t^3,t^4,t^5]$は体ではないのでこれは矛盾。
+
+$I(Y)$が2元で生成されないこと: $I(Y)$が2元で$S=k[x,y,z]$上生成されるとする。このとき$\pi \colon S \to S/(x)$による像を考えると
+\begin{align*}
+  \pi(I(Y)) &= (I(Y)+(x)) /(x) \\
+  &= ((y^2,yz,z^2)+(x)) /(x) \\
+  &= ((y,z)^2+(x)) /(x)  \\
+\intertext{が成り立つ。よって}
+\pi(I(Y)) / \pi((y,z)^3) &\cong k\pi(Y^2) + k\pi(YZ) + k\pi(Z^2)
+\end{align*}
+が成り立つ。このとき右辺は$k$加群として次元が3である。左辺は$S$加群であるが、$(x,y,z)$の元による作用は0なので、$I(Y)$が$S$上2元で生成されることから、$k$上でも2元で生成されることが従う。よって左辺の$k$加群としての次元は2以下。これは矛盾。

@@ -1,0 +1,843 @@
+\bfsection{1.3 射}
+
+\bfsubsection{補題3.1}
+\barquo{
+これは局所的に確かめることができる :位相空間$Y$の部分集合$Z$は、各$U$について$Z \cap U$が$U$において閉であるような開部分集合$U$たちで$Y$を覆うことができるとき、またそのときに限って閉である。
+}
+\begin{rem}
+  次の補題の形で示す。
+\end{rem}
+ \lem{
+  (閉集合の局所判定) \\
+$Y$は位相空間で$\{U_i\}$はその開被覆であるとする。このとき部分空間$Z \subset Y$に対して次は同値。
+\begin{enumerate}
+  \item $Z \subset Y$は閉集合
+  \item 任意の$i$について$Z \cap U_i \clsub U_i$が成り立つ。
+\end{enumerate}
+}
+\begin{proof}
+  1. $\To$ 2.はあきらかであるので逆を示す。
+  \[
+  Z^c = \bigcup (U_i \cap Z^c) = \bigcup (U_i \setminus (U_i \cap Z))
+  \]
+  と表すと、$U_i \opsub Y$なので$Z^c \opsub Y$がわかる。
+\end{proof}
+
+
+
+\bfsubsection{定義-局所環}
+\barquo{
+$P$が$Y$の点のとき、$Y$上の$P$の局所環$\calo_{P,Y}$(あるいは単に$\calo_P$)を、$P$の近くの$Y$上の正則函数の芽のなす環と定義する。
+}
+\begin{rem}
+  定義から次がただちに従うことに注意する。
+\end{rem}
+\prop{
+$Y$は多様体で$ \emptyset \subsetneq U \opsub Y$であるとする。このとき点$P \in U$に対して
+$\calo_{P,Y} = \calo_{P,U}$が成り立つ。
+}
+\begin{proof}
+  $\kakko{V,f} \in \calo_{P,Y}$ならば
+  \[
+  \kakko{V,f} = \kakko{V \cap U,f} \; \in \calo_{P,U}
+  \]
+  である。$P \in V \cap U$なのでこれは空でないことに注意。よって$\calo_{P,Y} \subset \calo_{P,U}$である。$U \opsub Y$により、$U$の開部分集合は$Y$の開部分集合でもあるので$\calo_{P,U} \subset \calo_{P,Y}$もいえる。
+\end{proof}
+
+
+
+\bfsubsection{定理3.2 直前}
+\barquo{
+$Y$を同型な多様体で置き換えるとき、対応する環たちは同型である。
+}
+\begin{rem}
+  $\calo$は、多様体の圏から環の圏への反変関手である。実際、$f \colon X \to Y$が射であれば環準同型
+  \[
+  f^* \colon \calo (Y) \to \calo(X)  \st f^*(g) = g \circ f
+  \]
+  が誘導される。よって不変量であることが従う。また、$P \in X$に対しても$f \colon X \to Y$が射であれば
+  \[
+  f^* \colon \calo_{f(P),Y} \to \calo_{P,X} \st  f^*(g) = g \circ f
+  \]
+  も環準同型であることがわかるので、$\calo_P$も不変量。
+
+  一方で、$K$はそうではない。$f \colon X \to Y$の像が空でない開集合を含む（したがって稠密）ような場合を除いては、$f$による空でない開集合の引き戻しは空でないとは限らないからである。もちろん$f$が同型なら問題はないが、完全に同様とはいかないので少しだけ注意が必要である。
+\end{rem}
+
+
+
+\bfsubsection{定理 3.2}
+\barquo{
+各$P$について自然な写像$A(Y)_{\frakm_P} \to \calo_P$がある。$\alpha$が単射だからこれも単射であり、正則関数の定義から全射である！
+}
+\begin{proof}
+自然な写像の合成$A(Y) \to \calo(Y) \to \calo_P$による$A(Y) \setminus \frakm_P$の像は単元なので、局所化の普遍性により写像$A(Y)_{\frakm_P} \to \calo_P$が誘導される。これは単射により誘導される写像なので単射である。全射性は本文通り。
+\end{proof}
+
+
+\bfsubsection{定理 3.2}
+\barquo{
+(c)から$A(Y)$の商体はすべての$P$について$\calo_P$の商体に同型であるが、これは$K(Y)$に等しい。というのは、すべての有理函数は実際にはある$\calo_P$の中にあるからである。
+}
+\begin{rem}
+商体をとる操作を$\Frac$で表すことにする。このとき
+\begin{align*}
+  \Frac (A(Y)) &= \bigcup_P A(Y)_{\frakm_P} \\
+  &\cong \bigcup_P \calo_P \\
+  &= K(Y)
+\end{align*}
+だから$A(Y)$の商体は$K(Y)$である。このことから$\calo_P$の商体が$K(Y)$であることがわかる。
+\end{rem}
+
+
+
+\bfsubsection{命題 3.3}
+\barquo{
+$U_i \subset \P^n$を方程式$x_i \neq 0$により定義される開集合とする。このとき前出の(2.2)の写像$\vp_i \colon U_i \to \A^n$は多様体の同型である。
+}
+\begin{proof}
+簡単のため$i = 0$としてよい。また$\vp_0 = \vp$、$U_0 = U$と書くことにする。$\vp$と$\vp^{-1}$が射であることを示せば十分だろう。
+
+$\vp$が射であること:
+  \[
+  \xymatrix{
+  U \ar[r]^{\vp} & \A^n \\
+  \vp^{-1}(V) \ar[u] \ar[r]^{\vp} \ar[dr]_{f \circ \vp} & V \ar[u] \ar[d]^f \\
+  {} & k
+  }
+  \]
+  正則関数$f \colon V \to k$と点$p \in \vp^{-1}(V)$が与えられたとする。$\vp(p) \in V$なので$f$の正則性により
+  \[
+  \exists V' \; \vp(p) \in V' \opsub V \; \exists h,g \in A  \st \; \forall x \in V' \; f(x) = \f{g(x)}{h(x)}
+  \]
+  が成り立つ。このとき
+  \begin{align*}
+    \forall y \in \vp^{-1}(V') \quad f \circ \vp(y) &= \f{g(\vp(y))}{h(\vp(y))} \\
+    &= \f{g(y_1 / y_0, \cdots , y_n/y_0 )}{h(y_1 / y_0, \cdots , y_n/y_0 )} \\
+    &= \f{\beta g(y_0 , \cdots , y_n)y_0^{- \deg g} }{\beta h(y_0 , \cdots , y_n )y_0^{- \deg h}} \\
+    &= \f{\beta g(y) y_0^{ \deg h} }{\beta h(y) y_0^{\deg g}} \\
+  \end{align*}
+  であるから、$f \circ \vp$は$p$において正則である。$p \in \vp^{-1}(V)$は任意だったから、$f \circ \vp$は$\vp^{-1}(V)$上で正則であることがわかる。
+
+$\vp^{-1}$が射であること:
+  \[
+  \xymatrix{
+  U  & \A^n \ar[l]_{\vp^{-1}} \\
+  V  \ar[u] \ar[d]_f   &  \vp(V) \ar[u] \ar[l]_{\vp^{-1}}  \ar[dl]^{f \circ \vp^{-1}} \\
+  k &  {}
+  }
+  \]
+  正則関数$f \colon V \to k$と$p \in \vp(V)$が与えられたとする。$\vp^{-1}(p) \in V$なので、$f$の正則性により
+  \[
+  \exists V' \; \vp^{-1}(p) \in V' \opsub V \; \exists h,g \in S^h  \; \deg h = \deg g \st \; \forall x \in V' \; f(x) = \f{g(x)}{h(x)}
+  \]
+  が成り立つ。このとき
+  \begin{align*}
+    \forall y \in \vp(V') \quad f \circ \vp^{-1}(y) &= f(1,y_1, \cdots , y_n) \\
+    &= \f{\gra h(y)}{\gra g(y)}
+  \end{align*}
+  である。したがって、$f \circ \vp^{-1}$は$p$で正則であり、$p \in \vp(V)$は任意だったから$f \circ \vp^{-1}$は正則である。
+\end{proof}
+
+
+
+\bfsubsection{命題3.3 直後}
+\barquo{
+$S$が次数付き環で$\frakp$が$S$の斉次素イデアルのとき、$S$の斉次元のうち$\frakp$に含まれないもののなす乗法的部分集合$T$に関して$S$を局所化し、その中で0次の元のなす部分環を$S_{(\frakp)}$と書く。
+}
+\begin{rem}
+  なぜ$\frakp$は斉次イデアルでなければならないのだろうか？ 斉次イデアルでなくても素イデアルであれば乗法的になる。斉次元との共通部分をとっている理由は、局所化が再び次数付き環になるようにするためだろうと思われるが。次数環についての一般論を踏まえているのだろうか。
+\end{rem}
+
+
+
+\bfsubsection{命題3.3 直後}
+\barquo{
+ $T^{-1}S$には次のような自然な次数付けがあることに注意せよ: $S$の斉次元$f$と$g \in T$に対して$\deg (f/g) =\deg(f) - \deg (g)$.
+}
+\begin{rem}
+  この定義は同値類の取り方によらず、well-definedである。$f/g=f'/g'$であったとしよう。このとき
+  \[
+  \exists h \in T \quad h(fg' - f'g) = 0
+  \]
+  である。$0$の次数はマイナス無限大であることに注意して変形していくと
+  \begin{align*}
+    hfg' &= hf'g \\
+    \deg(hfg') &= \deg(hf'g) \\
+    \deg(h) + \deg(f) + \deg(g') &= \deg(h) + \deg(f') + \deg(g) \\
+    \deg(f) - \deg(g) &= \deg(f') - \deg(g')
+  \end{align*}
+  を得る。よってwell-defined性がいえた。
+\end{rem}
+
+
+
+\bfsubsection{命題3.3 直後}
+\barquo{
+$S_{(\frakp)}$は局所環で、極大イデアルは$(\frakp \cdot T^{-1}S) \cap S_{(\frakp)}$である。
+}
+\begin{proof}
+  $x/t \in S_{(\frakp)} \setminus (\frakp \cdot T^{-1}S)$とする。このとき$x \notin \frakp$であり、かつ$x/t \in S_{(\frakp)}$より$x$は斉次元である。よって$x \in T$なので$x/t$は単元である。よって局所環であることがいえた。
+\end{proof}
+
+
+
+\bfsubsection{定理 3.4}
+\barquo{$Y \subset \P^n$を射影多様体、その斉次座標環を$S(Y)$とする。このとき:
+\begin{description}
+\item[(a)] $\calo(Y) = k$.
+\item[(b)] $P \in Y$について$\frakm_P \subset S(Y)$を$f(P)=0$となる斉次元$f \in S(Y)$の集合で生成されるイデアルとする。このとき$\calo_P = S(Y)_{(\frakm_P)}$.
+\item[(c)] $K(Y) \cong S(Y)_{((0))}$.
+\end{description}
+}
+\begin{proof}
+  まず$U_i \subset \P^n$を開集合$x_i \neq 0$とし、$Y_i = \vp(Y \cap U_i)$とする。$Y_i$はアファイン多様体である。$A = k[x_1, \cdots , x_n]$と$S_{(x_i)}$の同型を
+\[
+\vp^*_i \colon A \to S_{(x_i)} \st \vp^*_i(f)(x_0, \cdots , x_n) = f(x_0/x_i, \cdots , \widehat{x_i/x_i} , \cdots , x_n/x_i)
+\]
+によって与える。($\vp$は既に使ったので本来は他の記号を使うべきだが、ここでは簡単のために同じ記号とした) このとき
+\[
+\vp_i^*(I(Y_i)) = (I(Y)\cdot S_{x_i} ) \cap S_{(x_i)}
+\]
+が成り立つ。なぜなら、$g \in S_{(x_i)}$に対して
+\begin{align*}
+  g \in \vp_i^*(I(Y_i)) &\iff \exists f \in I(Y_i) \st g = \vp^*_i f \\
+  &\iff g(x_0, \cdots , x_n) =  f(x_0/x_i, \cdots , \widehat{x_i/x_i} , \cdots , x_n/x_i) \\
+  &\iff \exists d \geq 0 \st x_i^d g(x) \in I(Y) \cap S^h \\
+  &\iff g \in (I(Y)\cdot S_{x_i} ) \cap S_{(x_i)}
+\end{align*}
+が成り立つからである。
+
+ゆえに商に移ると同型
+\begin{align*}
+  A(Y_i) &= A/I(Y_i) \\
+  &\cong S_{(x_i)} / (I(Y)\cdot S_{x_i} ) \cap S_{(x_i)}
+\end{align*}
+を得る。これは次数付き環$S_{x_i}$の0次成分を、斉次イデアル$I(Y) \cdot S_{x_i}$の0次斉次成分で割ったものである。一般に次が成り立つ。
+ \lem{
+$S$が次数付き環$S = \bigoplus_{d \in \Z} S_d$で、$I \subset S$が斉次イデアルだとする。このとき
+\[
+(S/I)_0 = S_0/I \cap S_0
+\]
+が成り立つ。
+}
+\begin{proof}
+  $S/I$は$S/I = \bigoplus_{d \in \Z} S_d/I \cap S_d$によって次数つき環だと見なされることから、あきらか。
+\end{proof}
+定理3.4の証明に戻る。したがって、次のように変形することができる。
+\begin{align*}
+  A(Y_i) &\cong (S_{x_i}/ I(Y)S_{x_i})_0 \\
+  &\cong (S/I(Y) \otimes_S S_{x_i})_0 \\
+  &\cong S(Y)_{(x_i)}
+\end{align*}
+同型は$\vp^*_i$によって誘導されていることに注意する。
+
+このことを踏まえて、以下証明を行っていく。
+\begin{description}
+\item[(b)] 任意に点$P \in Y$が与えられたとする。$P \in U_i$なる$i$がある。
+\[
+\frakm'_P = \setmid{f \in A(Y_i)}{f(\vp_i(P))= 0}
+\]
+とおく。このとき
+\[
+\vp^*_i(\frakm'_P) = (\frakm_P \cdot S(Y)_{x_i}) \cap S(Y)_{(x_i)}
+\]
+が成り立つ。なぜなら、$g \in S(Y)_{(x_i)}$に対して
+\begin{align*}
+  \ol{g} \in \vp^*_i(\frakm'_P) &\iff \exists f \in \frakm'_P \st g = \vp^*_i f \\
+  &\iff g(x_0, \cdots , x_n ) = f(x_0/x_i, \cdots , \widehat{x_i/x_i} , \cdots , x_n/x_i) \\
+  &\iff  \exists d \geq 0 \st x_i^d g(x) \in I(\{ P \} ) \cap S^h = \wt{I}(\{ P \}) \\
+  &\iff g \in (I(\{P\}) \cdot S_{x_i} ) \cap S_{(x_i)} \\
+  &\iff \ol{g} \in (\frakm_P \cdot S(Y)_{x_i}) \cap S(Y)_{x_i}
+\end{align*}
+であるからである。したがって
+\[
+A(Y_i)_{\frakm'_P} \cong (S(Y)_{(x_i)})_{\vp^*_i(\frakm'_P)} \cong (S(Y)_{(x_i)})_{(\frakm_P \cdot S(Y)_{x_i}) \cap S(Y)_{(x_i)}}
+\]
+が成り立つ。
+
+実は、右辺のややこしい式は次のように表せる。
+\[
+(S(Y)_{(x_i)})_{(\frakm_P \cdot S(Y)_{x_i}) \cap S(Y)_{(x_i)}} \cong S(Y)_{(\frakm_P)}
+\]
+局所化の普遍性によりこれを示そう。$x_i \notin \frakm_P$なので、自然な準同形$S(Y)_{(x_i)} \to S(Y)_{(\frakm_P)}$が誘導される。いま、環$M$と環準同形$f \colon S(Y)_{(x_i)} \to M$であって、$f((\frakm_P \cdot S(Y)_{x_i}) \cap S(Y)_{(x_i)}) \subset M^{\tm}$なるものが与えられたとする。
+\[
+\xymatrix{
+S(Y)_{(x_i)} \ar[r] \ar[dr]_f & S(Y)_{(\frakm_P)} \ar[d]^{\wt{f}} \\
+{} & M
+}
+\]
+このとき$f$の延長$\wt{f}$が、
+\begin{align*}
+\wt{f}(x/s) &= \wt{f}(x/x_i^N \cdot x_i^N/s) \\
+&= f(x/x_i^N) f(s/x_i^N)^{-1}
+\end{align*}
+により一意的に定まる。よって局所化の普遍性により同型
+\[
+(S(Y)_{(x_i)})_{(\frakm_P \cdot S(Y)_{x_i}) \cap S(Y)_{(x_i)}} \cong S(Y)_{(\frakm_P)}
+\]
+がいえる。
+
+定理3.2により$\calo_{\vp_i(P)} \cong A(Y_i )_{\frakm'_P}$が成り立つことが判るので、したがって求める同型$S(Y)_{(\frakm_P)} \cong \calo_{\vp_i(P)} \cong \calo_P$がいえたことになる。
+
+\item[(c)] まず次のことに注意する。
+ \lem{
+  $Y$を多様体とし、$\emptyset \subsetneq U \opsub Y$とする。このとき$K(U)=K(Y)$である。
+}
+\begin{proof}
+  あきらかに$K(U) \subset K(Y)$が成り立つ。逆に、$\langle V, f \rangle \in K(Y)$だとする。$Y$は既約な位相空間なので、$V \cap U$は空でない。ゆえに、$y \in V \cap U$なる$y$が存在する。$f$は$y$において正則なので、ある$y$の近傍$W \opsub V$が存在して、$f$は$W$上では斉次多項式による有理式$h/g$に等しい。このとき$\langle V, f \rangle  = \langle W \cap U , h/g \rangle \in K(U)$であるから、$\langle V, f \rangle \in K(U)$
+  がいえた。
+\end{proof}
+
+定理3.4(c)の証明に戻る。よって、$K(Y) = K(Y \cap U_i) \cong K(Y_i)$が成り立つことが判る。定理3.2により$K(Y_i)$は$A(Y_i)$の商体である。よって同型$\Frac A(Y_i) \cong \Frac S(Y)_{(x_i)} \cong S(Y)_{((0))}$が判る。したがって$K(Y) \cong S(Y)_{((0))}$である。
+
+\item[(a)] ここまでくれば本文通りであるので省略する。
+
+\end{description}
+\end{proof}
+
+
+
+
+\bfsubsection{命題 3.5}
+\barquo{
+よって$\psi$は$X$から$Y$への写像を定めるが、これは与えられた準同形$h$を引き起こすものである。
+}
+\begin{rem}
+  本文で与えられている、$h \colon A(Y) \to \calo(X)$に対して$\psi \colon X \to Y$を対応させる写像を$\beta \colon \Hom(A(Y), \calo(X)) \to \Hom (X,Y)$と書くことにする。ここで示すべきことは$\alpha \beta = id$と$\beta \gra = id$である。
+
+  $\alpha \beta = id$であること: $h \in \Hom(X,Y)$が与えられたとし、$\psi = \beta h$であるとする。$\xi_i$も本文で与えられたものそのままとする。このとき$\alpha \psi = h$であるとは、次の図式が可換であることを意味する。
+  \[
+  \xymatrix{
+  \calo(Y) \ar[r]^{\psi^*} & \calo(X) \\
+  A(Y) \ar[u]^i \ar[ur]_h & {}
+  }
+  \]
+  いま$\ol{f} \in A(Y)$と$x \in X$が与えられたとする。このとき
+  \begin{align*}
+    \psi^* \circ i(\ol{f})(x) &= (f \circ \psi )(x) \\
+    &= f(\xi_1(x), \cdots , \xi_n(x)) \\
+    &= f(h(\ol{x_1})(x), \cdots , h(\ol{x_n})(x)  ) \\
+    &= h(\ol{f})(x)
+  \end{align*}
+  が成り立つ。よって示すべきことがいえた。
+
+  $\beta \gra = id$であること: 射$\vp \colon X \to Y$と$P \in X$が与えられたとする。このとき
+  \begin{align*}
+    \beta \gra \vp(P) &= (\gra \vp(\ol{x_1})(P), \cdots ,  \gra \vp(\ol{x_n})(P)) \\
+    &= ((x_1 \circ \vp)(P), \cdots , (x_n \circ \vp)(P) ) \\
+    &= \vp(P)
+  \end{align*}
+  である。よって$\beta \gra = id$がいえた。
+\end{rem}
+
+
+\bfsubsection{補題 3.6}
+\barquo{
+$X$を任意の多様体とし、$Y \subset \A^n$をアファイン多様体とする。
+}
+\begin{rem}
+  同様の証明を適用することにより、\textblue{$Y \subset \A^n$が準アファイン多様体でも同じ結論がいえる。}
+\end{rem}
+
+
+\bfsubsection{補題 3.6}
+\barquo{
+$Y$の閉集合は多項式関数の零点集合として定義され、また正則函数は連続であるから、$\psi^{-1}$は閉集合を閉集合に写すことが分かり、よって$\psi$は連続である。
+}
+\begin{proof}
+  $Z(I) \clsub Y$が与えられたとする。このとき
+  \begin{align*}
+    \psi^{-1}(Z(I)) &= \psi^{-1}(\bigcap_{g \in I} Z(g)) \\
+    &= \bigcap_{g \in I} \psi^{-1}(Z(g)) \\
+    &= \bigcap_{g \in I} \setmid{x \in X}{(g \circ \psi )(x) = 0}
+  \end{align*}
+  が成り立つ。$g \circ \psi$は正則なのでとくに連続であり、したがって$\psi$は連続であることが判る。
+\end{proof}
+
+
+
+
+
+
+\bfsubsection{系 3.7}
+\barquo{
+$X$, $Y$を２つのアファイン多様体とすると, $A(X)$と$A(Y)$が$k$代数として同型であるとき, またそのときに限って$X$と$Y$は同型である.
+}
+\begin{proof}
+  命題3.5により、多様体の圏から$k$上の有限生成整域の圏への反変関手$Y \mapsto A(Y)$は忠実充満である。忠実充満関手については次の事実がある。
+   \lem{
+    $\calc$、$\cald$が圏であり、$F \colon \calc \to \cald$が忠実充満関手であるとする。$X, Y \in \calc$とするとき次は同値。
+    \begin{enumerate}
+      \item $X \cong Y$
+      \item $FX \cong FY$
+    \end{enumerate}
+  }
+  \begin{proof}
+    1. $\Rightarrow$ 2. は$F$の関手性からあきらか。逆に、$FX \cong FY$であるとしよう。このとき次の図式を可換にする$\cald$での射$f,g$がある。
+    \[
+    \xymatrix{
+    FX \ar[r]^f & FY \\
+    FY \ar[u]^g \ar[ur]_{id} & {}
+    }
+    \]
+    $F$が充満関手であることにより、ある射$f',g'$が存在して$Ff'=f$、$Fg'=g$を満たす。このとき$F(f' \circ g')= f \circ g = id_{FY} = F(id_Y)$が成り立つ。ゆえに$F$が忠実であることから、$f' \circ g' = id_Y$である。あとは同様に議論を続ければ$X \cong Y$がいえる。
+  \end{proof}
+
+この補題から、系が成り立つことがいえるのはあたりまえである。
+\end{proof}
+
+
+
+\bfsubsection{系 3.8}
+\barquo{
+関手$X \mapsto A(X)$は、$k$上のアファイン多様体の圏と$k$上の有限生成整域の圏の間に、矢印の向きを逆にする圏同値を引き起こす。
+}
+\begin{proof}
+  強い選択公理を認めることにすると、関手が圏同値であることと、忠実充満かつ本質的全射であることは同値である。そこで$X \mapsto A(X)$が本質的全射であることを示せばよい。
+
+  $R$を$k$上の有限生成整域であるとする。このとき多項式環からの全射$k[x_1, \cdots , x_n] \to R$が存在するので、あるイデアル$\frakp$が存在して$R \cong k[x_1, \cdots , x_n] / \frakp$と表せる。$R$は整域なので$\frakp$は素イデアルである。このとき$X = Z(\frakp) \subset \A^n$とすると$\frakp$が素イデアルなので$X$はアファイン多様体であり、$A(X) \cong R$を満たす。よって本質的全射であることがいえた。
+\end{proof}
+
+
+\bfsubsection{演習問題 3.2}
+\begin{description}
+  \item[(a)] $Y = Z(x^3-y^2)$とする。$\vp \colon k[x,y] \to k[t]$を$\vp(x)=t^2$、$\vp(y)=t^3$で定めると、$\Ker \vp = (x^3 - y^2)$であるので$(x^3 - y^2)$は素イデアルである。したがって$Y$はアファイン多様体である。
+
+$(x,y) \neq 0$のとき$(x,y) \mapsto y/x$、そして$0$は$0$に写すという写像が逆写像を定めるので、あきらかに$\vp$は全単射。$\vp$は$\A^1$からの正則写像$t \mapsto t^2$と$t \mapsto t^3$の組なので、補題3.6により$\A^1$から$\A^2$への射を定める。$\A^1$の閉集合は全体もしくは有限集合であり、したがって$\vp$は閉写像でもあるので同相であると結論できる。
+
+しかし$A(Y) \cong k[x,y]/(x^3-y^2) \cong k[t^2,t^3]$であり、$\vp^*$は全射でない。したがってとくに同型ではないので、系3.7により$Y$と$\A^1$は同型ではない。
+
+\item[(b)] $k$は代数閉体なので$\vp$は全射。また$k$の標数は$p$なので$\vp$は単射。また多様体の射であるから連続性が従う。$\A^1$の閉集合は全体でなければ有限集合なので閉写像でもあり、同相であることがわかる。
+
+しかし座標環の間に誘導される準同形$\vp^*$は全射ではないので、$\vp$は同型でない。
+\end{description}
+
+
+
+\bfsubsection{演習問題 3.4}
+$\rho_d$が像への同相写像であることは既に示したので、$\rho_d$とその逆写像が射になっていることを示せばよい。
+
+$\rho_d$が射であること:
+  \[
+  \xymatrix{
+  \P^n \ar[r]^{\rho_d} & Z(\fraka) \\
+  \rho_d^{-1}(V) \ar[u] \ar[r]^{\rho_d} \ar[dr]_{f \circ \rho_d} & V \ar[u] \ar[d]^f \\
+  {} & k
+  }
+  \]
+  任意の$p \in \rho_d^{-1}(V)$に対する、$\rho_d(p) \in V$における$f$の正則性から判る。ただし、斉次式の各変数に$d$次単項式を代入してもやはり斉次式であることに注意する。
+
+  $\rho_d^{-1}$が射であること:
+  \[
+  \xymatrix{
+  \P^n  & Z(\fraka) \ar[l]_{\rho_d^{-1}} \\
+  W  \ar[u] \ar[d]_f   &  \rho_d(W) \ar[u] \ar[l]_{\rho_d^{-1}}  \ar[dl]^{f \circ \rho_d^{-1}} \\
+  k &  {}
+  }
+  \]
+  $q \in \rho_d(W)$が与えられたとする。$q = \rho_d(p)$なる$p \in W$がある。$p$における$f$の正則性により
+  \[
+  \exists W' \; p \in W' \opsub W \; \exists h,g \in S^h \st \forall P \in W' \; f(P) = \f{h(P)}{g(P)}
+  \]
+  である。ここである$l \geq 0$であって、$\deg (x_i^lh ) = \deg (x_i^lg )$が$d$の倍数であるようなものを選ぶことができる。すると$x_i^lh = \grt (h')$, $x_i^lg = \grt (g')$なる$h', g' \in T^h$をとることができる。したがって任意の$Q \in \rho_d(W' \cap U_i)$について
+  \begin{align*}
+    (f \circ \rho_d^{-1})(Q) &= \f{ h(\rho_d^{-1}(Q)) }{ g(\rho_d^{-1}(Q)) } \\
+    &=  \f{ (x_i^l h)(\rho_d^{-1}(Q)) }{ (x_i^l g)(\rho_d^{-1}(Q)) } \\
+    &= \f{ (\grt h')(\rho_d^{-1}(Q)) }{ (\grt g')(\rho_d^{-1}(Q)) } \\
+    &= \f{ h'(Q) }{ g'(Q) }
+  \end{align*}
+  だから正則性がいえた。
+
+
+
+
+
+\bfsubsection{演習問題 3.9}
+2次単項式の全体に
+\[
+M_0 = x^2 \quad M_1 = xy \quad M_2 = y^2
+\]
+として番号を振っておく。このとき
+\[
+Y = \rho_2(\P^1) = \setmid{[s^2 : st : t^2 ] }{[s : t] \in \P^1}
+\]
+である。
+
+
+$I(Y) = (xz - y^2)$であること: $I(Y) \supset (xz - y^2)$はあきらかであるので、逆を示す。$f \in I(Y)$なる斉次元が与えられたとする。$y^2 - xz$で割って、
+  \[
+  f(x,y,z )=(y^2 - xz)g(x,y,z) + yf_1(x,z) + f_2(x,z)
+  \]
+  なる$g, f_1,f_2$をとることができる。$f \in I(Y)$より
+  \[
+  \forall s,t \in k \; \; 0 = stf_1(s^2,t^2) + f_2(s^2, t^2)
+  \]
+  である。$s$について偶数次か奇数次かで分けることにより、$f_1 = f_2 = 0$が結論できる。よって示せた。
+
+$S(X) \cong S(Y)$でないこと: $S(X) =k[x,y]$, $S(Y) = k[x,y,z]/(y^2-xz)$である。$\frakm = (x,y,z)/(y^2-xz)$とする。このとき$(y^2-xz)$が2次式なので$\frakm^2 = ((x,y,z)^2 + (y^2-xz) )/(y^2-xz) = (x,y,z)^2 /(y^2-xz)$である。よって
+  \[
+  \frakm / \frakm^2 = kx \oplus xy \oplus kz
+  \]
+  となり、$k$ベクトル空間としての次元は$3$である。一方で、$k[x,y]$のどんな極大イデアル$\frakm$に対しても$\dim_k \frakm / \frakm^2$は$2$であるので、同型でないことがいえた。
+
+  なお、別証明として
+  \begin{align*}
+      S(Y) &= k[x,y,z] / I(Y) \\
+      &= k[x,y,z] / I(Z(\Ker \grt)) \\
+      &= k[x,y,z] / \Ker \grt \\
+      &\cong \Im \grt \\
+      &= k[x^2,y^2,xy]
+  \end{align*}
+  を利用してもよい。
+
+
+
+
+
+
+
+\bfsubsection{演習問題 3.10}
+まず次の補題を示す。
+
+  \lem{
+    $X$は位相空間で$W \subset X$であるものとする。このとき次は同値。
+    \begin{description}
+      \item[(1)] $W \subset X$は局所閉、すなわち$W \opsub \ol{W}$が成り立つ。
+      \item[(2)] $W = U \cap V$なる$U \opsub X$と$V \clsub X$がある。
+    \end{description}
+  }
+
+\begin{proof}
+  順に示す。
+  \begin{description}
+    \item[(1)$\To$(2)] あきらか。
+    \item[(2)$\To$(1)] $\ol{W} \subset V $であるから、
+    $W \subset \ol{W} \cap U \subset V \cap U = W$
+    より$W = \ol{W} \cap U$が成立する。
+  \end{description}
+\end{proof}
+
+
+
+
+  \lem{
+    多様体$X,Y$があり、$X \subset Y$であるとし、$p \in X$とする。このとき包含写像$X \to Y$を$i$とすると
+    \[
+    i^* \colon \calo_{p,Y} \to \calo_{p,X}
+    \]
+    は全射。
+  }
+
+\begin{proof}
+  $\kakko{U,f} \in \calo_{p,X}$が与えられたとする。このときある$U' \opsub U$と多項式$h,g$が存在して、任意の$x \in U' \subset U$について
+  \[
+  f(x) = \f{h(x)}{g(x)}
+  \]
+  が成り立つ。とくに分母の$g$は$U'$上$0$でない。ここで$V = \setmid{x \in Y}{g(x) \neq 0}$とおくと$i^*(\kakko{V, \f{h}{g} }) = \kakko{U,f}$が成り立つので全射であることがいえた。
+\end{proof}
+
+演習問題3.10の証明のつづき。
+\[
+\xymatrix{
+X' \ar[r]^{\vp|_{X'}} \ar[d]_{i_{X'}} & Y' \ar[d]^{i_{Y'}} \\
+X \ar[r]^{\vp} & Y
+}
+\]
+$p \in X'$と$f \in \calo_{\vp(p), Y'}$が与えられたとする。このとき$i^*_{Y'} (\wt{f}) = f$なる$\wt{f} \in \calo_{\vp(p), Y}$がある。このとき$(\vp \circ i_{X'})^*(\wt{f}) \in \calo_{p,X'}$であって、
+\begin{align*}
+(\vp \circ i_{X'})^*(\wt{f}) &= \wt{f} \circ \vp \circ i_{X'} \\
+&= \wt{f} \circ i_{Y'} \circ \vp|_{X'} \\
+&= f \circ \vp|_{X'}
+\end{align*}
+であるから$\vp|_{X'}$は射である。
+
+
+\bfsubsection{演習問題 3.12}
+\begin{description}
+  \item[Step 1] $X$がアファイン多様体の場合は命題3.2(c)によりよい。
+  \item[Step 2] $X$が一般の多様体の場合に示そう。次の補題をまず示す。
+  \lem{
+  多様体$X$と、その点$P \in X$が与えられたとする。このとき、開アファイン集合$U \subset X$であって、$P$の開近傍であり、かつ$\dim U = \dim X$なるものが存在する。とくに$\trdeg_k K(X) = \dim X$である。
+  }
+  \begin{proof}
+    命題4.3により、開アファイン部分集合$U_i \subset X$による$X$の被覆$X = \bigcup_i U_i$がある。$U_i$はそれぞれアファイン多様体$Z_i$と同型であるとする。このときすべての$i$に対して
+    \begin{align*}
+      \trdeg_k K(X) &= \trdeg_k K(U_i) \\
+      &= \trdeg_k K(Z_i) \\
+      &= \dim A(Z_i) \\
+      &= \dim Z_i \\
+      &= \dim U_i
+    \end{align*}
+    だから$\dim U_i$はすべて等しい。$U_i$は$X$の開被覆を与えているので、演習問題1.10(b)により、すべての$i$に対して
+    \[
+    \dim X = \dim U_i
+    \]
+    が成り立つ。そこで、$P \in U_j$なる$U_j$を選べば、それが求めるアファイン集合である。
+  \end{proof}
+  演習問題3.12の証明に戻る。補題により、$P$の近傍$U \opsub X$であって、アファイン多様体と同型でかつ$\dim X = \dim U$なるものをとれる。
+  すると
+  \begin{align*}
+    \dim \calo_{P,X} &= \dim \calo_{P,U} \\
+    &= \dim U &(\text{Step 1による})　\\
+    &= \dim X
+  \end{align*}
+  であるから、示すべきことがいえたことになる。
+\end{description}
+
+
+\bfsubsection{演習問題 3.15}
+\barquo{
+$X \subset \A^n$および$Y \subset \A^m$をアファイン多様体とする。
+}
+\begin{rem}
+  補題3.6と同様、これも\textblue{(a)と(c)はアファイン多様体でなく準アファイン多様体で十分である}。
+\end{rem}
+
+
+
+
+\bfsubsection{演習問題 3.15}
+\begin{description}
+  \item[(a)] 以下とくに断らない限り集合$X \tm Y$の位相として、相対位相$X \tm Y \subset \A^{n+m}$を考えることにする。まず次の補題を用意しておく。
+
+  \lem{
+  (既約空間の連続像は既約) \\
+  $X,Y$は位相空間で、$U \subset X$は既約であるとし、連続写像$f \colon X \to Y$が与えられているとする。このとき$f(U) \subset Y$は既約。
+  }
+  \begin{proof}
+    $f(U) \subset V_1 \cup V_2$なる$V_i \clsub Y$が与えられたとする。このとき$U \subset f^{-1}(V_1) \cup f^{-1}(V_2)$で、$f$の連続性から$f^{-1}(V_1) \clsub X$かつ$f^{-1}(V_2) \clsub X$であるから、$U \subset X$の既約性により$U \subset f^{-1}(V_i) $なる$i$がある。このとき$f(U) \subset V_i$
+    である。したがって既約性がいえた。
+  \end{proof}
+
+  演習問題3.15(a)の証明に戻る。
+
+  $X \tm Y \clsub \A^{n+m}$であることなど: 射影$p_1 \colon \A^{n+m} \to \A^n$, $p_2 \colon \A^{n+m} \to \A^m$は多項式で定められた写像なので射である。$X \tm Y = p_1^{-1}(X) \cap p_2^{-1}(Y)$であるから$X$と$Y$がアファイン多様体なら$X \tm Y \clsub \A^{n+m}$
+  であるし、準アファイン多様体なら$X \tm Y \loc \A^{n+m}$が成り立つことがわかる。。
+
+  $X \tm Y$が既約であること: 既約性を示す以下の議論では$X$と$Y$は単に準アファイン多様体と仮定して話を進める。$X \tm Y \subset Z_1 \cup Z_2$なる$Z_i \clsub \A^{n+m}$が与えられたとする。
+  \[
+  X_i = \setmid{x \in X}{\{ x \} \tm Y \subset Z_i}
+  \]
+  とおく。ここで$x \in X$とすると、$\{ x \} \tm Y \subset Z_1 \cup Z_2$である。$x \in X$に対して$S_x \colon Y \to \A^{n+m}$を$y \mapsto (x,y)$で定めると、これは多項式で表される写像なので射。したがって連続であり、ゆえに既約空間の連続像は既約なので$\{ x \} \tm Y$は既約。(注意: $\{ x \} \tm Y$に入っている位相は積位相ではなく相対位相なので、既約性は自明ではないと考えた) よって$x$ごとに$\{ x \} \tm Y \subset Z_j$なる$j$がある。したがって$x \in X$
+  は任意だったから$X = X_1 \cup X_2$である。$y \in Y$に対して$S_y \colon X \to \A^{n+m}$を$S_y(x)=(x,y)$で定めると、これは多項式で表される写像なのでもちろん射。とくに連続であり、$X_i = \bigcap_{y \in Y} S_y^{-1}(Z_i)$より$X_i \clsub X$がいえる。よって、$X$の既約性により$X = X_k$なる$k$が存在する。このとき$X \tm Y \subset Z_k$となる。ゆえに$X \tm Y$は既約であり、アファイン空間の部分多様体とみなせる。
+  \item[(b)] 射影$X \tm Y \to X$と$X \tm Y \to Y$は、多項式で表される写像なので射である。座標環をとる操作は関手なので、環準同型$A(X) \to A(X \tm Y)$, $A(Y) \to A(X \tm Y)$が誘導される。これはまた環準同形$\grt \colon A(X) \ts_k A(Y) \to A(X \tm Y)$を誘導する。$\grt$は$\grt(f \ts g)(P,Q) = f(P)g(Q)$なる写像である。$\grt$は座標関数$\ol{x_1}, \cdots , \ol{y_m}$
+  を$X \tm Y$上の座標関数に送るので、全射である。
+
+  $\grt$が単射であることを示そう。単射でなかったと仮定する。$0$でない$\Ker \grt$の元$\sum_{i=1}^l f_i \ts g_i$のうち、$l$が最小なものがとれる。$A(X \tm Y)$は整域なので、$l \geq 2$としてよい。$X$上の正則関数として$f_l \neq 0$なので、$f_l(P) \neq 0$なる$P \in X$がある。このとき任意の$Q \in Y$に対して$\sum f_i(P)g_i(Q) = 0$が成り立つ。したがって
+  $g_l = - f_l(P)^{-1} \sum f_i(P)g_i(Q)$と表せる。この関係式を使うと
+  \[
+  \sum_{i=1}^l f_i \ts g_i = \sum_{i=1}^{l-1} (f_i - f_l(P)^{-1} f_i(P)f_l) \ts g_i
+  \]
+  と、より短く表せるので$l$の最小性に矛盾。ゆえに$\grt$は単射で、よって同型。
+  \item[(c)] 多様体の圏における直積の図式
+  \[
+  \xymatrix{
+  X & X \tm Y \ar[l]_{\pi_1} \ar[r]^{\pi_2} & Y \\
+  {} & Z \ar[ul]^{\vp} \ar[ur]_{\psi} \ar[u]^{\grs} & {}
+  }
+  \]
+  を満たすことを示そう。まず射影$\pi_1$, $\pi_2$は多項式関数で定義されているので、準アファインの場合の補題3.6により射である。任意の多様体$Z$と射$\vp$, $\psi$が与えられたとすると、$\grs(P) = (\vp(P), \psi(P))$とすれば上の図式を可換にする。$\vp$, $\psi$が射なので$\grs$も射である。一意性はあきらかなので、直積であることがいえた。
+  \item[(d)] 座標環をとっても次元は不変なので、$\dim(A(X \tm Y)) = \dim A(X) + \dim A(Y)$を示せば十分である。Noetherの正規化定理により、
+  ある$k[t_1, \cdots , t_u]$と$k[s_1, \cdots , s_v]$が存在して、$A(X)$と$A(Y)$はそれぞれ$k[t_1, \cdots , t_u]$, $k[s_1, \cdots , s_v]$上整である。このとき$a \in A(X)$に対して、$a^r + \gra_{r-1}a^{r-1} + \cdots + \gra_0 = 0$なる$\gra_i \in k[t_1, \cdots , t_u]$
+  がとれる。よって$b \in A(Y)$について
+  \[
+  (a \ts b)^r + (\gra_{r-1} \ts b)(a \ts b)^{r-1} + \cdots + (\gra_0 \ts b^r) = 0
+  \]
+  が成り立つことになり、$a \ts b$は$k[t_1, \cdots , t_u] \ts A(Y)$上整である。すなわち$A(X) \ts A(Y)$は$k[t_1, \cdots , t_u] \ts A(Y)$上整である。同様にして$k[t_1, \cdots , t_u] \ts A(Y)$は$k[t_1, \cdots , t_u] \ts k[s_1, \cdots , s_v]$上整であり、推移性から結局$A(X) \ts A(Y)$が$k[t_1, \cdots , t_u] \ts k[s_1, \cdots , s_v]$
+  上整であることがいえる。ところが$k[t_1, \cdots , t_u] \ts k[s_1, \cdots , s_v]$は$u +v$変数多項式環と同型であるため、$A(X) \ts A(Y)$の商体は$k$の純超越拡大$k(t_1,  \cdots , t_u , s_1, \cdots , s_v)$上代数的であることになる。したがってその$k$上の超越次数は$u+v$であり、ゆえに$\dim A(X) \ts A(Y) = \dim A(X) + \dim A(Y)$がいえた。
+\end{description}
+
+
+
+
+
+
+
+\bfsubsection{演習問題 3.16}
+\begin{description}
+    \item[(a)] まず補題を示す。
+\lem{
+(射影が射であること) \\
+Segre埋め込み$\psi \colon \P^n \tm \P^m \to \P^N$による$\P^n \tm \P^m$の像を$W$とおく。$\pi_i \; (i=1,2)$を$W$から$\P^n$, $\P^m$への射影とする。つまり、次の図式が可換になるような写像とする。
+\[
+\xymatrix{
+\P^n & W \ar[l]_-{\pi_1} \ar[r]^-{\pi_2} & \P^m \\
+{} & \P^n \tm \P^m \ar[u]_-{\psi} \ar[ul]^-{\wt{\pi_1} } \ar[ur]_-{\wt{\pi_2 }} & {}
+}
+\]
+ただし$\wt{\pi_i}$は積集合からの自然な射影である。$\pi_i$がwell-definedであることはあきらかだろう。
+
+このとき、$\pi_1$, $\pi_2$は多様体の圏における射である。
+}
+
+\begin{proof}
+  証明のアイディアは補題3.6の応用で、「局所的に多項式だから射」というだけである。が、初めてなので丁寧に示そう。同じことなので、$\pi_1$についてだけ証明する。
+
+  $U_i \opsub \P^n$, $V_j\opsub \P^m$, $W_{ij} \opsub \P^N$を標準的な開部分集合とする。$\vp_i \colon U_i \to \A^n$を自然な同型とする。このとき
+  \[
+  \psi(U_i \tm V_j) = W_{ij} \cap W
+  \]
+  が成り立つ。よって
+  \begin{align*}
+    \pi_1(W_{ij} \cap W) &= \pi_1 \circ \psi(U_i \tm V_j) \\
+    &= \wt{\pi_1} (U_i \tm V_j ) \\
+    &= U_i
+  \end{align*}
+  である。
+
+  ここで合成$\vp_i \circ \pi_1|_{W_{ij} \cap W}$は
+  \begin{align*}
+    \vp_i \circ \pi_1|_{W_{ij} \cap W} ((z_{ij})_{i,j}) &= \vp_i \circ \wt{\pi_1} \circ \psi^{-1} ((z_{ij})_{i,j}) \\
+    &= \vp_i \circ \wt{\pi_1} ((z_{0j}, \cdots , z_{nj}), (z_{i0}, \cdots , z_{im})) \\
+    &= \vp_i (z_{0j}, \cdots , z_{nj}) \\
+    &= \left( \f{z_{0j}}{z_{ij}}, \cdots ,  \widehat{\f{z_{ij}}{z_{ij}} }, \cdots , \f{z_{nj}}{z_{ij}} \right)
+  \end{align*}
+  なる写像である。ここで、補題3.6を適用して、$\vp_i \circ \pi_1|_{W_{ij} \cap W}$は射。したがって同型を外して、$\pi_1|_{W_{ij} \cap W} \colon W_{ij} \cap W \to U_i $は射。包含写像は射なので、包含射との合成$\pi_1|_{W_{ij} \cap W} \colon W_{ij} \cap W \to \P^n$
+  も射である。開被覆を適当にとればその上に制限したときに射になるということなので、$\pi_1 \colon W \to \P^n$そのものも射。
+\end{proof}
+
+
+
+\begin{proof}
+  演習3.16(a)の証明に戻る。Segre埋め込み$\P^n \tm \P^m \to \P^N$を$\psi$で書き、$Z = \psi(\P^n \tm \P^m)$、$W = \psi(X \tm Y)$とする。
+
+  $W \loc Z$であること: 補題により次の可換図式
+  \[
+  \xymatrix{
+  \P^n & Z \ar[l]_-{\pi_1} \ar[r]^-{\pi_2} & \P^m \\
+  {} & \P^n \tm \P^m \ar[lu]^-{\wt{\pi_1}} \ar[ru]_-{\wt{\pi_2}} \ar[u]_-{\psi} & {}
+  }
+  \]
+  により定まる射影$\pi_i$は射である。このとき
+  \begin{align*}
+    z \in \pi_1^{-1}(X) \cap \pi_2^{-1}(Y) &\iff \pi_1(z) \in X \; \text{かつ} \; \pi_2(z) \in Y \\
+    &\iff \psi^{-1}(z) \in X \tm Y \\
+    &\iff z \in W
+  \end{align*}
+  により$W = \pi_1^{-1}(X) \cap \pi_2^{-1}(Y)$である。仮定により$X \loc \P^n$、$Y \loc \P^m$なので、$\pi_i$の連続性から$\pi_1^{-1}(X) \loc Z$かつ$\pi_2^{-1}(Y) \loc Z$であることがわかる。ゆえに$W \loc Z$である。
+
+  $W$が既約であること: $W \subset C_1 \cup C_2$なる$C_i \clsub Z$が与えられたとする。$y \in Y$に対して$\vp_y \colon X \to Z$を$\vp_y(x)=\psi(x,y)$で定める。$X_y = \Im (\vp_y)$とおく。
+  $\vp_y \colon X \to Z$は多項式で定義された写像なので、補題3.6を適用すれば射であることが示せる。したがって$X_y$は既約空間の連続像なので既約。このとき$y \in Y$を固定するごとに$X_y \subset W \subset C_1 \cup C_2$なので、$X_y \subset Z$の既約性から$X_y \subset C_{i(y)}$なる$i(y)$がある。すなわち、$Y_j = \setmid{y \in Y}{X_y \subset C_j}$とおけば$Y = Y_1 \cup Y_2$である。
+  $x \in X$に対して$\vp_x \colon Y \to Z$を$\vp_x(y)=\psi(x,y)$で定めると$\vp_y$と同様$\vp_x$も射である。したがって
+  \begin{align*}
+    Y_j &= \setmid{y \in Y}{X_y \subset C_j} \\
+    &=  \setmid{y \in Y}{\forall x \in X \; \;  \psi(x,y) \in C_j} \\
+    &= \bigcap_{x \in X} \vp_x^{-1}(C_j)
+  \end{align*}
+により$Y_j \clsub Y$がわかる。仮定より$Y$は既約なので$Y = Y_i$なる$i$があり、したがってこの$i$について$W \subset C_i$が成り立つ、つまり$W \subset Z$は既約である。
+\end{proof}
+    \item[(b)] $W = \pi_1^{-1}(X) \cap \pi_2^{-1}(Y)$により、$X \clsub \P^n$かつ$Y \clsub \P^m$ならば$W \clsub Z$である。
+    \item[(c)] $W$が多様体の圏における直積であることを示そう。
+
+    (a)での議論により、$W \subset Z$は部分多様体であることがわかった。そこで射影$\pi_1 \colon Z \to \P^n$, $\pi_2 \colon Z \to \P^m$を$W$に制限して、射影$\pi_1 \colon W \to X$と$\pi_2 \colon W \to Y$を得る。これが射であることは演習問題3.10が保証する。
+
+    多様体$M$と射$\grs \colon M \to X$, $\tau \colon M \to Y$が与えられたとする。
+    \[
+    \xymatrix{
+    X & W \ar[l]_-{\pi_1} \ar[r]^-{\pi_2} & Y \\
+    {} & M \ar[lu]^-{\grs} \ar[ru]_-{\tau}  \ar@{.>}[u]^{\rho} & {}
+    }
+    \]
+    射$\rho \colon M \to W$を$\rho(P)=\psi(\grs(P), \tau(P))$により定める。これは上の図式を可換にする唯一の写像であり、したがってあとは$\rho$が射であることをいえば十分である。
+
+    $U_i \opsub \P^n$, $V_j\opsub \P^m$, $W_{ij} \opsub \P^N$を標準的な被覆とする。$X_i = X \cap U_i$, $Y_j = Y \cap V_j$とおくと、$X_i, Y_j$は準アファイン多様体と同形である。$M_{ij} = \grs^{-1}(X_i) \cap \tau^{-1}(Y_j) $として部分多様体$M_{ij} \opsub M$を定める。$M_{ij}$は$M$の開被覆を与えることに注意する。
+    標準的な同形$\vp_i \colon U_i \to \A^n$と$\vp_j \colon V_j \to \A^m$をとる。
+    \[
+    \xymatrix{
+    \vp_i(X_i) & \vp_i(X_i) \tm \vp_j(Y_j) \ar[l]_-{p_1} \ar[r]^-{p_2} & \vp_j(Y_j)   \\
+    X_i \ar[u]^{\vp_i} & M_{ij} \ar[l]^-{\grs|_{M_{ij}}} \ar[r]_-{\tau|_{M_{ij}}} \ar@{.>}[u]_-{\beta} & Y_j \ar[u]_{\vp_j}
+    }
+    \]
+    このとき、上の図式にある$\grs$と$\tau$の制限はそれぞれ射なので、準アファイン多様体の直積の普遍性により、ある射$\beta \colon M_{ij} \to \vp_i(X_i) \tm \vp_j(Y_j)$が存在して、上の図式が可換になる。ここで$\psi \circ (\vp_i^{-1} \tm \vp_j^{-1}) \colon \vp_i(X_i) \tm \vp_j(Y_j) \to W \cap W_{ij}$を$\psi \circ (\vp_i^{-1} \tm \vp_j^{-1})(P,Q) = \psi(\vp_i^{-1}(P), \vp_j^{-1}(Q))$
+    により定める。$W \cap W_{ij}$は準アファイン多様体と同型である。多項式によって表される写像なので、準アファイン多様体の場合の補題3.6により$\psi \circ (\vp_i^{-1} \tm \vp_j^{-1}) \colon \vp_i(X_i) \tm \vp_j(Y_j) \to W \cap W_{ij}$は射。$P \in M_{ij}$に対して
+    \begin{align*}
+      \psi \circ (\vp_i^{-1} \tm \vp_j^{-1}) \circ \beta(P) &= \psi \circ (\vp_i^{-1} \tm \vp_j^{-1}) (\vp_i \circ \grs(P), \vp_j \circ \tau(P)) \\
+      &= \psi(\grs(P), \tau(P)) \\
+      &= \rho (P)
+    \end{align*}
+    が成り立つので
+    \[
+    \rho|_{M_{ij}} = \psi \circ (\vp_i^{-1} \tm \vp_j^{-1}) \circ \beta
+    \]
+    であって、右辺は射なので$\rho|_{M_{ij}} \colon M_{ij} \to W \cap W_{ij}$も射。適当な開被覆をとれば、それぞれに制限したときに射なので$\rho \colon M \to W$も射。
+  \end{description}
+
+
+
+  \bfsubsection{演習問題 3.16}
+  \barquo{
+  (a) $X \tm Y$が準射影多様体であることを示せ。
+  }
+  \begin{rem}
+    完全にオマケの話だが、初期の案では$\psi(X \tm Y) \loc \P^N $を次のように示した。$X \tm Y$に積位相を入れてSegre埋め込みを位相的な写像だと考えるといかに話が面倒になるかをよく表しているように思われるので、書いておく。なぜ面倒になるのか考えたが、おそらくSegre埋め込みの位相的な性質があまりよくないからだろう。なにしろ埋め込みなのに (一方が有限集合という自明な場合を除いて) 像への同相写像になっていないのだから…。
+  \end{rem}
+
+  \lem{
+        $\psi \colon \P^n \tm \P^m \to \P^N$がSegre埋め込みであるとし、$X \clsub \P^n$かつ$Y \clsub \P^m$ならば$\psi(X \tm Y) \clsub \P^N$である。
+  }
+
+\begin{proof}
+  $\psi $は単射であるので、$\psi $の像は共通部分と交換することに注意する。そうすると、$X = Z(I)$, $Y = Z(J)$なる斉次イデアル$I,J$をとってくれば
+  \begin{align*}
+    \psi (X \tm Y) &= \psi (Z(I) \tm Z(J)) \\
+    &= \psi \left( \bigcap_{f \in I : \text{homo}} (Z(f) \cap \P^m)  \cap \bigcap_{g \in J : \text{homo}} (\P^n \cap Z(g)) \right) \\
+    &= \bigcap \psi(Z(f) \tm \P^m) \cap \bigcap \psi(\P^n \tm Z(g))
+  \end{align*}
+  である。よって斉次元$f \in k[x_0, \cdots , x_n]$について
+  \[
+  \psi(Z(f) \tm \P^m) \clsub \P^N
+  \]
+  が示せれば十分。
+
+  いま$\grs \colon k[z_{ij}]  \to k[x_0, \cdots , x_n, y_0, \cdots , y_m] \st \grs(z_{ij}) = x_iy_j$とする。$f$は斉次元としたので、各$0 \leq j \leq m$に対して$y_j^{\deg f} f \in \Im \grs$である。そこで
+  \[
+  \psi( (Z(f) \tm \P^m) )= \bigcap_{j = 0}^m Z(\grs^{-1}(y_j^{\deg f}  f ) )
+  \]
+  を示そう。
+
+  $\psi( (Z(f) \tm \P^m) ) \subset  \bigcap_{j = 0}^m Z(\grs^{-1}(y_j^{\deg f}  f ) )$であること: $(a,b) \in Z(f) \tm \P^m$と$j$と$g \in \grs^{-1}(y_j^{\deg f}  f ) $とが任意に与えられたとき
+  \begin{align*}
+    g(\psi (a,b)) &= (\grs g)(a,b) \\
+    &= b_j^{\deg f} f(a)  \\
+    &= 0
+  \end{align*}
+  が成り立つ。よって結論が示せた。
+
+  $\psi( (Z(f) \tm \P^m) ) \supset  \bigcap_{j = 0}^m Z(\grs^{-1}(y_j^{\deg f}  f ) )$であること: $P \in \bigcap_{j = 0}^m Z(\grs^{-1}(y_j^{\deg f} f ) )$が与えられたとする。このとき任意の$g \in \grs^{-1}(y_j^{\deg f} f )$について$g(P) = 0$なので、$P \in Z(\Ker \grs)$
+  である。したがって、$\psi(\P^n \tm \P^m) = Z(\Ker \grs)$という演習問題2.14の結果から$P = \psi(a,b)$なる$(a,b) \in \P^n \tm \P^m$があることがわかる。このとき任意の$j$と$g$について
+  \begin{align*}
+    0 &= g(P) \\
+    &= g(\psi(a,b)) \\
+    &= (\grs g)(a,b) \\
+    &= (y_j^{\deg f})(a,b) \\
+    &= b_j^{\deg f}f(a)
+  \end{align*}
+  である。よって、$b_j \neq 0$なる$j$が存在することから$f(a) = 0$である。これで示すべきことが言えた。
+\end{proof}
+
+\begin{proof}
+演習3.16(a)の証明に戻る。$\psi$は単射であるので、$Z,W \subset \P^n \tm \P^m$に対して
+\[
+\psi(Z \setminus W) = \psi(Z) \setminus \psi(W)
+\]
+が成り立つことに注意しておく。
+
+$X$,$Y$が準射影多様体であるということより、$X,Y$は局所閉であって、
+\[
+X = \ol{X} \cap U \quad Y = \ol{Y} \cap V
+\]
+なる$U \opsub \P^n$, $V \opsub \P^m$が存在する。すると
+\begin{align*}
+  \psi(U \tm V) &= \psi((\P^n \tm \P^m) \setminus (U^c \tm \P^m \cup \P^n \tm V^c)) \\
+  &= \psi(\P^n \tm \P^m) \setminus \psi(U^c \tm \P^m \cup \P^n \tm V^c) \\
+  &= \psi(\P^n \tm \P^m) \setminus (\psi(U^c \tm \P^m ) \cup \psi(\P^n \tm V^c))
+\end{align*}
+であるので、
+\begin{align*}
+\psi(X \tm Y ) &= \psi(\ol{X} \tm \ol{Y} \cap U \tm V)  \\
+&= \psi(\ol{X} \tm \ol{Y}) \cap \psi(U \tm V)  \\
+&= \psi(\ol{X} \tm \ol{Y}) \setminus (\psi(U^c \tm \P^m ) \cup \psi(\P^n \tm V^c))
+\end{align*}
+だから$\psi(X \tm Y) \subset \P^N $は局所閉である。
+\end{proof}

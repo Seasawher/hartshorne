@@ -1,0 +1,355 @@
+\bfsection{1.5 非特異多様体}
+
+\begin{comment}
+\bfsubsection{定義-非特異}
+\barquo{
+$Y \subset \A^n$をアファイン多様体、$f_1, \cdots , f_t \in A = k[x_1, \cdots , x_n]$を$Y$のイデアルの生成元集合とする。$r$を$Y$の次元として、行列$\norm{(\del f_i)/(\del x_j)(P) }$の階数が$n-r$となるとき$Y$は点$P$で非特異であるという。
+}
+\begin{rem}
+  $n-r$という数字がどこから出てきたか説明する。まず$r=\dim Y$により、
+  \begin{align*}
+    r &= \dim Y \\
+    &= \dim A(Y) \\
+    &= \dim A/I(Y) \\
+    &= \coht I(Y)
+  \end{align*}
+  である。ここで松村\cite{松村}演習問題5.1により体上の有限生成多項式環$A$とその素イデアル$\frakp$について、$\dim A = \height \frakp + \coht \frakp$が成り立つ。したがって$\height I(Y) = \dim A - \coht I(Y) = n-r$である。
+
+  とくに、$A$はNoether環なので、Krullの標高定理 (松村\cite{松村}定理13.5) から$n-r = \height I(Y) \leq t$が従うことに注意する。
+\end{rem}
+\end{comment}
+
+
+\bfsubsection{定義-非特異 直後}
+\barquo{
+非特異性の定義が$Y$のイデアルの生成元集合の選び方によらないことは容易に示すことができる。
+}
+\begin{rem}
+  これは後続の定理5.1の証明のなかで示されることだが、次の補題によっても示される。
+\end{rem}
+
+\lem{
+(アファイン空間のZariski接空間) \\
+$Y \subset \A^n$が$r$次元アファイン多様体であるとする。$A=k[x_1, \cdots , x_n]$とおく。$I(Y) \subset A$の生成元$f_1, \cdots , f_t$が与えられているとする。ここで$F \colon \A^n \to \A^t$を
+\[
+F(x) = (f_1(x), \cdots , f_t(x))
+\]
+で定めると、点$p \in \A^n$でのヤコビアン$JF_p \colon \A^n \to \A^t$が、$t \tm n$行列として
+\[
+JF_p = \left( \left(\f{\del f_i}{\del x_j} \right) (p) \right)_{1 \leq i \leq t, 1 \leq j \leq n}
+\]
+により定まる。このとき、
+\[
+T_p Y = \setmid{v \in \A^n}{\forall g \in I(Y) \quad \sum_{j = 1}^n v_j \f{\del g}{\del x_j}(p) = 0 }
+\]
+とおくと任意の$p \in Y$について$\Ker JF_p = T_p Y$が成り立つ。とくに、$JF_p$の階数は$f_1, \cdots , f_t$の取り方によらない。
+}
+
+\begin{proof}
+  この本では定義が違うが、$T_pY$でZariski接空間を定義する本もある。たとえばHarris\cite{Harris}Lecture14を参照のこと。証明であるが、$T_p Y \subset \Ker JF_p$はあきらかであるので逆を示そう。$v \in \Ker JF_p$と$g \in I(Y)$とが与えられたとする。$f_1, \cdots , f_t$は$I(Y)$を生成するので
+  \[
+  g= \sum_{i=1}^t a_i f_i
+  \]
+  なる$a_i \in A$がある。よって
+  \begin{align*}
+    \f{\del g}{\del x_j} &= \sum_{i=1}^t  \f{\del a_i}{\del x_j} f_i + \sum_{i=1}^t   a_i \f{\del f_i}{\del x_j} \\
+\f{\del g}{\del x_j}(p) &= \sum_{i=1}^t   a_i(p) \f{\del f_i}{\del x_j}(p)  &(f_i \in I(Y)\text{による}) \\
+\sum_{j = 1}^n v_j \f{\del g}{\del x_j}(p) &= \sum_{i=1}^t a_i(p) \sum_{j=1}^n v_j \f{\del f_i}{\del x_j}(p) \\
+&= 0
+  \end{align*}
+  が成り立つ。$g \in I(Y)$は任意だったので$v \in T_p Y$がわかる。これで示すべきことがいえた。
+\end{proof}
+
+
+\bfsubsection{定理 5.1}
+\barquo{
+$Y \subset \A^n$をアファイン多様体とする。$P \in Y$を点としよう。このとき、$\calo_{P,Y}$が正則局所環である場合、またその場合に限って$Y$は$P$で非特異になる。
+}
+\begin{proof}
+  定理3.2で、$\calo_{P,Y}$がNoether局所環であり$\dim Y = \dim \calo_{P,Y}$が成り立つということはすでに示されている。$\frakm$を$\calo_{P} = \calo_{P,Y}$の極大イデアルとする。$A=k[x_1, \cdots, x_n]$とおく。$I(Y) \subset A$を$\frakb = I(Y)$と書く。$\frakb$の生成元集合$f_1, \cdots , f_t$をひとつとっておき、点$P$におけるJacobianを$t \tm n$行列として
+  \[
+  J = \left( \left( \f{\del f_i}{\del x_j} \right) (P) \right)_{1 \leq i \leq t,1 \leq j \leq n}
+  \]
+  と定めておく。このとき、
+  \[
+  \dim_k \frakm / \frakm^2 = n - \rank J
+  \]
+  が成り立つことを示せば十分である。これさえ示せば、あとは定理3.2から望みの同値性がいえる。
+
+ $\grt, \grt'$の構成: $P = (a_1, \cdots, a_n)$とおいて、$\fraka = (x_1 - a_1, \cdots , x_n - a_n) \subset A$を$P$に対応する極大イデアルとする。$k$線形写像$\grt \colon A \to k^n$を
+  \[
+  \grt(f) = \left( \f{\del f}{\del x_1} , \cdots, \f{\del f}{\del x_n} \right)
+  \]
+  で定める。すると$\grt(x_i - a_i)$が$k^n$の基底をなすので$\grt$は全射。$\grt (\fraka^2) = 0$を満たすので、全射$k$線形写像$\grt' \colon \fraka / \fraka^2 \to k^n$が誘導される。ここで
+  \[
+\fraka / \fraka^2 \cong \bigoplus_{i=1}^n (x_i - a_i)k
+  \]
+  だから、$\dim_k \fraka / \fraka^2 = n$であり、したがって$\grt'$は同型。
+
+
+  $\dim_k \grt(\frakb) = \dim_k (\frakb + \fraka^2)/ \fraka^2$であること: 次の図式
+\[
+\xymatrix{
+\fraka \ar[rd]^{\grt|_{\fraka}} \ar[d] & { } \\
+\fraka / \fraka^2 \ar[r]^{\grt'} & k^n
+}
+\]
+  は可換なので$\grt(\frakb) = \grt|_{\fraka}(\frakb) = \grt'( (\frakb + \fraka^2)/ \fraka^2 )$を得る。$\grt'$は同型なので$\grt(\frakb) \cong (\frakb + \fraka^2)/ \fraka^2 $がわかる。とくにベクトル空間としての次元も等しい。
+
+
+$\rank J = \dim_k \grt(\frakb)$であること: $g \in \frakb$とする。$f_1, \cdots , f_t$は$\frakb$を生成するので
+\[
+g= \sum_{i=1}^t a_i f_i
+\]
+なる$a_i \in A$がある。ゆえに$e_1, \cdots , e_n$を$k^n$の標準的な基底とすると、
+\begin{align*}
+  \grt(g) \cdot e_j &= \grt \left( \sum_{i=1}^t a_i f_i \right) \cdot e_j \\
+  &= \f{\del}{\del x_j} \left.\left( \sum_{i=1}^t a_i f_i \right)  \right|_{x=P} \\
+  &= \sum_{i=1}^t a_i(P) \f{ \del f_i}{\del x_j}(P) \\
+  \grt(g) &= \sum_{i=1}^t a_i(P) \grt(f_i)
+\end{align*}
+であることがわかる。ゆえに$k^n$の中で
+\[
+\grt(\frakb) = \sum_{i=1}^t k \cdot \grt(f_i) = \Im {}^tJ
+\]
+である。とくに$\rank J = \rank {}^tJ = \dim_k \grt(\frakb)$が結論できる。
+
+$\dim_k \frakm / \frakm^2 = \dim_k (\fraka /  (\frakb + \fraka^2 ))$であること: $\calo_P \cong A(Y)_{\ol{\fraka}} \cong A_{\fraka}/ \frakb A_{\fraka}$である。よって$\frakm = \fraka A_{\fraka}/ \frakb A_{\fraka}$と同一視できる。ここで、自然な写像$\pi \colon A_{\fraka} \to A_{\fraka}/ \frakb A_{\fraka}$
+は全射なので
+\begin{align*}
+  \frakm^2 &= \pi(\fraka A_{\fraka})^2 \\
+  &= \pi(\fraka^2 A_{\fraka} ) \\
+  &=   (\frakb + \fraka^2 ) A_{\fraka}/ \frakb A_{\fraka}
+\end{align*}
+がいえる。したがって
+\begin{align*}
+\frakm / \frakm^2 &= \fraka A_{\fraka}/ (\frakb + \fraka^2) A_{\fraka} \\
+&= \Coker( (\frakb + \fraka^2) \ts_A A_{\fraka} \to \fraka \ts_A A_{\fraka} \to \fraka A_{\fraka} ) \\
+&= \Coker( (\frakb + \fraka^2) \ts_A A_{\fraka} \to \fraka \ts_A A_{\fraka} ) &(\text{局所化の平坦性}) \\
+&= \Coker ( (\frakb + \fraka^2)  \to \fraka ) \ts_A A_{\fraka} &(\text{テンソル積の右完全性}) \\
+&= (\fraka / (\frakb + \fraka^2 )) \ts_A  A_{\fraka} \\
+&=  (\fraka / (\frakb + \fraka^2 )) \ts_k k  \ts_A  A_{\fraka}
+\end{align*}
+である。ここで
+\begin{align*}
+  k \ts_A A_{\fraka} &= (A/ \fraka) \ts_A A_{\fraka} \\
+  &= A_{\fraka} / \fraka A_{\fraka} \\
+  &= \Frac A/\fraka \\
+  &= k
+\end{align*}
+であるから、$\dim_k \frakm / \frakm^2 = \dim_k (\fraka /  (\frakb + \fraka^2 ))$がいえる。
+
+結論: 以上の議論により
+\begin{align*}
+  \dim_k \frakm / \frakm^2 &= \dim_k (\fraka /  (\frakb + \fraka^2 ) ) \\
+  &=  \dim_k ( (\fraka / \fraka^2) /  ((\frakb + \fraka^2) / \fraka^2 ) ) \\
+  &= \dim_k ((\fraka / \fraka^2) ) - \dim_k ( (\frakb + \fraka^2) / \fraka^2 ) \\
+  &= n - \rank J
+\end{align*}
+がわかる。
+
+\end{proof}
+
+\begin{rem}
+  命題5.2Aまたは雪江\cite{雪江3}命題2.10.5により、ネーター局所環$(R,\frakm,k)$があるとき$\dim R \leq \dim_k \frakm / \frakm^2$が成り立つ。したがって
+  \begin{align*}
+    \rank J &= n - \dim_k \frakm / \frakm^2 \\
+    &\leq n - \dim \calo_P \\
+    &= n - \dim Y
+    \end{align*}
+    であることがわかった。ゆえに非特異性の定義は、Jacobianの階数が最大値をとることを意味する。
+\end{rem}
+
+
+
+
+
+\bfsubsection{定理 5.3}
+\barquo{
+$Y$を多様体とする。このとき$Y$の特異点の集合$\Sing Y$は$Y$の真部分閉集合である。
+}
+\begin{proof} ${}$
+  \begin{description}
+    \item[Step 1] $Y$がアファイン多様体のときに、$\Sing Y \clsub Y$であることを示そう。$Y \subset \A^n$とみなす。$r = \dim Y$とおく。$I(Y)$の生成元$f_1 , \cdots , f_t$をとり、$F \colon k^n \to k^t$を$F(x) = (f_1(x) , \cdots , f_t(x))$で定める。このとき
+    \[
+    \Sing Y = \setmid{y \in Y}{ \rank JF_y < n -r}
+    \]
+    である。ここで、次が成り立つことを思いだそう。
+\prop{
+$A$は$m \tm n$型の体係数の行列であるとする。このとき$A$の正方部分行列であって行列式が$0$でないものの最大の次数と、$A$の階数は一致する。
+}
+\begin{proof}
+  齋藤\cite{齋藤}定理3.2.15を参照のこと。
+\end{proof}
+したがって、$\Sing Y$は$Y$の部分集合として、ヤコビアン$JF_y$の$(n-r) \tm (n-r)$型小行列式の零点として定義されるような代数的集合である。ゆえに$\Sing Y \clsub Y$がわかる。
+
+\item[Step 2] $Y$が一般の多様体であるときに、$\Sing Y \clsub Y$であることを示そう。命題4.3により、開アファイン部分集合$Y_i$による$Y$の被覆
+$Y = \bigcup_i Y_i$がある。各$i$についてアファイン多様体$Z_i$への同型$\vp_i \colon Y_i \to Z_i$をとることができる。このとき
+\[
+\vp_i (\Sing Y \cap Y_i) \subset Z_i
+\]
+である。先に進むために、次の補題を示そう。
+
+
+\lem{
+(開部分多様体の特異点) \\
+$Y$は多様体、$U$は$Y$の空でない開部分集合とする。このとき$U$は$Y$の部分多様体で、
+\[
+\Sing Y \cap U = \Sing U
+\]
+が成り立つ。
+}
+\begin{proof}
+  局所環は開集合に制限しても不変であることに注意する。$x \in Y$に対して、
+  \begin{align*}
+    x \in \Sing U &\iff \calo_{x,U} \text{は正則局所環でない} \\
+    &\iff \calo_{x,Y} \text{は正則局所環ではなく、かつ} x \in U  \\
+    &\iff x \in \Sing Y \cap U
+  \end{align*}
+  である。したがって、示すべきことがいえた。
+\end{proof}
+
+定理5.3の証明に戻る。$\vp_i (\Sing Y \cap Y_i) \subset Z_i$について考えていたのだった。ここで、補題を使って
+\begin{align*}
+  \vp_i (\Sing Y \cap Y_i) &= \vp_i ( \Sing Y_i) \\
+  &= \Sing (\vp(Y_i)) \\
+  &= \Sing (Z_i)
+\end{align*}
+である。アファイン多様体の場合の考察により、$\Sing Z_i \clsub Z_i$なので、$\vp_i (\Sing Y \cap Y_i) \clsub Z_i$がいえた。$\vp_i$は同型なので引き戻して$\Sing Y \cap Y_i \clsub Y_i$である。ゆえに、閉集合の局所判定補題から$\Sing Y \clsub Y$がわかった。
+\item[Step 3] $Y$がアファイン空間に埋め込まれた超曲面であるときに、$\Sing Y \subsetneq Y$を示そう。$Y = Z(f) \subset \A^n$とする。$A =  k[x_1, \cdots , x_n]$とする。ここで$f \in A$は既約元である。
+%$\A^n$は非特異多様体なので、$Y = \A^n$ならば$\Sing Y = \emptyset$であり示すべきことはない。したがって$\emptyset \subsetneq Y \subsetneq \A^n$の場合だけ考えればよく、
+とくに$f$は定数でない。このとき命題1.13により$\dim Y = n-1$なので、$n - \dim Y = 1$
+である。したがって$I(Y) = ( f )$であることから、
+\[
+\Sing Y  = \setmid{P \in Y}{\forall i \quad  \f{\del f}{\del x_i}(P) = 0 }
+\]
+が成り立つ。ここで$Y = \Sing Y$であると仮定しよう。すると$\f{\del f}{\del x_i} \in I(Y)$であることになる。$I(Y)$は$f$で生成される単項イデアルなので、次数を考えて$\f{\del f}{\del x_i} = 0$でなくてはならない。$f$は定数でないので、体$k$の標数は$0$ではない。そこで$k$の標数を$p > 0$とする。$ \f{\del f}{\del x_i} = 0$
+であるから、すべての$i$に対して、$f$の$x_i$のベキは$p$の倍数である。したがってある多項式$g \in A$が存在して、$f(x_1 , \cdots , x_n) = h(x_1^p, \cdots , x_n^p)$を満たす。$k$は代数閉体なので、$h$の係数の$p$乗根を係数に持つような多項式$g \in A$がとれる。$p$乗写像は環準同形になっているので、このとき$f = g^p$が成立する。これは$f$が既約であるという仮定に矛盾。したがって$\Sing Y \neq Y$である。
+\item[Step 4] $Y$が一般の多様体の場合に、$\Sing Y \subsetneq Y$を示そう。$r = \dim Y$とする。命題4.9の証明から、$Y$に双有理同値であるようなアファイン空間内の超曲面$H \subset \A^{r+1}$が存在する。系4.5により双有理なふたつの多様体は、同型な開部分多様体をもつ。したがってある$U \opsub Y$と$V \opsub H$が存在し、$U \cong V$である。$\psi \colon U \to V$を同型を与える射とする。このとき
+\begin{align*}
+  Y \setminus \Sing Y &\supset U \cap (  Y \setminus \Sing Y) \\
+  &= U \setminus \Sing U \\
+  &= \psi^{-1}(V \setminus \Sing V) \\
+  &= \psi^{-1}((H \setminus \Sing H) \cap V)
+\end{align*}
+  ここで(3)により$H \setminus \Sing H \opsub H$は空でない。したがって、$H$の既約性により$(H \setminus \Sing H) \cap V \neq \emptyset$である。ゆえに$Y \setminus \Sing Y \neq \emptyset$がわかる。
+ \end{description}
+\end{proof}
+
+
+
+
+\bfsubsection{定理 5.3}
+\barquo{
+$\Sing Y$が$Y$の真部分集合であることを示すためにまず(4.9)を適用すると、$Y$は$\P^n$の中の超曲面と双有理である。双有理な多様体は同型な開部分集合を持つから、超曲面の場合に帰着される。$Y$の任意の開アファイン部分集合について考えれば十分なので、$Y$は$\A^n$内で一つの既約多項式を用いて$f(x_1, \cdots , x_n)=0$と定義される超曲面であると仮定してよい。
+}
+\begin{rem}
+  \textblue{この部分は意図不明。}なぜ、アファイン空間内の超曲面の場合に帰着するのに射影空間内の超曲面を経由しようとおもったのだろう。
+\end{rem}
+
+
+\bfsubsection{例 5.6.3}
+\barquo{
+(可約代数的集合上の点の局所環についてはまだ一般論を展開していないので、暫定的な定義として$\calo_{O,Y} = (k[x,y]/(xy))_{(x,y)}$を使う。したがって$\wh{\calo}_{O,Y} \cong k[[x,y]]/(xy)$である。) この例は、$X$が$O$の近くでは二つ直線の交わったもののように見える、という幾何学的事実に対応する。
+
+この結果を証明するために完備化$\wh{\calo}_{O,X}$を考えるが、これは$k[[x,y]]/ (y^2 - x^2 - x^3)$と同型である。
+}
+\begin{proof} ${}$
+  \begin{description}
+    \item[Step 1]   $A = k[x,y]$, $J= xy A$, $\frakm = xA + yA$とする。以下、$A$加群$M$の$\frakm$進完備化をハットをつけて$\wh{M}$のように表す。$\wh{A} = k[[x,y]]$である。
+      $(A/J)_{\ol{\frakm}} = A_{\frakm} / J A_{\frakm}$の極大イデアル$\frakm A_{\frakm}/ J A_{\frakm}$による完備化が$\wh{A}/J\wh{A}$と同型であることを示そう。
+
+      愚直に計算していくと
+      \begin{align*}
+    \llim_{n} (A_{\frakm} / J A_{\frakm}) / ((\frakm^n + J) A_{\frakm}/ J A_{\frakm})
+    &= \llim_{n} A_{\frakm} / (\frakm^n + J) A_{\frakm} \\
+    &= \llim_{n} (A/(\frakm^n + J) \ts_A A_{\frakm})
+      \end{align*}
+      がわかる。ここで、$A/ (\frakm^n + J)$の素イデアルは、$\frakm^n + J$を含む$A$の素イデアル$P$と一対一に対応するが、$P$は素イデアルなので$P \supset \frakm$, したがって$P = \frakm$でなくてはならない。ゆえに$A/ (\frakm^n + J)$は$\frakm / (\frakm^n + J)$を極大イデアルとする局所環であり、ゆえに$A/(\frakm^n + J) \ts_A A_{\frakm} = A/(\frakm^n + J)$である。よって
+      \begin{align*}
+      \llim_{n} (A/(\frakm^n + J) \ts_A A_{\frakm}) &= \llim_{n} A/(\frakm^n + J) \\
+      &= \llim_{n} (A/J) / (\frakm^n + J/ J )
+      \end{align*}
+      であるので、これは$A/J$の$\frakm$進完備化に等しい。$A$はNoether環で、$A/J$は有限生成$A$加群なので
+      \begin{align*}
+        \llim_{n} (A/J) / (\frakm^n + J/ J ) &= (A/J) \ts_A \wh{A} \\
+        &= \wh{A} / J \wh{A}
+      \end{align*}
+      \item[Step 2] まず$X$がアファイン多様体であることをいいたい。それには$y^2 -x^2 - x^3$の既約性を示せばよい。次のよく知られたEisensteinの既約性判定法を使う。
+      \lem{
+      (Eisenstein判定法) \\
+      $A$は環、$f \in A[x]$はモニック多項式で、
+      \[
+      f(x) = x^n + a_{n-1} x^{n-1} + \cdots + a_0
+      \]
+      と表されているとする。このとき素イデアル$\frakp \subset A$であって$a_{n-1}, \cdots , a_0 \in \frakp$かつ$a_0 \notin \frakp^2$なるものがあれば、$f \in A[x]$は既約である。
+      }
+      \begin{proof}
+        松村\cite{松村}\S 29, 補題1 を参照のこと。
+      \end{proof}
+      $y^2 -x^2 - x^3$の既約性の話に戻る。$A = k[x]$とし、$\frakp = (x+1)$としてEisensteinの既約性判定法を使えば、$y^2 -x^2 - x^3 \in A[y]=k[x,y]$が既約であることがわかる。よって$\wh{\calo}_{O,X} \cong k[[x,y]]/ (y^2 - x^2 - x^3)$がStep 1と同様に示せる。
+  \end{description}
+\end{proof}
+
+
+
+
+\bfsubsection{例 5.6.3}
+\barquo{
+したがって$\wh{\calo}_{O,X} = k[[x,y]]/(gh)$である。$g$と$h$は線形独立な線形項で始まるから、$k[[x,y]]$の自己同形であって$g$と$h$をそれぞれ$x$と$y$に送るものがある。これで求める$\wh{\calo}_{O,X} \cong k[[x,y]]/(xy)$が示された。
+}
+\begin{proof} ${}$
+  \begin{description}
+    \item[Step 1] $\wh{\calo}_{O,X} = k[[x,y]]/(gh)$であるような$g,h \in k[[x,y]]$があることを示そう。次の補題を使う。
+    \prop{
+    (Henselの補題) \\
+    $A$は完備な離散付値環で、$\frakm$をその極大イデアル、$\ord$を$\frakm$から定まるオーダー(加法的付値)とする。$f(x) \in A[x]$であるものとする。$a \in A$があり、
+    \[
+    \ord(f(a)) > 2\ord (f'(a))
+    \]
+    が成りたつとする。このときある$b \in A$が存在して
+    \[
+    f(b)=0, \quad b \equiv a \mod \frakm^{\ord (f'(a)) + 1}
+    \]
+    を満たす。
+    }
+  \end{description}
+  \begin{proof}
+    雪江\cite{雪江3} 定理3.3.1を参照のこと。
+  \end{proof}
+$y^2 - x^2 - x^3$の既約性の話に戻る。$A = k[[x]]$とおく。$A$は完備であり、離散付値環の構造を持つ。よってHenselの補題を使うことができる。$f= z^2 - (x+1) \in A[z]$を考える。このとき
+\[
+f(1 ) = -x, \quad f'(1) = 2
+\]
+である。体$k$の標数は$2$でないという仮定があったので、$f$はHenselの補題の仮定を満たす。ゆえに、ある$d \in A$が存在して$d^2=x+1$, $d \equiv 1 \mod (x)$を満たす。このとき$y^2 - x^2 - x^3 = (y + xd)(y - xd)$と分解できる。よって$g= y + xd$, $h = y - xd$とおけば引用部の前半が示せたことになる。
+
+\item[Step 2] $k[[x,y]]$の自己同形であって$g$と$h$をそれぞれ$x$と$y$に送るものがあることを示そう。次の命題による。
+\prop{
+(べき級数環での逆関数の定理) \\
+$A$はネーター環、$A[[x]] = A[[x_1, \cdots, x_n]]$, $\frakm = (x_1, \cdots , x_n)$, $f_1(x), \cdots , f_n(x) \in \frakm$とする。$F \colon A[[x]] \to A[[x]]$を$F(x_i) = f_i$なる準同形とする。($f_i \in \frakm$なのでこれはwell-definedである) このとき
+\[
+\det JF_{O} \in A^{\tm}
+\]
+ならば、$F$は同型である。
+}
+\begin{proof}
+  雪江\cite{雪江3} 定理3.4.4を参照のこと。
+\end{proof}
+引用部の証明に戻る。$F \colon k[[x,y]] \to k[[x,y]]$を
+\[
+F(x) = y + xd, \quad F(y) = y - xd
+\]
+とおく。$y + xd$, $y - xd \in (x,y)$よりこれはwell-definedで、$F$は環準同型を定める。$d \equiv 1 \mod (x)$に気をつけて計算すると
+\begin{align*}
+  JF_{(x,y)} &= \begin{pmatrix}
+   d(x) + xd'(x) & 1 \\
+  -d(x) - xd'(x) & 1
+\end{pmatrix} \\
+\det JF_{(0,0)} &= \det \begin{pmatrix}
+1 & 1 \\
+-1 & 1
+\end{pmatrix} \\
+&= 2
+\end{align*}
+を得る。したがって、$k$の標数は$2$ではないので、$F$は同型である。ゆえに$k[[x,y]] = k[[g,h]]$であり、$y^2 - x^2 - x^3 = gh$より$k[[x,y]] /(xy) \cong k[[g,h]]/ (gh) = k[[x,y]]/ (gh)$がわかる。
+\end{proof}

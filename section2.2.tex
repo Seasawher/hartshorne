@@ -1,0 +1,103 @@
+\bfsection{2.2 スキーム}
+
+
+\bfsubsection{定義-スペクトラム 直前}
+\barquo{
+定義の局所性から$\calo$が層であることも明らかである。
+}
+\begin{proof}
+  $\calo$の定義と層化の定義を見比べてみると (茎を与える写像を代入だと思えば) 両者は完全に一致するということが見て取れる。そこで前層$\scrf$を
+  \[
+  \scrf(U) = \setmid{s \colon U \to \coprod_{\frakp \in U} A_{\frakp}  }{s(\frakp) \in A_{\frakp} \text{かつ} \exists a \in A, \; \exists f \in A \sm \bigcup_{\frakp \in U} \frakp \quad s(\frakp) = a/f }
+  \]
+  として定める。これは貼り合わせが存在しないため一般には層にならないと予想される。この$\scrf$の点$\frakp \in \Spec A$における茎が$A_{\frakp}$であることが、命題2.2とまったく同様に示せる。したがって$\calo$は$\scrf$の層化であり、層であることがわかる。
+\end{proof}
+
+
+\bfsubsection{命題 2.2}
+\barquo{
+既に示した$\psi$の単射性を$D(h_ih_j)$に適用することによって、$A_{h_ih_j}$で$a_i / h_i = a_j / h_j$であることを得る必要がある。
+}
+\begin{rem}
+  原著では『Hence, according to the injectivity of $\psi$ proved above, applied to $D(h_ih_j)$ we must have $a_i / h_i = a_j / h_j$ in $A_{h_i h_j}$.』と書いてある部分である。\textblue{誤訳。}
+\end{rem}
+
+
+
+\bfsubsection{定義-環付き空間}
+\barquo{
+環付き空間$(X,\calo_X)$から$(Y,\calo_Y)$への射とは連続写像$f \colon X \to Y$と$Y$上の環の層の写像$f^{\#} \colon \calo_Y \to f_* \calo_X$の対$(f,f^{\#})$である。
+}
+\begin{rem}
+  $f^{\#}$と書いてはいるが、$f^{\#}$は$f$だけによって決まるものではないことに注意する。環付き空間は圏をなすのだが、射の合成の定義が書かれていないので説明する。$(f,f^{\#}) \colon (X,\calo_X) \to (Y,\calo_Y)$と$(g,g^{\#}) \colon (Y,\calo_Y) \to (Z,\calo_Z)$の合成$(h,h^{\#})$は次のように定める。まず$h = g \circ f$とする。そして$h^{\#}$は、任意の$W \opsub Z$に対して
+  \[
+  h^{\#}_W = f^{\#}_{g^{-1}(W)} \circ g^{\#}_W
+  \]
+  により定める。
+\end{rem}
+
+
+
+
+
+\bfsubsection{命題 2.3 (b)}
+\barquo{
+$\calo$の定義から写像$f$と$\vp_{\frakp}$を合成することによって、任意の開集合$V \subset \Spec A$に対して環の準同型$f^{\#} \colon \calo_{\Spec A}(V) \to \calo_{\Spec B}(f^{-1}(V))$を得、
+}
+\begin{proof}
+  すこし詳しく説明する。$\calo_{\Spec A}$などといちいち書くのは面倒なので、$\calo_{A}$などと略記する。$s \in \calo_A(V)$が与えられたとする。$f^{\#}_V (s) \in \calo_B(f^{-1}(V))$を記述しよう。任意にとった$\frakp \in f^{-1}(V)$を$f^{\#}_V (s)$がどこへ写すかをみればいい。
+
+  ひとことでいえば、それはこの可換図式による。
+  \[
+  \xymatrix{
+  f^{-1}(V) \ar[r]^-{f^{\#}_V (s)} \ar[d]_-{f'} & \coprod_{\frakp \in f^{-1}(V)} B_{\frakp} \\
+  \coprod_{\frakp \in f^{-1}(V)} \{f(\frakp)\} \ar[r]^-s & \coprod_{\frakp \in f^{-1}(V)} A_{f(\frakp)} \ar[u]_-{\vp'}
+  }
+  \]
+  ただし、それぞれの写像は次のように定義される。
+  \begin{align*}
+    f'(\frakp) &= (\frakp, f(\frakp)) \\
+    s(\frakp, f(\frakp)) &= (\frakp, s(f(\frakp))) \\
+    \vp'(\frakp, t) &= (\frakp, \vp_{\frakp}(t))
+  \end{align*}
+以上の議論によって、$s \in \prod_{\frakq \in V} A_{\frakq}$を$f^{\#}_V(s) \in \prod_{\frakp \in f^{-1}(V)} B_{\frakp}$に対応させることができた。$f^{\#}_V(s) \in \calo_B(f^{-1}(V))$となっていることを確認したい。それは、
+$t \in A \sm \bigcup_{\frakq \in V} \frakq$について次の図式
+\[
+\xymatrix{
+A_t \ar[r] \ar[d]_-{\vp} & \prod_{\frakq \in V} A_{\frakq} \ar[d]^-{f^{\#}_V} \\
+B_{\vp(t)} \ar[r] & \prod_{\frakp \in f^{-1}(V)} B_{\frakp}
+}
+\]
+が可換であることによる。
+\end{proof}
+
+
+
+
+\bfsubsection{命題 2.3 (b)}
+\barquo{
+$f^{\#}$から茎に誘導される写像は局所準同形$\vp_{\frakp}$に他ならず、$(f,f^{\#})$は局所環付き空間の射となる。
+}
+\begin{proof}
+  $\frakp \in \Spec B$と$f(\frakp) \in \Spec A$の近傍$D(g) \; (g \in A)$について、次の図式
+  \[
+  \xymatrix{
+  {} & \calo_A(D(g)) \ar[ld] \ar[rr]^{f^{\#}_{D(g)} } & {} & f_*\calo_B(D(g)) \ar[ld] \ar@{=}[r] & \calo_B(D(\vp(g))) \ar[ld] \\
+\calo_{A,f(\frakp)} \ar[rr] \ar[dd] & {} & (f_*\calo_B)_{f(\frakp)} \ar[r] & \calo_{B,\frakp} \ar[dd] & {} \\
+{} & A_g \ar[uu]_(.3){\psi_g} \ar[rrr]^-{\vp_g} \ar[ld] & { } & {} &  B_{\vp(g)} \ar[uu]_{\psi_{\vp(g)}} \ar[ld] \\
+A_{f(\frakp) } \ar[rrr]^-{\vp_{\frakp}} & {} & {}  & B_{\frakp}
+   }
+  \]
+  の前面以外は可換である。ただし$\psi$は命題2.2(b)で構成された同型であるとする。よって、$\{ D(g)\}$が基本近傍系であり$\psi_g$が同型であることから、前面も可換であることがいえる。したがって、$\vp_{\frakp}$と$f^{\#}$が茎に誘導する写像とは自然に同一視される。
+
+\end{proof}
+
+
+\bfsubsection{命題 2.3 (c)}
+\barquo{
+$f^{\#}$もまた$\vp$から誘導されることは直ちに分かるので、局所環付き空間の射$(f,f^{\#})$は確かに環の準同形$\vp$から来ていることになる。
+}
+\begin{proof}
+  $\vp$から誘導される層の射$\calo_A \to f_*\calo_B$を$\vp^{\#}$と表すことにする。このとき、命題2.3(b)での直方体図式に$g=1$を代入したものを考えると、$f^{\#}_{\frakp} = \vp^{\#}_{\frakp}$がわかる。$(f_*\calo_B)_{f(\frakp)} \to \calo_{B,\frakp}$は単射なので、
+  $(f^{\#})_{f(\frakp)} = (\vp^{\#})_{f(\frakp)} $である。よって、$\calo_A$, $f_*\calo_B$は層だったので、$f^{\#} = \vp^{\#}$がわかったことになる。(これは、$\vp$が整とは限らないのでウソ。直さないといけない。具体的には、順像と逆像の随伴を使う。)
+\end{proof}

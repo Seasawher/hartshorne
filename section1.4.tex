@@ -1,0 +1,690 @@
+\bfsection{1.4 有理写像}
+
+
+\bfsubsection{補題 4.1}
+\barquo{
+射$\vp$および$\psi$は写像$\vp \tm \psi \colon X \to \P^n \tm \P^n$を定めるが、実際これは射である
+}
+\begin{rem}
+  $\P^n \tm \P^n$は多様体の圏における直積なので
+  \[
+  \xymatrix{
+  \P^n & X \ar[r]^{\psi} \ar[l]_{\vp} \ar[d]^{\vp \tm \psi} & \P^n \\
+  {} & \P^n \tm \P^n \ar[ul]^{\pi_1} \ar[ur]_{\pi_2} & {}
+  }
+  \]
+  を可換にするような射$\vp \tm \psi$が存在する。
+\end{rem}
+
+
+
+\bfsubsection{補題 4.1}
+\barquo{
+$\grD = \setmid{P \tm P}{P \in \P^n}$を$\P^n \tm \P^n$の対角部分集合とする。これは方程式$\setmid{x_iy_j = x_j y_i}{i,j = 0, \cdots , n}$で定義されるので$\P^n \tm \P^n$の閉部分集合である。
+}
+\begin{rem}
+  Segre埋め込みを$s \colon \P^n \tm \P^n \to \P^N$で表すことにする。(Segre埋め込みを明示したということは、単に$\P^n \tm \P^n$と書けばそれは多様体の圏における直積ではなく集合の圏における直積を意味すると理解していただきたい) 次の補題を示そう。
+\end{rem}
+
+\lem{
+(対角集合は閉) \\
+Segre埋め込みを$s \colon \P^n \tm \P^n \to \P^N$とする。$Y \subset \P^n$が射影多様体で、$\wt{\grD}(Y) = \setmid{P \tm P \in Y \tm Y}{P \in Y}$とするとき、対角集合$\grD(Y) = s(\wt{\grD}(Y))$は$s(Y \tm Y)$の閉部分集合。
+}
+\begin{proof}
+$\grD(Y) = s(Y \tm Y) \cap Z(\setmid{z_{ij} - z_{ji} }{0 \leq i,j \leq n})$を示せばよい。$\grD(Y) \subset s(Y \tm Y) \cap Z(\setmid{z_{ij} - z_{ji} }{0 \leq i,j \leq n})$はあきらかなので、逆を示そう。
+
+$z=(z_{ij}) \in s(Y \tm Y) \cap Z(\setmid{z_{ij} - z_{ji} }{0 \leq i,j \leq n})$とする。$z = s(x,y)$なる$x,y \in Y$をとる。このとき$\forall i,j \; \; x_i y_j = x_j y_i$が成り立つ。ある$i$について$y_i \neq 0$であるが、その$i$は$0$であるとして一般性を失わない。このとき$\forall j \; \; x_0 y_j / y_0 = x_j$が成り立つ。ある
+$j$について$x_j \neq 0$なので、$x_0 \neq 0$でなければならない。よって$y_j / y_0 = x_j / x_0$であり、$x= y$がわかる。よって$z \in \grD(Y)$であるから、逆がいえた。
+\end{proof}
+
+
+
+
+\bfsubsection{補題 4.1}
+\barquo{
+仮定により$\vp \tm \psi (U) \subset \grD$である。
+}
+\begin{rem}
+  $s \colon \P^n \tm \P^n \to \P^N$をSegre埋め込みとする。このとき次の図式が可換。
+  \[
+  \xymatrix{
+  \P^n & X \ar[r]^{\psi} \ar[l]_{\vp} \ar[d]^{\vp \tm \psi} & \P^n \\
+  {} & s(\P^n \tm \P^n) \ar[ul]^{\pi_1} \ar[ur]_{\pi_2} \ar[d]^{s^{-1}} & {} \\
+  {} & \P^n \tm \P^n \ar[uul]^{\wt{\pi_1}} \ar[uur]_{\wt{\pi_2}} & {}
+  }
+  \]
+  よって、$x \in X$に対して
+  \begin{align*}
+    (\vp \tm \psi)(x) \in \grD &\iff s^{-1} (\vp \tm \psi)(x) \in \setmid{P \tm P \in \P^n \tm \P^n}{P \in \P^n} \\
+    &\iff \wt{\pi_1}s^{-1}(\vp \tm \psi)(x) = \wt{\pi_2}s^{-1}(\vp \tm \psi)(x) \\
+    &\iff \vp(x) = \psi(x)
+  \end{align*}
+  であるから、求める包含関係がいえた。
+\end{rem}
+
+
+
+
+\bfsubsection{補題 4.2 直前}
+\barquo{
+ある(したがってすべての)対$\kakko{U,\vp_U}$について$\vp_U$の像が$Y$において稠密であるとき、有理写像$\vp$は支配的(dominant)であるという。
+}
+\begin{proof}
+dominantという性質が同値類の取り方によらないことを示そう。
+
+  $\kakko{V,\psi} = \kakko{U,\vp}$であるとし、$\vp(U) \subset Y$は稠密であるとする。
+  \begin{align*}
+    \vp(U) &= \vp(\ol{U \cap V} \cap U) &(\text{$U \cap V$は$U$の稠密部分集合}) \\
+    &\subset \ol{\vp(U \cap V)} &(\text{$\vp$の連続性})
+  \end{align*}
+  よって$\vp(U) \subset Y$の稠密性から$Y = \ol{\vp(U \cap V)}$がわかる。
+
+  ここで
+  \[
+  \psi(V) \supset \psi(U \cap V) = \vp(U \cap V)
+  \]
+  であるから、したがって$\psi(V) \subset Y$は稠密である。
+\end{proof}
+
+
+
+\bfsubsection{補題 4.2 直前}
+\barquo{
+明らかに支配的有理写像は合成することができるので、多様体と支配的有理写像のなす圏を考えることができる。
+}
+\begin{proof}
+  支配的有理写像の合成が再び支配的であることを示そう。
+  \[
+  \xymatrix{
+  X \ar[r]^{\wt{\vp}} & Y \ar[r]^{\wt{\psi}} & Z
+  }
+  \]
+  支配的有理写像$\wt{\vp}, \wt{\psi}$が上のようにあり、代表元が
+  \[
+\kakko{U,\vp} = \wt{\vp} \quad \kakko{V,\psi} = \wt{\psi}
+  \]
+  と与えられていたとする。このとき合成$\wt{\psi} \circ \wt{\vp}$を、$\wt{\psi} \circ \wt{\vp} = \kakko{\vp^{-1}(V),\psi \circ \vp}$によって定める。
+  以下、確認すべき事を粛々と確認していく。
+
+  定義域が空集合でないこと:
+  \begin{align*}
+      \ol{\vp(U) \cap V} \cap V &= \ol{\vp(U)} \cap V &(\text{閉包と開集合への制限の可換性}) \\
+      &= V &(\text{$\vp(U)$の稠密性})
+  \end{align*}
+  よって
+  \begin{align*}
+    \psi(V) &= \psi(  \ol{\vp(U) \cap V} \cap V ) \\
+    &\subset \ol{\psi(\vp(U) \cap V)} &(\text{$\psi$の連続性})
+  \end{align*}
+  であるから、$\psi(V) \subset Z$の稠密性により
+  \[
+  Z = \ol{\psi(\vp(U) \cap V)}
+  \]
+  が成り立つ。ゆえに$\vp(U) \cap V \neq \emptyset$であるので、したがって$\vp^{-1}(V) \neq \emptyset$である。
+
+  合成が支配的であること:
+  \begin{align*}
+  \psi(V) &= \psi( \ol{\vp(U) \cap V} \cap V ) \\
+  &\subset \ol{\psi(\vp(U) \cap V)} \\
+  &\subset \ol{\psi \circ \vp (\vp^{-1}(V))}
+\end{align*}
+が成り立つので、$\psi(V) \subset Z$の稠密性により
+\[
+Z = \ol{\psi \circ \vp (\vp^{-1}(V))}
+\]
+がわかる。
+\end{proof}
+
+
+\bfsubsection{補題 4.2}
+\barquo{
+$Y$を方程式$f(x_1, \cdots, x_n)=0$で与えられる$\A^n$の超曲面とする。
+}
+\begin{rem}
+  \textblue{$Y$は超曲面でなくてもよい。}$f$がどんな多項式だったとしても、結論はいえる。
+\end{rem}
+
+
+\bfsubsection{補題 4.2}
+\barquo{
+$Y$を方程式$f(x_1, \cdots, x_n)=0$で与えられる$\A^n$の超曲面とする。このとき$\A^n - Y$は$x_{n+1}f = 1$で与えられる$\A^{n+1}$の超曲面$H$に同型である。特に$\A^n - Y$はアファインであり、そのアファイン環は$k[x_1, \cdots , x_n]_f$である。
+}
+\begin{proof}
+  $x_{n+1}f - 1  \in k[x_1, \cdots , x_{n+1}]$が素元であること:
+  $A = k[x_1, \cdots , x_n]$とする。$x_{n+1}f - 1 = gh$なる$g,h \in A[x_{n+1}]$が与えられたとする。イデアル$(x_{n+1})$による商をとって、$\ol{g},\ol{h} \in A^{\tm} = k$がわかる。ゆえに$g = x_{n+1}g' + c$, $h = x_{n+1}h' + d$なる$c,d \in k$と$g' , h' \in A[x_{n+1}]$
+  がある。ゆえに
+  \begin{align*}
+  x_{n+1}f - 1 &= gh \\
+     &= (x_{n+1}g' + c)(x_{n+1}h' + d) \\
+    &= x_{n+1}^2 g'h' + x_{n+1}(ch' + d g') + cd
+  \end{align*}
+  である。ここで$x_{n+1}$に関して最高次数の項は$x_{n+1}^2 g'h'$に含まれるので$g' h' = 0$でなくてはならない。よって$g$と$h$のどちらかは$A[x_{n+1}]$の単元である。$g$と$h$は任意だったから$x_{n+1}f - 1 \in A[x_{n+1}]$は既約元、$A[x_{n+1}]$はUFDなのでとくに素元である。このことから$H$が多様体になっていることが保証される。
+
+  $\A^n \setminus Y$と$H$が同型であること:
+  $\vp \colon H \to \A^n \setminus Y$を$\vp(a_1, \cdots , a_{n+1}) = (a_1, \cdots , a_{n})$として定め、$\psi \colon \A^n \setminus Y \to H$を$\psi(x_1, \cdots , x_n) = (x_1, \cdots , x_n, 1/f((x_1, \cdots , x_n)))$として定める。$\vp$, $\psi$は互いに逆写像であり、よって$\vp$は全単射。$\vp$, $\psi$
+  は有理関数で表される写像なので多様体の圏の射であり、したがって$\A^n \setminus Y$と$H$は同型。
+
+  $A(\A^n \setminus Y) \cong A[x_{n+1}]/(x_{n+1}f - 1)$であること:
+多様体としての同型$\A^n \setminus Y \cong H$があるので、座標環に送って同型$A(\A^n \setminus Y) \cong A(H)$がいえる。さらに$A(H) = A[x_{n+1}] / I(H) = A[x_{n+1}] / IZ(x_{n+1}f - 1) = A[x_{n+1}] / (x_{n+1}f - 1)$であることから、求める同型がいえた。
+
+$A[x_{n+1}]/(x_{n+1}f - 1) \cong A_f$であること:
+$p \colon A \to A[x_{n+1}]/(x_{n+1}f - 1)$を自然な射の合成$A \to A[x_{n+1}] \to A[x_{n+1}]/(x_{n+1}f - 1)$として定める。このとき積閉集合$S = \setmid{f^n}{n \geq 0}$の$p$による像は単元なので、局所化の普遍性により$\wt{p} \colon A_f \to A[x_{n+1}]/(x_{n+1}f - 1)$が誘導される。
+$p$は単射なので、$\wt{p}$も単射。また、あきらかに$\wt{p}$は全射なので$\wt{p}$は同型。
+\end{proof}
+
+
+\bfsubsection{命題 4.3}
+\barquo{
+$Y$は$\A^n$の中の準アファイン多様体と仮定してよい。
+}
+\begin{proof}
+  $Y$が準アファイン多様体のときに示せたとする。準射影多様体$Z \loc \P^n$と$P \in Z$が与えられたとしよう。このとき$\vp_i \colon U_i \to \A^n$を標準的な同型とすると、$Z \cap U_i \loc U_i$なので$\vp_i(Z \cap U_i)$は$\A^n$の局所閉部分集合であり、かつ既約。したがって準アファイン多様体。ゆえに仮定により$\vp_i(P) \in V \opsub \vp_i(Z \cap U_i)$なるアファイン集合$V$がある。当然$P \in \vp_i^{-1}(V) \opsub Z$であるので、準射影多様体についても示すべきことがいえたことになる。
+\end{proof}
+
+
+
+\bfsubsection{命題 4.3}
+\barquo{
+このとき、$Z$は閉で$P \notin Z$だから$f(P) \neq 0$となるような多項式$f \in \fraka$を見つけることができる。$H$を$\A^n$の中の超曲面$f=0$とする。このとき$Z \subset H$であるが
+}
+\begin{rem}
+  \textblue{ここは注意が必要である。}$H$が超曲面であることを保証するには、$f \in A$は既約元でなくてはならない。そのためには、$f(P) \neq 0$なる$f \in \fraka$を素元分解するくらいしかないが、そうして得られた$f$の素因子$p$はもはや$\fraka$の元である保証がない。そうすると$Z \subset H$が示せなくなり、$Y \setminus H \clsub \A^n \setminus H$が示せなくなり御破算になる。
+
+  これを解決する方法はない。なぜなら、この部分の記述が間違っているからである。$H$は超曲面でなくてもよいのだ。補題4.2についての注意を参照のこと。
+\end{rem}
+
+
+\bfsubsection{定理 4.4 直前}
+\barquo{
+$\vp_U(U)$は$Y$で稠密だから$\vp_U^{-1}(V)$は$X$の空でない開部分集合であり、
+}
+\begin{proof}
+  補題4.2の直前の「支配的有理写像の合成は支配的」の特別な場合である。
+\end{proof}
+
+
+\bfsubsection{定理 4.4 直前}
+\barquo{
+以上のようにして、$k$代数$K(Y)$から$K(X)$への準同形が定義された。
+}
+\begin{rem}
+  函数体が有理写像のなす圏から$k$上有限生成体拡大の圏への反変関手であるということである。このことからただちに次の命題が従う。
+\end{rem}
+\prop{
+多様体$X$, $Y$が双有理同値ならば、$\dim X = \dim Y$である。
+}
+\begin{proof}
+このとき$K(X)$と$K(Y)$は同型であるから、当然$k$上の超越次数も等しい。ところが、函数体の$k$上の超越次数はもとの多様体の次元に等しいので、$\dim X = \dim Y$がいえる。
+\end{proof}
+
+
+\bfsubsection{定理 4.4}
+\barquo{
+$Y$はアファイン多様体により覆われるから、$Y$はアファイン多様体と仮定してよい。
+}
+\begin{rem}
+  まず次の補題に気をつける。
+\end{rem}
+
+\lem{
+$Y$が多様体、$\emptyset \subsetneq U \opsub Y$であるとき、$U$と$Y$は双有理同値。
+}
+\begin{proof}
+  結論がわかっていれば確かめるのは容易い。
+\end{proof}
+
+\begin{proof}
+  引用部の証明に戻る。$Y$がアファインのときに、対応$\grd \colon \Hom_k(K(Y), K(X)) \to \Hom_{\text{Rat}}(X,Y)$がつくれたとする。$Y$が一般の多様体であるとき、$U \opsub Y$なるアファイン集合$U$をとると$K(Y) = k(U)$かつ、$U$と$Y$は双有理同値なので、図式
+  \[
+  \xymatrix{
+  \Hom_k(K(Y), K(X)) \ar@{=}[d] \ar[r]^-{\grd_U} &  \Hom_{\text{Rat}}(X,Y) \\
+\Hom_k(K(U), K(X)) \ar[r]^-{\grd} &  \Hom_{\text{Rat}}(X,U) \ar[u]_{\text{iso}}
+  }
+  \]
+  が可換になるように$\grd$を拡張することができる。これは$U$の取り方によらない。
+\end{proof}
+
+
+
+
+\bfsubsection{定理 4.4}
+\barquo{
+(3.5)によりこれは射$\vp \colon U \to Y$に対応し、この射は$X$から$Y$への支配的有理写像を与える。
+}
+\begin{rem}
+  次の補題に気をつける。
+\end{rem}
+
+\lem{
+多様体$X$とアファイン多様体$Y$、および射$\vp \colon X \to Y$が与えられているとき次は同値。
+\begin{description}
+  \item[(1)] $\vp^* \colon A(Y) \to \calo(X)$が単射
+  \item[(2)] $\vp(X) \subset Y$は稠密
+\end{description}
+}
+\begin{proof}
+同値変形を行って示す。
+\begin{align*}
+  \vp^* \text{が単射} &\iff \Ker \vp^* = \{ 0 \} \\
+&\iff \forall f \in A(Y) \; \; (f \circ \vp)(U) = 0 \; \text{ならば} \; f=0 \\
+&\iff Z(f) \supset \vp(U) \; \text{ならば} \; f=0 \\
+&\iff f \neq 0 \; \text{ならば} \; (Y \setminus Z(f)) \cap \vp(U) \neq \emptyset
+\end{align*}
+ここで$f \in A(Y)$であるが、同値類の代表元をどう取ろうと$Y$上の各点での値には関係がないので、$Z(f)$という記号を使った。
+$\{Y \setminus Z(f) \}_{f \in A(Y)}$が$Y$の位相の開基であることから、示すべきことがいえる。
+\end{proof}
+
+\begin{proof}
+  引用部の証明に戻る。$\grt |_{A(Y)} \colon A(Y) \to \calo(U)$はk代数の準同形だから、充満性によりある射$\vp \colon U \to Y$が存在して$\vp^* \colon A(Y) \to \calo(U)$が$\grt |_{A(Y)}$に等しい。このとき補題から$\vp \colon X \to Y$は支配的有理写像。
+\end{proof}
+
+
+\bfsubsection{定理 4.4}
+\barquo{
+これが集合(ii)から集合(i)への写像を与えること、またそれが上で定義した写像の逆であることは容易に分かる。
+}
+\begin{proof}
+  $\grg \colon \Hom_{\text{Rat}} (X,Y) \to \Hom_k(K(Y), K(X))$とおく。$\grd \circ \grg = id$, $\grg \circ \grd = id$を示せばよい。$Y$ははじめからアファインとしてよい。
+
+    $\grd \circ \grg = id$であること:
+    次の図式の可換性を示せばよい。
+    \[
+    \xymatrix{
+    \Hom_{\text{Rat}}(X,Y) \ar[r]^-{\grg} \ar[dd]_{id} & \Hom_k(K(Y),K(X)) \ar[d]^{\cdot |_{A(Y)}} \\
+    {} & \Hom_k(A(Y), \calo(U)) \ar[d]^{\beta} \\
+\Hom_{\text{Rat}}(X,Y) & \Hom_{\text{Var}}(U,Y) \ar[l]
+    }
+    \]
+    いま$p \in U$と$\kakko{U,\vp} \in \Hom_{\text{Rat}}(X,Y)$について
+    \begin{align*}
+      \beta (\grg \vp |_{A(Y)})(p) &= (( \grg \vp |_{A(Y)}(y_1) )(p), \cdots , ( \grg \vp |_{A(Y)}(y_n) )(p)) \\
+      &= (( \grg \vp (y_1) )(p), \cdots , ( \grg \vp (y_n) )(p)) \\
+      &= (\grg \vp)(y_1, \cdots , y_n)(p) \\
+      &= \vp(p)
+    \end{align*}
+    だから、示すべきことがいえた。
+
+$\grg \circ \grd = id$であること:
+次の図式の可換性を示せばよい。
+\[
+\xymatrix{
+\Hom_{k}(K(Y),K(X))   & \Hom_k(K(Y),K(X)) \ar[d]^{\cdot |_{A(Y)}} \ar[l]_-{id} \\
+{} & \Hom_k(A(Y), \calo(U)) \ar[d]^-{\beta} \\
+\Hom_{k}(X,Y) \ar[uu]^-{\grg} & \Hom_{\text{Var}}(U,Y) \ar[l]
+}
+\]
+いま$\grt \in \Hom_k(K(Y), K(X))$と$f \in K(Y)$について
+\begin{align*}
+  (\grg \circ \beta (\grt|_{A(Y)}) )(f) &= f(\beta(\grt|_{A(Y)})) \\
+  &= f(\grt(y_1), \cdots , \grt(y_n)) \\
+  &= \grt(f(y_1, \cdots , y_n)) \\
+  &= \grt(f)
+\end{align*}
+だから、示すべきことがいえた。
+\end{proof}
+
+
+
+
+
+
+\bfsubsection{系 4.5}
+\barquo{
+$(1) \To (2)$. $\vp \colon X \to Y$および$\psi \colon Y \to X$を互いに逆の有理写像としよう。$\vp$は$\kakko{U,\vp}$で代表され、$\psi$は$\kakko{V,\psi}$で代表されるものとする。このとき$\psi \circ \vp$は$\kakko{\vp^{-1}(V),\psi \circ \vp}$
+で代表され、
+}
+\begin{rem}
+有理写像と代表元を同じ記号で書いていることに注意。あと、「多様体と支配的有理写像の圏」で考えているのであって、「多様体と有理写像の圏」ではないことにも注意。またこの系では演習問題3.10を実は使っている。
+\end{rem}
+
+
+\bfsubsection{命題 4.9}
+\barquo{
+任意の$r$次元多様体$X$は$\P^{r+1}$内のある超曲面$Y$に双有理である。
+}
+\begin{rem}
+  \textblue{射影空間の超曲面でなくてもよい。}以下の証明からわかるように、$X$と双有理であるような$\A^{r+1}$の超曲面$H$が存在する。
+\end{rem}
+
+
+
+\bfsubsection{命題 4.9}
+\barquo{
+$X$の函数体$K$は$k$の有限生成拡大体である。
+}
+\begin{proof}
+$X$がアファイン多様体なら、定理3.2(d)で示されている。$X$が準アファイン多様体なら、$X \loc \A^n$となる$n$がある。したがって$X$は$\ol{X}$の開部分集合だから$K(X) = K(\ol{X})$となり、アファインの場合に帰着される。$X$が準射影多様体なら、$X \cap U_i \neq \emptyset$なる$i$をとる。ただし$U_i \opsub \P^n$はいつもの開集合である。このとき$X \cap U_i \loc U_i$により$\vp_i(X \cap U_i) \loc \A^n$がわかる。ゆえに$K(X) = K(X \cap U_i) = K(\vp_i(X \cap U_i))$
+より準アファイン多様体の場合に帰着できる。
+\end{proof}
+
+
+
+
+\bfsubsection{命題 4.9}
+\barquo{
+よって超越基$x_1 , \cdots , x_r \in K$であって$K$が$K(x_1 , \cdots , x_r)$の有限次分離拡大であるようなものを見付けることができる。
+}
+\begin{rem}
+次元については、$r = \dim X = \trdeg_k K$という結果がすでにあるので、よい。
+  体論をど忘れしていると、有限次拡大というところに一瞬詰まるかもしれない。次の命題を思い出そう。
+\end{rem}
+
+\prop{
+$L/K$を体拡大とする。このとき次は同値。
+\begin{description}
+  \item[(1)] $[L : K] < \infty$
+  \item[(2)] $L/K$は代数拡大かつ$L$は体として$K$上有限生成。
+  \item[(3)] $L$は$K$代数として有限生成。
+\end{description}
+}
+\begin{proof}
+  $(1)\Leftrightarrow (2)$は生成元の個数についての帰納法による。$(1)\Leftrightarrow(3)$はZariskiの補題による。
+\end{proof}
+
+
+
+\bfsubsection{命題 4.9}
+\barquo{
+分母を払って$f(x_1, \cdots , x_r, y) = 0$を得る。これは函数体$K$を持つ$\A^{n+1}$の超曲面を定めるが、(4.5)によるとこれは$X$と双有理である。これの射影閉包(Ex. 2.9)が求める超曲面$Y \subset \P^{r+1}$である。
+}
+\begin{proof}
+  $A = k[x_1, \cdots , x_r]$とする。紛らわしいので、函数体$K(X)$のことを単に$K$とは書かないことにする。本文にあるように、分母を払うことによりある$g \in A[x_{r+1}]$であって$g(y)=0$なるものが存在することがわかる。$A[x_{r+1}]$はUFDなので素元分解して、$f(y)=0$なる素元$f \in A[x_{r+1}]$の存在がわかる。以降、$H = Z(f) \subset \A^{r+1}$とする。
+
+  このとき$K(H) \cong \Frac A(H) = \Frac A[x_{r+1}]/f = \Frac A[y] = K(X)$であるので、$X$と$H$の函数体は同形。ゆえに圏同値があることから求める双有理同値がいえる。
+
+  また、$U_0 \opsub \P^{r+1}$と標準的な同形$\vp \colon U_0 \to \A^{r+1}$をとると、$\vp^{-1}(H) \clsub U_0$であるから、$\vp^{-1}(H) \loc \P^{r+1}$がいえる。したがって$\P^{r+1}$における閉包をオーバーラインで表すと$\vp^{-1}(H) \opsub \ol{\vp^{-1}(H)}$
+  である。ゆえに、$K(\ol{\vp^{-1}(H)}) = K(\vp^{-1}(H)) \cong K(H) \cong K(X)$である。
+
+  あとは、$\ol{\vp^{-1}(H)}$が本当に超曲面であること、つまりイデアルが単項イデアルであることを示せばよいが、演習問題2.9での考察によりそれはあきらか。
+\end{proof}
+
+
+
+
+
+
+\bfsubsection{ブローアップ}
+\barquo{
+ここで$\A^n$の点$O$におけるブローアップを、方程式
+\[
+\setmid{x_iy_j = x_j y_i}{i,j = 1, \cdots , n}
+\]
+によって定義される$\A^{n} \tm \P^{n-1}$の閉部分集合$X$として定義する。
+}
+\begin{rem}
+  Segre埋め込み$s \colon \P^n \tm \P^{n-1} \to \P^N$と同形$\vp_0 \colon U_0 \to \A^n$を用いて明示的に書いてみると次のようになる。
+\begin{align*}
+  X &= \setmid{s(\vp_0^{-1}(x), y )}{\forall i,j \;  x_iy_j = x_j y_i} \\
+  &= s(\vp_0^{-1}(\A^n) \tm \P^{n-1}) \cap \bigcap_{1 \leq i,j \leq n} Z(z_{ij} - z_{ji})
+\end{align*}
+ただし、ここで$j$の動く範囲は$1 \leq j \leq n$であり、$i$の動く範囲は$0 \leq i \leq n$であって、少しズラしていることに注意する。このズレは$\P^{n-1}$の斉次座標の取り方がズレていたことから来ている。
+
+Segre埋め込みを明示してしまったので、紛れの無いよう多様体の圏における直積は$\A^n \vartm \P^{n-1}$などと書くことにしよう。またあまり明示的に書きすぎると却って煩わしい場面もあると思う。そこで、$s(\vp_0^{-1}(x), y)$のことを単に$x \ts^{s} y$と書くことにする。以上の記号法はここだけのものであるので他所で使われないようにされたい。
+\end{rem}
+
+
+
+
+\bfsubsection{ブローアップ}
+\barquo{
+$\A^n \tm \P^{n-1}$から第一因子への射影を制限することによって、自然な射$\vp \colon X \to \A^n$が得られる。
+}
+\begin{rem}
+  \textblue{$X$の既約性はまだ示していない}はずなのに、いきなり射であるといわれても困る。以下、$\vp$はとりあえずただの写像だと思って話を進める。
+\end{rem}
+
+
+
+\bfsubsection{ブローアップ}
+\barquo{
+(1) $P \in \A^n$, $P \neq O$のとき、$\vp^{-1}(P)$はただひとつの点からなる。実は$\vp$は$X - \vp^{-1}(O)$から$\A^n - O$への同型を与える。
+}
+\begin{proof}
+  まず順序を変えて$X- \vp^{-1}(O)$の既約性を示そう。次の補題に注意する。なお補題の名前は僕(@seasawher)が勝手につけた。
+  \lem{
+  (射影の普遍性)\\
+  $X$, $Y$, $Z$を多様体とし、$\vp \colon Z \to X \tm Y$を写像とする。$\pi_1 \colon X \tm Y \to X$, $\pi_2 \colon X \tm Y \to Y$を射影とする。このとき次は同値。
+\begin{description}
+  \item[(1)] $\vp$は射。
+  \item[(2)] $\pi_1 \circ \vp$と$\pi_2 \circ \vp$はともに射。
+\end{description}
+  }
+  \begin{proof}
+    $(1) \To (2)$はあきらか。$(2) \To (1)$を示そう。多様体の積の普遍性により、次の図式
+    \[
+    \xymatrix{
+    X & X \tm Y \ar[l]_-{\pi_1} \ar[r]^-{\pi_2} & Y \\
+    {} & Z \ar[ul]^-{\pi_1 \circ \vp} \ar[ur]_-{\pi_2 \circ \vp} \ar@{.>}[u]^-{\psi} & {}
+    }
+    \]
+    を可換にする射$\psi$が存在する。このとき図式の可換性から、$\vp = \psi$でなくてはならないので$\vp$は射。
+  \end{proof}
+
+  $X - \vp^{-1}(O)$の既約性の証明に戻る。写像$\psi \colon \A^n - O \to \A^n \vartm \P^{n-1}$を$\psi(x) = x \ts^s q(x)$で定める。ただし$q \colon \A^n - O \to \P^{n-1}$は自然な商写像である。$q$は多項式で与えられる写像なので射。すると$\psi$は、射影をかませるごとに射を与えるので射影の普遍性から射であることがわかる。とくに$\psi$は連続。
+
+  本文中にあるのと同様の証明で
+  \[
+  X - \vp^{-1}(O) = \setmid{x \ts^s q(x)}{x \in \A^n - O}
+  \]
+  がいえる。したがって$X - \vp^{-1}(O) = \psi(\A^n - O)$は既約空間の連続像なので既約。
+
+次に$\vp \colon X - \vp^{-1}(O) \to \A^n - O$がHartshorneの言うとおり射であることを示す。いま$\pi_1 \colon \A^n \vartm \P^{n-1} \to \A^n$を自然な射影とする。このとき$X - \vp^{-1}(O) = X \setminus \pi_1^{-1}(O)$は$\A^n \vartm \P^{n-1}$の閉部分集合と開部分集合の共通部分なので局所閉部分集合であり、したがって部分多様体だと思える。ゆえに演習問題3.10により$\pi_1 \colon \A^n \vartm \P^{n-1} \to \A^n$
+の制限として得られる写像$\vp \colon X - \vp^{-1}(O) \to \A^n - O$は射である。
+
+これだけ示しておけばあとは本文通りにすれば同型$X - \vp^{-1}(O) \cong \A^n - O$がいえる。
+\end{proof}
+
+
+
+
+
+\bfsubsection{ブローアップ}
+\barquo{
+(2) $\vp^{-1}(O) \cong \P^{n-1}$.
+}
+\begin{proof}
+  (1)と同様の議論で示せるので、詳しくは説明しない。$\vp^{-1}(O)$は、射$\P^{n-1} \to \A^n \vartm \P^{n-1} \st Q \mapsto O \ts^s Q$による既約空間$\P^{n-1}$の像だから既約。射影$\A^n \vartm \P^{n-1} \to \A^n$による一点集合$O$の引き戻しと集合として等しいので、$\vp^{-1}(O) \clsub \A^n \vartm \P^{n-1}$
+  もいえる。よって$\vp^{-1}(O)$は$\A^n \vartm \P^{n-1}$の部分多様体。したがって、演習問題3.10の結果が使えて、望みの同型がいえる。
+\end{proof}
+
+
+
+
+
+\bfsubsection{ブローアップ}
+\barquo{
+(3) $\vp^{-1}(O)$の点たちは$O$を通る$\A^n$の中の直線の集合と一対一対応にある。
+}
+\begin{proof}
+  $\A^n$内の直線$L$が与えられたとする。このときある$a \in \A^n - O$が存在して
+  \[
+  L = \setmid{ta}{t \in \A^1 }
+  \]
+  が成り立つ。
+
+  $L \clsub \A^n$であること: 斉次式$f$を
+  \[
+  f(x) = \prod_{1 \leq i < j \leq n} (a_j x_i - a_i x_j)
+  \]
+  で定める。このとき$L \subset Z(f)$であることはあきらか。逆に$y \in Z(f)$ならば、$a \neq O$であることから、$y \in L$であることがわかる。よって$L = Z(f)$であり、示すべき事がいえた。
+
+  $L'$, $\ol{L'}$の定義: $L' = \vp^{-1}(L - O)$とする。つまり
+  \begin{align*}
+  L' &= \setmid{ta \ts^s q(ta)}{t \in \A^1 - O} \\
+  &= \setmid{ta \ts^s q(a)}{t \in \A^1 - O}
+\end{align*}
+  である。そうして、$X$における$L'$の閉包を$\ol{L'}$とする。
+
+  $\ol{L'} = L' \cup \{ O \ts^s q(a) \}$であること: 斉次式$f$であって、$L'$を零にするもの、つまり
+  \[
+  \forall t \in \A^1 - O \quad f(ta \ts^s q(a)) = 0
+  \]
+  なるものが与えられたとする。$f$を、$z_{01}, \cdots , z_{0n}$を除いた、$z_{ij} \; (1 \leq i \leq n, 1 \leq j \leq n)$についての次数で分けて$f = \sum_{k=0 }^{m} f_k$と表すことにすると任意の$t \in \A^1$について
+  \[
+  f(ta \ts^s q(a)) = f_0(a \ts^s q(a)) + \sum_{k=1}^m t^k f_k(a \ts^s q(a))
+  \]
+  が成り立つ。左辺は$t \in \A^1 - O$のときには常に$0$である。よって$\A^1$は代数閉体、とくに無限体なので右辺の$t$の係数はすべて$0$である。とくに$f_0(a \ts^s q(a))=0$がわかる。したがって$t=0$を上の式に代入して$f(O \ts^s q(a)) = 0$である。以上の議論により、$L' \cup \{ O \ts^s q(a) \} \subset \ol{L'}$がわかる。逆を示そう。$\pi_1 \colon \A^n \vartm \P^{n-1} \to \A^n$, $\pi_2 \colon \A^n \vartm \P^{n-1} \to \P^{n-1}$
+  を射影とする。このとき
+  \begin{align*}
+  L' \cup \{ O \ts^s q(a) \} &= \setmid{ta \ts^s q(a)}{t \in \A^1} \\
+  &= \pi_1^{-1}(L) \cap \pi_2^{-1}(q(a))
+\end{align*}
+である。射影空間において一点は閉であり、かつ$L \clsub \A^n$であるので、射影の連続性から$L' \cup \{ O \ts^s q(a) \} \clsub X$がわかる。したがって$L' \cup \{ O \ts^s q(a) \} \supset \ol{L'}$である。よって示すべきことがいえた。
+
+一対一対応があること: 商写像$q$が全射であることより、容易に従う。
+\end{proof}
+
+
+\bfsubsection{ブローアップ}
+\barquo{
+最初の部分は$\A^n$に同型であり、したがって既約である。
+}
+\begin{rem}
+  \textblue{このりくつはおかしい。}理由は先述の通り。
+\end{rem}
+
+
+
+
+
+\bfsubsection{ブローアップの定義}
+\barquo{
+$\vp \colon X \to \A^n$を$\wt{Y}$に制限して得られる射も$\vp \colon \wt{Y} \to Y$と書く。
+}
+\begin{proof}
+  $\wt{Y}$は$\vp^{-1}(Y - O)$の$X$または$\A^n \tm \P^{n-1}$における閉包であるから、
+  \begin{align*}
+    \vp(\wt{Y}) &= \vp(\ol{\vp^{-1}(Y-O)}) \\
+    &\subset \ol{\vp(\vp^{-1}(Y-O))} \\
+    &\subset \ol{Y-O} \\
+    &\subset Y
+  \end{align*}
+  が成り立つ。
+
+  $\wt{Y}$が$\A^n \tm \P^{n-1}$の部分多様体であることを示そう。$Y-O$は$Y$の（たぶん空でない）開部分集合なので既約。$\vp^{-1} \colon \A^n-O \to X - \vp^{-1}(O)$は同型だったから$\vp^{-1}(Y - O)$も既約。閉包をとって、$\wt{Y}$も既約。局所閉部分集合であることはあきらかなので、部分多様体。
+
+  したがって、射$\vp \colon \wt{Y} \to Y$が誘導される。
+\end{proof}
+
+
+
+\bfsubsection{ブローアップの定義 直後}
+\barquo{
+$\vp$は$\wt{Y} -\vp^{-1}(O)$から$Y-O$への同型を引き起こし、
+}
+\begin{rem}
+  あきらかな等式$\vp(\wt{Y} -\vp^{-1}(O)) = Y - O$から従う。
+\end{rem}
+
+
+\bfsubsection{例 4.9.1}
+\barquo{
+$Y$を方程式$y^2=x^2(x+1)$で与えられる平面三次曲線とする。
+}
+\begin{rem}
+  このあとの議論で出てくる数式をすべて明示的に書くと次のようになる。例外曲線$E$は
+  \[
+  E = \setmid{O \tm (t,u) \in \A^2 \tm \P^1}{(t,u) \in \P^1}
+  \]
+  と表される。また$Y$の逆像は
+  \[
+  \vp^{-1}(Y) \cap \{ t \neq 0 \} = \{ O \tm (1,u) \}_{u \in \A^1} \cup \{(u^2-1,u(u^2-1)) \tm (1,u) \}_{u \in \A^1}
+  \]
+  である。$X$軸と$Y$軸の逆像は次のようになる。
+  \begin{gather*}
+\vp^{-1}(\{ y=0 \}) =E \cup \{(x,0) \tm (1,0)\}_{x \in \A^1} \\
+  \vp^{-1}(\{ x=0 \}) =E \cup \{(0,y) \tm (0,1)\}_{y \in \A^1}
+  \end{gather*}
+\end{rem}
+
+\begin{comment}
+\bfsubsection{例 4.9.1}
+\barquo{
+ここで$\P^1$は開集合$t \neq 0$と$u \neq 0$で覆われるので、別々に考える。
+}
+\begin{rem}
+このあと、開集合$u \neq 0$の場合が考察されることはついになかった…。いったいどういうつもりなのか。
+\end{rem}
+\end{comment}
+
+
+\bfsubsection{演習問題 4.7}
+\begin{description}
+\item[Step 1] まず$X$, $Y$がアファイン多様体の場合に示そう。圏同値に帰着したい。$\tau \colon \calo_{P,X} \to \calo_{Q,Y}$を$k$-代数の同型であるとする。とくに$\tau$は単射なので、$\calo_{P,X} \to \calo_{Q,Y} \to \Frac \calo_{Q,Y} = K(Y)$は単射である。ゆえに、局所化の普遍性から$\wt{\tau} \colon K(X) \to K(Y)$なる準同形が誘導される。
+  $\tau$が同型なので、$\wt{\tau}$も同型である。したがって、圏同値があることにより、ある支配的有理写像$\vp \colon Y \to X$が存在して、次を満たす。
+
+  (1) 定理4.4における対応$( \cdot )^* \colon \Hom_{Rat}(Y,X) \to \Hom_k(K(X),K(Y))$について$\vp^* = \wt{\tau}$が成り立つ。
+
+  (2) 定理4.4における対応$( \cdot )^{\dagger} \colon \Hom_{k}(K(X),K(Y)) \to \Hom_{Rat}(Y,X)$について$\vp = (\wt{\tau})^{\dagger} $が成り立つ。
+\item[Step 2] (2)から従うことを見ていく。$x_1 , \cdots ,x_n \in A(X)$を$k$代数としての生成元とする。次の図式が可換であることに気をつける。
+  \[
+\xymatrix{
+A(X) \ar[dr] \ar[r] & \calo_{P,X} \ar[d]^-{j_X} \ar[r]^-{\tau} & \calo_{Q,Y} \ar[d]^-{j_Y} \\
+{} & K(X) \ar[r]^-{\wt{\tau}} & K(Y)
+}
+  \]
+すると$\wt{\tau}(x_i) = j_Y \circ \tau(x_i) \in K(Y)$より、$\wt{\tau}(x_i) = \kakko{V_i, t_i}$なる$(V_i, t_i) \in \coprod_{Q \in V} \calo(V)$が存在する。このとき$V = \bigcap_{i=1}^n V_i$とすると$\wt{\tau}$の$A(X)$への制限は$\tau' \colon A(X) \to \calo(V)$とみなせる。
+したがって命題3.5により、ある支配的写像$\vp_V \colon V \to X$が存在して、$\vp_V$が誘導する写像が$\tau'$に一致する。すなわち、
+\[
+\forall f \in A(X) \quad f \circ \vp_V = \tau'(f)
+\]
+が成り立つ。このとき$(\wt{\tau})^{\dagger} = \kakko{V,\vp_V }$であるので、(2)により$\vp = \kakko{V,\vp_V }$が成りたつ。とくに、$\vp$の代表元として$Q$の近傍で定義された射をとることができる。
+\item[Step 3] $\tau$は局所環の間の同型なので、$\frakm_P$, $\frakm_Q$をそれぞれ$\calo_{P,X}$と$\calo_{Q,Y}$の極大イデアルとすると、$\tau(\frakm_P) = \frakm_Q$である。このことの帰結を調べる。まず、$\calo_{Q,Y} \to K(Y)$は単射なので、次は可換である。($\tau'$は$\wt{\tau}$の制限であったが、$\tau$の制限でもあることがこのことからわかる)
+\[
+\xymatrix{
+K(X) \ar[r]^-{\wt{\tau}} & K(Y) \\
+\calo_{P,X} \ar[u]^-{j_X} \ar[r]^-{\tau} & \calo_{Q,Y} \ar[u]_-{j_Y} \\
+A(X) \ar[u]^-{i_X} \ar[r]^-{\tau'} & \calo(V) \ar[u]_-{i_Y}
+}
+\]
+したがって、任意の$f \in A(Y)$について
+\begin{align*}
+  f \circ \vp_V &= \tau'(f) \\
+  i_Y(f \circ \vp_V) &= (\tau \circ i_X)(f)
+\end{align*}
+である。とくに$f \in \frakm_P \cap A(X)$ならば$\tau(\frakm_P) = \frakm_Q$により
+\[
+  i_Y(f \circ \vp_V) \in \frakm_Q
+\]
+が判る。$  i_Y(f \circ \vp_V) = \kakko{ V, f \circ \vp_V}$だから、とくに$f \circ \vp_V(Q) = 0$である。$f \in \frakm_P \cap A(X)$は任意だったから、$\vp_V(Q) \in X$は$P$に等しいことがわかる。
+
+\item[Step 4]さて$\tau^{-1} \colon \calo_{Q,Y} \to \calo_{P,X}$も同型であるので、同様の議論を$\tau^{-1}$についてもできる。そうすれば、支配的有理写像$\psi \colon X \to Y$であって、ある$(U, \psi_U) \in \coprod_{P \in U} \Hom(U,Y)$によって代表されており、$\psi_U(P) = Q$を満たすようなものの存在がわかる。
+このとき(1)により、$\psi^* \colon K(Y) \to K(X)$は$\wt{\tau^{-1}}$に等しく、$\vp^* \colon K(X) \to K(Y)$は$\wt{\tau}$に等しい。したがって$\psi$と$\vp$は互いに逆な支配的有理写像である。あとは系4.5と同様にすれば、示すべきことがいえる。
+\item[Step 5] $X,Y$が一般の多様体のときは、点$P,Q$の開近傍であってアファインなものをとればアファイン多様体のときに帰着できる。
+\end{description}
+
+
+\bfsubsection{演習問題 4.8}
+まず(b)は(a)を認めれば次の補題から従う。
+\lem{
+(多様体はNoether) \\
+任意の多様体$Y$は、位相空間としてNoetherである。
+}
+\begin{proof}
+  例1.4.7により、アファイン空間$\A^n$はNoetherである。また演習問題2.3(e)より、射影空間$\P^n$もまたNoetherであることがアファイン空間の場合と同様に示せる。よって、Noether空間の部分空間はNoetherである (演習1.7(d)) ことから、すべての多様体$Y$はNoetherである。
+\end{proof}
+\lem{
+(一次元多様体の位相は補有限位相) \\
+$Y$を1次元多様体とする。このとき、$Y$の位相は補有限位相である。つまり、真部分集合$F \subset Y$が閉部分集合となるのは$F$が有限集合であるとき、またそのときに限る。
+}
+\begin{proof}
+  $Y$において1点集合は閉なので、真部分集合$F \clsub Y$が与えられたとして$\# F < \infty$を示せばよい。$Y$の既約性により、演習問題1.10(d)から$\dim F < \dim Y$である。よって$\dim F = 0$となるしかない。$Y$はNoetherなので既約分解(命題1.5)ができて、$F = \bigcup_{i=1}^n X_i$なる有限個の既約集合$X_i \clsub Y$がある。各$i$ごとに$P_i \in  X_i$をとる。$\{ P_i \} \clsub X_i$であり$X_i$は既約なので、再び演習問題1.10(d)から$X_i = \{ P_i\}$がいえる。(つまり一般に、0次元多様体は1点である)
+  したがって、$F$は有限集合である。
+\end{proof}
+残る(a)を証明したい。
+\textblue{以下は証明のアウトラインである。}
+\begin{description}
+  \item[Step 1] $\A^n$および$\P^n$の場合は、代数閉体$k$が無限体であることを踏まえた上で松坂\cite{松坂} 第3章5節定理12を参照のこと。
+  \item[Step 2] 与えられた多様体$Y$の次元が$1$のとき。命題4.9により、$Y$は$\P^2$内のある超曲面$H$と双有理同値である。ここで$\dim Y = \dim H$だから、$\dim H = 1$である。系4.5により、ある$U \opsub Y$と$V \opsub H$が存在して、$U$と$V$は同型である。ところが$Y$と$H$に入っている位相は補有限位相なので、結局$\# H \geq \# k$を示せば、$\# Y \geq \# k$がいえることになる。
+  逆はStep 1からあきらかだから、それで$\# Y = \# k$が従う。
+
+  そこで全射$H \to \P^1$が欲しい。射影$\P^2 \sm \{ (1,0,0)\} \to \P^1$を考える。$H$のこの射影による像を考えたい。当然ながら$H$が$Q = \{ (1,0,0)\}$を含んでいるとまずい。
+  もしも$Q \in H$ならば、(一般線形群の作用は推移的なので) 適当に点$W \in \P^2 \sm H$をとり、$AW = Q$なる$A \in GL_{3}(k)$をとってくる。すると$AH \cap \{ Q \} = A(H \cap W) = \emptyset$なので、$H$を$AH$で取り替えることにより(超曲面かどうかは議論が必要としても) 帰着させることができる。よって$Q \notin H$としてよい。
+
+  射影の$H$への制限$H \to \P^1$を考える。これは、点$x = (t_0,t_1,t_2) \in H$に対して点$Q$と$x$を通るような$\P^2$内の直線
+\[
+\setmid{(t+st_0, st_1,  st_2)}{(t,s ) \in \P^1}
+\]
+  を考え、この直線と$\P^1 = \setmid{(0,s, t)}{(s,t) \in \P^1}$の交点$(0, t_1, t_2)$を返すような写像である。ここで$\P^1$の元$P = (0,t_1, t_2)$が与えられたとする。このとき、$P$と点$Q$を通る直線と$H$は交点を持つ。(演習問題3.7による。詳細は省略。)よって、射影$H \to \P^1$は全射である。ゆえに示すべき事がいえた。
+  \item[Step 3] $\dim Y \geq 2$のとき。$Y \loc \P^n$としてよい。1次元部分多様体$H \clsub Y$がある。(本当か？) したがって$\# Y \geq \# k$がわかる。逆はあきらかなので結論がしたがう。
+\end{description}
