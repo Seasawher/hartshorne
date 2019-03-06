@@ -89,6 +89,7 @@
 \newtheorem*{lemma}{補題}
 \newtheorem*{proposition}{命題}
 \newtheorem*{definition}{定義}
+
 \newcommand{\lem}[1]{\begin{oframed} \begin{lemma} #1 \end{lemma} \end{oframed}}%箱付きほだい
 \newcommand{\prop}[1]{\begin{oframed} \begin{proposition} #1 \end{proposition} \end{oframed}}%箱付きめいだい
 
@@ -97,7 +98,7 @@
 \newtheorem*{prob}{問題}
 \newtheorem*{quo}{引用}
 \newtheorem*{rem}{注意}
-
+\newtheorem*{ano}{別証}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -151,12 +152,15 @@
 \newcommand{\wh}[1]{\widehat{#1}}%ワイドハット
 \newcommand{\la}{\overleftarrow}%上付き左矢印
 \newcommand{\ra}{\overrightarrow}%上付き右矢印
-\newcommand{\sh}{\sharp}%シャープ
-\newcommand{\fl}{\flat}%ふらっと
+\newcommand{\sh}{^{\sharp}}%上付きシャープ
+\newcommand{\fl}{^{\flat} }%上付きふらっと
+
+%圏論
+\newcommand{\op}{ ^{\text{op}} }%反対圏
 
 %論理
 \newcommand{\To}{\Rightarrow}%ならば%自然変換
-%\newcommand{\xto}[1]{\xrightarrow}%上側文字付き右向き矢印
+%\newcommand{\xto}[1]{\xrightarrow}%上側文字付き右向き矢印%なんか挙動がおかしい
 \newcommand{\st}{\; \; \text{s.t.} \; \;}%空白付きsuch that
 
 %代数
@@ -164,6 +168,7 @@
 
 %その他
 \newcommand{\vartm}{\times^{\text{Var}}}%多様体の圏における直積。集合の直積と区別するとき用。
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%       演算子                                       %%
@@ -294,8 +299,7 @@
 \newcommand{\frakB}{\mathfrak{B}}
 \newcommand{\frakT}{\mathfrak{T}}
 
-\newcommand{\Top}{\mathfrak{Top}}%開部分集合全体のなす有向集合
-\newcommand{\Ab}{\mathfrak{Ab}}%Abel群のなす圏
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%  花文字        　　                                %%
@@ -312,6 +316,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newcommand{\Sh}{\textbf{Sh}}%層の圏
 \newcommand{\PSh}{\textbf{PSh}}%前層の圏
+\newcommand{\Top}{\textbf{Top}}%開部分集合全体のなす有向集合
+\newcommand{\Ab}{\textbf{Ab}}%Abel群のなす圏
 
 \newcommand{\bfc}{\textbf{C}}
 \newcommand{\bfd}{\textbf{D}}

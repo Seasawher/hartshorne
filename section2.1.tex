@@ -116,7 +116,7 @@ $\scrf$の$P$における茎$\scrf_P$を、$P$を含むすべての開集合$U$�
 }
 \begin{rem}
   各点$P \in X$を決めるごとに、$P$の開近傍の全体が包含射に関してなす圏$\Top(X,P)$(ここだけの記号)の反対圏は有向集合とみなせる。したがって前層
-  が誘導する関手$\scrf \colon \Top(X,P)^{op} \to \Ab$はAbel群の順系である。したがって順極限
+  が誘導する関手$\scrf \colon \Top(X,P)\op \to \Ab$はAbel群の順系である。したがって順極限
   \[
   \scrf_P = \coprod_{P \in U } \scrf(U) / \sim
   \]
@@ -134,7 +134,7 @@ $\scrf$の$P$における茎$\scrf_P$を、$P$を含むすべての開集合$U$�
 射$\vp \colon \scrf \to \scrg$とは各開集合$U$に対するAbel群の写像$\vp(U) \colon \scrf(U) \to \scrg(U)$からなるもので
 }
 \begin{rem}
-  圏論の言葉が好みであれば、射$\vp \colon \scrf \to \scrg$とは$\Top(X)^{op}$から$\Ab$への関手のあいだの自然変換であるといえばよい。
+  圏論の言葉が好みであれば、射$\vp \colon \scrf \to \scrg$とは$\Top(X)\op$から$\Ab$への関手のあいだの自然変換であるといえばよい。
 \end{rem}
 
 
@@ -152,7 +152,7 @@ $X$上の前層の射$\vp \colon \scrf \to \scrg$は$X$上の任意の点$P$に�
 \scrf_P \ar[r]^-{\vp_P} & \scrg_P
 }
 \]
-が可換になるような$\vp_P$の存在と一意性がいえる。ただし$\scrf(U) \to \scrf_P$は自然な入射である。合成を保つことと恒等射を恒等射に送ることはあきらかなので、順極限は関手圏$[\Top(X,P)^{op} , \Ab]$から$\Ab$への関手であることがわかる。
+が可換になるような$\vp_P$の存在と一意性がいえる。ただし$\scrf(U) \to \scrf_P$は自然な入射である。合成を保つことと恒等射を恒等射に送ることはあきらかなので、順極限は関手圏$[\Top(X,P)\op , \Ab]$から$\Ab$への関手であることがわかる。
 \end{rem}
 
 
@@ -161,7 +161,7 @@ $X$上の前層の射$\vp \colon \scrf \to \scrg$は$X$上の任意の点$P$に�
 \end{rem}
 
 \prop{
-順極限が定める関手$\rlim \colon [\Top(X,P)^{op} , \Ab] \to \Ab$について、次が成り立つ。$[\Top(X,P)^{op} , \Ab]$における図式
+順極限が定める関手$\rlim \colon [\Top(X,P)\op , \Ab] \to \Ab$について、次が成り立つ。$[\Top(X,P)\op , \Ab]$における図式
 \[
 \xymatrix{
 0 \ar[r] & A \ar[r]^{r} & B \ar[r]^s & C \ar[r] & 0
@@ -925,7 +925,7 @@ $\vp \colon \scrf \to \scrg$を前層のあいだの射とする。$\vp$が単�
 (演習1.2(a)の拡張) \\
 前層の射$\vp \colon \scrf \to \scrg$と各点$P \in X$に対して、次が成り立つ。ただしシャープは前層としての像・余核をとっていることを表す。
 \begin{description}
-  \item[(1)] $\scrf_P$の部分群として$(\Ker \vp)_P = \Ker \vp_P$である。また$\scrg_P$の商群として$(\Coker^{\sh} \vp)_P = \Coker \vp_P$である。さらに$\scrg_P$の部分群として$(\Im^{\sh} \vp)_P = \Im \vp_P$である。
+  \item[(1)] $\scrf_P$の部分群として$(\Ker \vp)_P = \Ker \vp_P$である。また$\scrg_P$の商群として$(\Coker\sh \vp)_P = \Coker \vp_P$である。さらに$\scrg_P$の部分群として$(\Im\sh \vp)_P = \Im \vp_P$である。
   \item[(2)] $\scrf$と$\scrg$が層ならば、$\scrg_P$の商群として$(\Coker \vp)_P = \Coker \vp_P$である。さらに$\scrg_P$の部分群として$(\Im \vp)_P = \Im \vp_P$である。
 \end{description}
 }
@@ -952,15 +952,15 @@ $\vp \colon \scrf \to \scrg$を前層のあいだの射とする。$\vp$が単�
     }
     \]
     が可換になるような同型$(\Ker \vp )_P \to \Ker \vp_P$がある。
-      同様にして$\scrg_P$の商群として$\Coker \vp_P = (\Coker^{\sh} \vp)_P$であることがわかる。つまり次の図式
+      同様にして$\scrg_P$の商群として$\Coker \vp_P = (\Coker\sh \vp)_P$であることがわかる。つまり次の図式
 \[
 \xymatrix{
-\scrg_P \ar[r] \ar[d] & (\Coker^{\sh} \vp)_P \\
+\scrg_P \ar[r] \ar[d] & (\Coker\sh \vp)_P \\
 \Coker \vp_P \ar[ru]  &
 }
 \]
-が可換になるような同型$\Coker \vp_P \to (\Coker^{\sh} \vp)_P$がある。
-      最後に$\Im^{\sh}$について考える。自然な写像$\scrg \to \Coker^{\sh} \vp$を$\psi$とおく。$\psi_P \circ \vp_P = 0$より$\Im \vp_P \subset \Ker \psi_P$である。したがって、次の各行が完全であるような可換図式
+が可換になるような同型$\Coker \vp_P \to (\Coker\sh \vp)_P$がある。
+      最後に$\Im\sh$について考える。自然な写像$\scrg \to \Coker\sh \vp$を$\psi$とおく。$\psi_P \circ \vp_P = 0$より$\Im \vp_P \subset \Ker \psi_P$である。したがって、次の各行が完全であるような可換図式
       \[
       \xymatrix{
 0 \ar[r] & \Ker \psi_P \ar[r] & \scrg_P \ar[r]^-{\psi_P} \ar@{=}[d] & (\Coker \vp)_P \\
@@ -970,13 +970,13 @@ $\vp \colon \scrf \to \scrg$を前層のあいだの射とする。$\vp$が単�
       が得られる。したがって5-lemmaにより、自然な写像$\Im \vp_P \to \Ker \psi_P$は同型である。よって
 \[
 \xymatrix{
-(\Im^{\sh} \vp)_P \ar[r]  \ar@{=}[d] & \scrg_P \ar@{=}[d] \\
+(\Im\sh \vp)_P \ar[r]  \ar@{=}[d] & \scrg_P \ar@{=}[d] \\
 (\Ker \psi)_P \ar[r]  \ar[d]_-{iso} & \scrg_P \ar@{=}[d] \\
 \Ker \psi_P \ar[r]  \ar[d]_-{iso} & \scrg_P \ar@{=}[d] \\
 \Im \vp_P \ar[r]   & \scrg_P
 }
 \]
-  は可換。したがって、$\scrg_P$の部分群として$(\Im^{\sh} \vp)_P = \Im \vp_P$である。
+  は可換。したがって、$\scrg_P$の部分群として$(\Im\sh \vp)_P = \Im \vp_P$である。
       \item[(2)] 層化の茎はもとの前層の茎と同型であることから、(1)により従う。
   \end{description}
 \end{proof}
@@ -1065,18 +1065,18 @@ $\Im \vp_P = \Ker \psi_P$であるから層$\Ker \psi$と$\Im \vp$はすべて�
   }
   \begin{proof} ${}$
     \begin{description}
-      \item[(2)$\To$(1)] 前層の像を$\sh$をつけて表すことにする。そうすると、次の図式
+      \item[(2)$\To$(1)] 前層の像を$\sharp$をつけて表すことにする。そうすると、次の図式
       \[
       \xymatrix{
       \Im \vp \ar[r]  \ar[rd] & \Ker \psi \ar[r] \ar[d] & \scrg \ar[d]^0 \\
-      \Im^{\sh} \vp \ar[r] \ar[u] & \scrg \ar[r]^-{\psi} & \scrh
+      \Im\sh \vp \ar[r] \ar[u] & \scrg \ar[r]^-{\psi} & \scrh
       }
       \]
       は可換。よって$\psi \circ \vp = 0$である。
       \item[(1)$\To$(2)] 前層核の普遍性から、次を可換にするような$i$がある。
       \[
       \xymatrix{
-      \Im^{\sh} \vp \ar[rrd] \ar[ddr] \ar[rd]^-{i} & & \\
+      \Im\sh \vp \ar[rrd] \ar[ddr] \ar[rd]^-{i} & & \\
        & \Ker \psi \ar[r] \ar[d] & \scrg \ar[d]^-{0} \\
        & \scrg \ar[r]^-{\psi} & \scrh
       }
@@ -1084,7 +1084,7 @@ $\Im \vp_P = \Ker \psi_P$であるから層$\Ker \psi$と$\Im \vp$はすべて�
       $i$は単射であることに気を付ける。ここで$\scrg$と$\scrh$は層という仮定により$\Ker \psi$は層。したがって層化の普遍性により次の図式
       \[
       \xymatrix{
-      \Im^{\sh} \vp \ar[r] \ar[rd]_-{i} & \Im \vp \ar[d]^-{j} \\
+      \Im\sh \vp \ar[r] \ar[rd]_-{i} & \Im \vp \ar[d]^-{j} \\
       & \Ker \psi
       }
       \]
@@ -1100,7 +1100,7 @@ $\Im \vp_P = \Ker \psi_P$であるから層$\Ker \psi$と$\Im \vp$はすべて�
       の可換性である。これは次の二つの図式
       \[
       \xymatrix{
-      \Im^{\sh} \vp \ar[r] \ar[rd]_-i \ar[rdd] & \Im \vp \ar[d]^-j & \Im^{\sh} \vp \ar[r] \ar[rdd] & \Im \vp \ar[dd] \\
+      \Im\sh \vp \ar[r] \ar[rd]_-i \ar[rdd] & \Im \vp \ar[d]^-j & \Im\sh \vp \ar[r] \ar[rdd] & \Im \vp \ar[dd] \\
       {} & \Ker \psi \ar[d] & {} & { } \\
       {} & \scrg & {} & \scrg
       }
@@ -1136,7 +1136,7 @@ $\Im \vp_P = \Ker \psi_P$であるから層$\Ker \psi$と$\Im \vp$はすべて�
   \end{description}
   }
   \begin{proof}
-    (1)$\To$(2)はすでに示されている。(2)$\To$(1)を示そう。はじめ$(\scrf / \scrf')_P = \scrf_P / \scrf'_P$を使う方針で考えたが、それだと$\scrf / \scrf' = 0$から$(\scrf / \scrf')^{\sh} = 0$がいえるか、という問題を考える必要がありそうである。したがってこの方針は採らなかった。
+    (1)$\To$(2)はすでに示されている。(2)$\To$(1)を示そう。はじめ$(\scrf / \scrf')_P = \scrf_P / \scrf'_P$を使う方針で考えたが、それだと$\scrf / \scrf' = 0$から$(\scrf / \scrf')\sh = 0$がいえるか、という問題を考える必要がありそうである。したがってこの方針は採らなかった。
 
     まず仮定から、補題を使えば$\Im \vp$は$\Ker \psi$の部分層であることがわかる。したがって、包含射$j \colon \Im \vp \to \Ker \psi$がある。茎に誘導される写像$j_P \colon (\Im \vp)_P \to (\Ker \psi)_P$を考える。
   次の図式
@@ -1186,7 +1186,7 @@ $X$上の任意の層$\scrf$に対し、$Y$上の層の順像$f_*\scrf$を$Y$の
 $Y$上の任意の層$\scrg$に対して$X$上の層の逆像$f^{-1}\scrg$を前層$U \mapsto \lim_{V \supset f(U)} \scrg(V)$に付随する層と定義する。
 }
 \begin{rem}
-$\lim$とあるのは順極限であることを注意しておく。$f^{\sh}\scrf (U) =  \rlim_{V \supset f(U)} \scrg(V)$が実際に制限写像を誘導することを確認しておこう。$U_1 \subset U_2$とする。このとき$V \supset f(U_1)$についてなす射の族
+$\lim$とあるのは順極限であることを注意しておく。$f\sh\scrf (U) =  \rlim_{V \supset f(U)} \scrg(V)$が実際に制限写像を誘導することを確認しておこう。$U_1 \subset U_2$とする。このとき$V \supset f(U_1)$についてなす射の族
 \[
 \xymatrix{
 \scrg(V) \ar[r] & \rlim_{V \supset f(U_1)} \scrg(V)
@@ -1199,56 +1199,11 @@ $\lim$とあるのは順極限であることを注意しておく。$f^{\sh}\sc
 \rlim_{V \supset f(U_2)} \scrg(V) \ar[ru] & {}
 }
 \]
-を可換にするような射$f^{\sh} \scrg(U_2) \to  f^{\sh}\scrg(U_1)$が存在する。これが関手性を満たすことの証明は省略する。
+を可換にするような射$f\sh \scrg(U_2) \to  f\sh\scrg(U_1)$が存在する。これが関手性を満たすことの証明は省略する。
 
 なぜこのような定義になっているのか説明する。$\scrg(f(U))$で定義できるといいのだが、それはできない。$f(U)$は開集合とは限らないし、$f(U)$を含む最小の開集合も一般には存在しないためである。よってこのような定義をしているのだと思われる。
 \end{rem}
 
-
-
-
-
-
-\begin{comment}%Kan拡張
-\begin{definition}
-  $\bfc$, $\bfd$, $\bfe$は圏であるとする。関手$F \colon \bfc \to \bfe$と$K \colon \bfc \to \bfd$が与えられているとする。
-\begin{description}
-  \item[(1)] このとき、$F$の$K$に沿った左Kan拡張とは、次の図式
-  \[
-  \xymatrix{
-  \bfc \ar[rd]_K \ar[rr]^F & {} \ar@{}[d]|{\Downarrow \eta} & \bfe \\
-  {} &  \bfd \ar[ru]_{\Lan_K F} &{}
-  }
-  \]
-  に示されるような関手$\Lan_K F \colon \bfd \to \bfe$と自然変換$\eta \colon F \To \Lan_K F \cdot K$の組$(\Lan_K F, \eta)$であって、以下の普遍性を満たすものである。つまり、任意の関手$G \colon \bfd \to \bfe$
-  と自然変換$\grg \colon F \To G K$の組$(G,\grg)$に対して、自然変換$\gra \colon \Lan_K F \To G$であって図式
-  \[
-\xymatrix{
-F \ar[r]^-{\eta} \ar[rd]_-{\grg} & \Lan_K F \cdot K \ar@{.>}[d]^{\gra K} & \Lan_K F \ar@{.>}[d]^{\gra} \\
-{} & GK & G
-}
-  \]
-  を可換にするものが存在して、かつ一意である。
-  \item[(2)] このとき、$F$の$K$に沿った右Kan拡張とは、次の図式
-  \[
-  \xymatrix{
-  \bfc \ar[rd]_K \ar[rr]^F & {} \ar@{}[d]|{\Uparrow \ve} & \bfe \\
-  {} &  \bfd \ar[ru]_{\Ran_K F} &{}
-  }
-  \]
-  に示されるような関手$\Ran_K F \colon \bfd \to \bfe$と自然変換$\ve \colon \Ran_K F \cdot K \To F$の組$(\Ran_K F, \ve)$であって、次の普遍性を満たすものである。つまり、任意の関手$G \colon \bfd \to \bfe$
-  と自然変換$\grd \colon G K \To F $の組$(G,\grd)$に対して、自然変換$\beta \colon G \To \Ran_K F $であって図式
-  \[
-  \xymatrix{
-  F   & \Ran_K F \cdot K \ar[l]_-{\ve}  & \Ran_K F  \\
-  {} & GK \ar@{.>}[u]^{\beta K} \ar[lu]^-{\grd} & G \ar@{.>}[u]_{\beta}
-  }
-  \]
-  を可換にするものが存在して、かつ一意である。
-\end{description}
-
-\end{definition}
-\end{comment}
 
 \begin{comment}
 \prop{
@@ -1290,22 +1245,22 @@ $f_* \vp(V) = \vp_{f^{-1}(V)}$により定めればよい。これが関手性�
 \item[Step 2] $Y$上の層の射$\vp \colon \scrf \to \scrg$が与えられたとする。$U \opsub X$としよう。$\vp$は自然変換なので、すべての$V \supset f(U)$に対して次の図式
 \[
 \xymatrix{
-\rlim_{V \supset U} \scrf(V) \ar[r]^-{f^{\sh}\vp_U } & \rlim_{V \supset U} \scrg(V) \\
+\rlim_{V \supset U} \scrf(V) \ar[r]^-{f\sh\vp_U } & \rlim_{V \supset U} \scrg(V) \\
 \scrf(V) \ar[u] \ar[r]^-{\vp_V} & \scrg(V) \ar[u]
 }
 \]
-が可換になるような$f^{\sh}\vp_U$がある。
+が可換になるような$f\sh\vp_U$がある。
 
-$f^{\sh}\vp_U$が自然変換になっていることを示そう。$U_1 \subset U_2$とする。このときすべての$V \supset f(U_2)$に対して次の図式
+$f\sh\vp_U$が自然変換になっていることを示そう。$U_1 \subset U_2$とする。このときすべての$V \supset f(U_2)$に対して次の図式
 \[
 \xymatrix{
   \scrf(V) \ar[rrr]^-{\vp_V} \ar[dd] \ar[rd]  & {} & {} &   \scrg(V) \ar[dd] \ar[dl] \\
-{} & f^{\sh} \scrf(U_2) \ar[r]^{f^{\sh}\vp_{U_2}} \ar[dl]  &  f^{\sh} \scrg(U_2)　\ar[rd] & {}  \\
-f^{\sh} \scrf(U_1) \ar[rrr]^{f^{\sh}\vp_{U_1}}  & {} & {} & f^{\sh} \scrg(U_1)
+{} & f\sh \scrf(U_2) \ar[r]^{f\sh\vp_{U_2}} \ar[dl]  &  f\sh \scrg(U_2)　\ar[rd] & {}  \\
+f\sh \scrf(U_1) \ar[rrr]^{f\sh\vp_{U_1}}  & {} & {} & f\sh \scrg(U_1)
 }
 \]
 の底部台形以外は可換。$\scrf(V) \to \rlim_{V \supset f(U_2)} \scrf(V)$との合成を考えて余極限の普遍性を用いることにより、底部の可換性がいえる。
-関手性の証明の残りの部分(合成を保つ)の証明は省略する。したがって$\scrf$に前層$f^{\sh}\scrf$を対応させることは関手を与える。あとはこれの層化を考えればよい。
+関手性の証明の残りの部分(合成を保つ)の証明は省略する。したがって$\scrf$に前層$f\sh\scrf$を対応させることは関手を与える。あとはこれの層化を考えればよい。
 \end{description}
 \end{proof}
 
@@ -1325,35 +1280,46 @@ $i \colon Z \to X$を包含写像とし、$\scrf$を$X$上の層とする。こ�
 $f \colon X \to Y$を連続写像とし、$\scrf$は$Y$上の層であるとする。このとき$f^{-1}\scrf$の点$P \in X$における茎$(f^{-1}\scrf)_P$は$\scrf_{f(P)}$に同型である。
 }
 \begin{proof}
-  層化によって茎は変わらないので、はじめから$\scrf$は前層だとしてよいし、$f^{-1}\scrf$の代わりに層化を取る前の$f^{\sh}\scrf$について示せばよい。
+  層化によって茎は変わらないので、はじめから$\scrf$は前層だとしてよいし、$f^{-1}\scrf$の代わりに層化を取る前の$f\sh\scrf$について示せばよい。
   $P \in U$が与えられたとする。$V \supset f(U)$だとする。$Q = f(P)$とおいておく。このとき次の図式
 \[
 \xymatrix{
 \scrf(V) \ar[r] \ar[d] & \scrf_Q \ar@{=}[d] \\
-f^{\sh}\scrf(U) \ar[d] \ar[r] & \scrf_Q \ar@{=}[d] \\
-(f^{\sh}\scrf)_P \ar[r]^-{\vp} & \scrf_Q
+f\sh\scrf(U) \ar[d] \ar[r] & \scrf_Q \ar@{=}[d] \\
+(f\sh\scrf)_P \ar[r]^-{\vp} & \scrf_Q
 }
 \]
-  が可換になるような準同型$\vp$がある。(この図式の2段目の$f^{\sh}\scrf(U) \to \scrf_Q$がまず誘導され、次に3段目の$\vp$が誘導されるという風に追う。自然性の確認は省略)
+  が可換になるような準同型$\vp$がある。(この図式の2段目の$f\sh\scrf(U) \to \scrf_Q$がまず誘導され、次に3段目の$\vp$が誘導されるという風に追う。自然性の確認は省略)
 
   同じ状況$P \in U$, $V \supset f(U)$でさらに考える。このとき$Q \in V$が与えられており、$P \in U \subset f^{-1}(U)$となるように$U$をとったとも思える。このとき次の図式
   \[
   \xymatrix{
   \scrf(V) \ar[d] \ar[r] & \scrf_Q \ar[d]^-{\psi} \\
-f^{\sh}\scrf(U) \ar[r] & (f^{\sh}\scrf)_P
+f\sh\scrf(U) \ar[r] & (f\sh\scrf)_P
   }
   \]
   が可換になるような$\psi$がある。まとめると、次の図式
   \[
   \xymatrix{
   {}  & \scrf(V) \ar[rr] \ar[ld] \ar[dd] & {} & \scrf_Q \ar@{=}[ld] \ar[dd]^-{\psi} \\
-  f^{\sh}\scrf(U) \ar[dd]  \ar[rr] & { } & \scrf_Q \ar@{=}[dd] & {} \\
-  {} & f^{\sh}\scrf(U)  \ar[rr] \ar[dl] & { } & (f^{\sh}\scrf )_P \ar@{=}[dlll] \ar[dl]^-{\vp} \\
-   (f^{\sh}\scrf )_P  \ar[rr]^-{\vp}  & {} & \scrf_Q & {}
+  f\sh\scrf(U) \ar[dd]  \ar[rr] & { } & \scrf_Q \ar@{=}[dd] & {} \\
+  {} & f\sh\scrf(U)  \ar[rr] \ar[dl] & { } & (f\sh\scrf )_P \ar@{=}[dlll] \ar[dl]^-{\vp} \\
+   (f\sh\scrf )_P  \ar[rr]^-{\vp}  & {} & \scrf_Q & {}
   }
   \]
   の右の面以外は可換ということになる。茎の普遍性より、右の面も可換であることがいえる。よって$\vp \circ \psi = id$である。逆の$\psi \circ \vp = id$も図式の追跡と余極限の普遍性から従う。
 \end{proof}
+
+\begin{ano}
+より簡潔な証明がある。茎と逆像はともに順極限で定義されていたのだった。写像$f \colon X \to Y$が与えられているとする。$\scrf$を$X$上の前層とし、$i \colon \{ * \} \to X$を点$\frakp \in X$への写像とする。このとき定義から$\scrf_{\frakp} = i\sh\scrf(\{*\})$が成り立つ。よって任意の$\frakp \in X$と$Y$上の前層$\scrg$に対して
+\begin{align*}
+  (f\sh\scrg)_{\frakp} &= (i\sh (f\sh\scrg))(\{*\}) \\
+  &= (f \circ i)\sh \scrg (\{*\}) \\
+  &= \scrg_{f(\frakp)}
+\end{align*}
+である。
+
+\end{ano}
 
 
 
@@ -1363,46 +1329,46 @@ f^{\sh}\scrf(U) \ar[r] & (f^{\sh}\scrf)_P
 \bfsubsection{演習問題 1.18}
 以下$\scrf$は$X$上の前層、$\scrg$は$Y$上の前層、$U$は$X$の開集合で$V$は$Y$の開集合とする。層化の普遍性により、$\scrf$も$\scrg$も前層であるとして逆像を前層の範囲で考えても十分である。
 \begin{description}
-  \item[Step 1] 自然変換$\ve \colon f^{\sh} f_* \to 1$を構成しよう。$f(U) \subset V$とする。このとき次の図式
+  \item[Step 1] 自然変換$\ve \colon f\sh f_* \to 1$を構成しよう。$f(U) \subset V$とする。このとき次の図式
   \[
   \xymatrix{
   \scrf(f^{-1}(V)) \ar[r] \ar[d] & \scrf(U) \\
   \rlim_{f(U) \subset V} \scrf(f^{-1}(V)) \ar[ru] &
   }
   \]
-  が可換になるような$\ve_{U} \colon \rlim_{f(U) \subset V} \scrf(f^{-1}(V)) \to \scrf(U)$がある。これが自然性を満たすことはあきらか。なお、本来は$(\ve_{\scrf})_U$などと書くべきだが煩わしいので省略した。$\ve$は各元$[s] \in f^{\sh} f_*(U)$を次のように写す。
+  が可換になるような$\ve_{U} \colon \rlim_{f(U) \subset V} \scrf(f^{-1}(V)) \to \scrf(U)$がある。これが自然性を満たすことはあきらか。なお、本来は$(\ve_{\scrf})_U$などと書くべきだが煩わしいので省略した。$\ve$は各元$[s] \in f\sh f_*(U)$を次のように写す。
   \[
   \ve_U([s]) = s|_U
   \]
   ただし$s \in \scrf(f^{-1}(V))$は代表元である。
-  \item[Step 2] 自然変換$\eta \colon 1 \to f_* f^{\sh} $を構成しよう。以下、本来なら$\eta_{\scrg}$などと書くべきところでも記号の乱用により$\eta$と書く。
+  \item[Step 2] 自然変換$\eta \colon 1 \to f_* f\sh $を構成しよう。以下、本来なら$\eta_{\scrg}$などと書くべきところでも記号の乱用により$\eta$と書く。
 
   あきらかに$f(f^{-1}(V)) \subset V$が成り立つので、自然な写像
   \[
   \scrg(V) \to \rlim_{f(f^{-1}(V)) \subset V' } \scrg(V')
   \]
   がある。これを$\eta_V$とすればよい。$\eta_V$は$\eta_V(s) = [s] $という写像である。
-  \item[Step 3] 対応$\fl \colon \Hom_X(f^{\sh}\scrg , \scrf) \to \Hom_Y(\scrg , f_*\scrf)$を構成しよう。これは$\vp \colon f^{\sh}\scrg \to \scrf$に対して合成$\vp^{\fl} = f_* \vp \circ \eta$により定める。具体的には
+  \item[Step 3] 対応$\flat \colon \Hom_X(f\sh\scrg , \scrf) \to \Hom_Y(\scrg , f_*\scrf)$を構成しよう。これは$\vp \colon f\sh\scrg \to \scrf$に対して合成$\vp\fl = f_* \vp \circ \eta$により定める。具体的には
   \[
-  \vp^{\fl}_V (s) = \vp_{f^{-1}(V)} ([s])
+  \vp\fl_V (s) = \vp_{f^{-1}(V)} ([s])
   \]
   と表せる。
-  \item[Step 4] 対応$\sh \colon \Hom_Y(\scrg , f_*\scrf) \to \Hom_X(f^{\sh}\scrg , \scrf)$を構成しよう。これは$\psi \colon \scrg \to f_* \scrf$に対して合成$\psi^{\sh} = \ve \colon f^{\sh} \psi$により定める。具体的には
+  \item[Step 4] 対応$\sharp \colon \Hom_Y(\scrg , f_*\scrf) \to \Hom_X(f\sh\scrg , \scrf)$を構成しよう。これは$\psi \colon \scrg \to f_* \scrf$に対して合成$\psi\sh = \ve \colon f\sh \psi$により定める。具体的には
   \[
-  \psi^{\sh}_U([s]) = \psi_V(s) |_U
+  \psi\sh_U([s]) = \psi_V(s) |_U
   \]
   と表せる。ただし$V$は$s \in \scrg(V)$なるものをとる。
-  \item[Step 5] $(\vp^{\fl})^{\sh} = \vp$を示そう。これは
+  \item[Step 5] $(\vp\fl)\sh = \vp$を示そう。これは
   \begin{align*}
-    (\vp^{\fl})^{\sh}_U([s]) &= \vp^{\fl}_V (s) |_U \\
+    (\vp\fl)\sh_U([s]) &= \vp\fl_V (s) |_U \\
     &= \vp_{f^{-1}(V)} ([s]) |_U \\
     &= \vp_U ( [s] |_U  ) \\
     &= \vp_U([s])
   \end{align*}
   よりわかる。
-  \item[Step 6] $(\psi^{\sh})^{\fl} = \psi$を示そう。これは
+  \item[Step 6] $(\psi\sh)\fl = \psi$を示そう。これは
   \begin{align*}
-    (\psi^{\sh})^{\fl}_V(s) &= \psi^{\sh}_{f^{-1}(V)}([s]) \\
+    (\psi\sh)\fl_V(s) &= \psi\sh_{f^{-1}(V)}([s]) \\
     &= \psi_V(s)|_{f^{-1}(V)} \\
     &= \psi_V(s)
   \end{align*}
@@ -1410,36 +1376,129 @@ f^{\sh}\scrf(U) \ar[r] & (f^{\sh}\scrf)_P
   \item[Step 7] この全単射を与える対応が自然性を満たすことをいおう。射$g \colon \scrf_1 \to \scrf_2$が与えられたとき次の図式
   \[
   \xymatrix{
-  \Hom_X(f^{\sh}\scrg, \scrf_1) \ar[r]^-{\fl} \ar[d]^-{g_*} & \Hom_Y(\scrg,f_*\scrf_1) \ar[d]^-{(f_*g)_*} \\
-  \Hom_X(f^{\sh}\scrg, \scrf_2) \ar[r]^-{\fl} & \Hom_Y(\scrg,f_*\scrf_2)
+  \Hom_X(f\sh\scrg, \scrf_1) \ar[r]^-{\flat} \ar[d]^-{g_*} & \Hom_Y(\scrg,f_*\scrf_1) \ar[d]^-{(f_*g)_*} \\
+  \Hom_X(f\sh\scrg, \scrf_2) \ar[r]^-{\flat} & \Hom_Y(\scrg,f_*\scrf_2)
   }
   \]
-  が可換であることを確認すればいい。$\vp \in \Hom_X(f^{\sh}\scrg, \scrf_1)$, $s \in \scrg(V)$が与えられたとき
+  が可換であることを確認すればいい。$\vp \in \Hom_X(f\sh\scrg, \scrf_1)$, $s \in \scrg(V)$が与えられたとき
   \begin{align*}
-    (f_* g)_V \circ \vp^{\fl}_V(s) &= (f_*g)_V ( \vp_{f^{-1}(V)}([s]) ) \\
+    (f_* g)_V \circ \vp\fl_V(s) &= (f_*g)_V ( \vp_{f^{-1}(V)}([s]) ) \\
     &= g_{f^{-1}(V)} \circ \vp_{f^{-1}(V)} ([s]) \\
     &= (g \circ \vp)_{ f^{-1}(V)} ([s]) \\
-    &= (g \circ \vp)^{\fl}_V (s)
+    &= (g \circ \vp)\fl_V (s)
   \end{align*}
-  より$(f_* g) \circ \vp^{\fl} = (g \circ \vp)^{\fl}$だから示すべきことがいえた。
+  より$(f_* g) \circ \vp\fl = (g \circ \vp)\fl$だから示すべきことがいえた。
     \item[Step 8] 次に$\scrg$に関する自然性を示そう。射$h \colon \scrg_1 \to \scrg_2$が与えられたとき、図式
     \[
     \xymatrix{
-    \Hom_X(f^{\sh}\scrg_2, \scrf) \ar[r]^-{\fl} \ar[d]^-{(f^{\sh}h)^*} & \Hom_Y(\scrg_2,f_*\scrf_) \ar[d]^-{h^*} \\
-    \Hom_X(f^{\sh}\scrg_1, \scrf) \ar[r]^-{\fl} & \Hom_Y(\scrg_1,f_*\scrf)
+    \Hom_X(f\sh\scrg_2, \scrf) \ar[r]^-{\flat} \ar[d]^-{(f\sh h)^*} & \Hom_Y(\scrg_2,f_*\scrf_) \ar[d]^-{h^*} \\
+    \Hom_X(f\sh\scrg_1, \scrf) \ar[r]^-{\flat} & \Hom_Y(\scrg_1,f_*\scrf)
     }
     \]
-    が可換であることを確認すればよい。これは$\vp \in \Hom_X(f^{\sh}\scrg_2, \scrf)$, $s \in \scrg(V)$が与えられたとき
+    が可換であることを確認すればよい。これは$\vp \in \Hom_X(f\sh\scrg_2, \scrf)$, $s \in \scrg(V)$が与えられたとき
     \begin{align*}
-      (\vp^{\fl} \circ h)_V (s) &= \vp^{\fl}_V \circ h_V (s) \\
+      (\vp\fl \circ h)_V (s) &= \vp\fl_V \circ h_V (s) \\
       &= \vp_{f^{-1}(V)} ( [h_V(s)]) \\
-      &= \vp_{f^{-1}(V)} \circ f^{\sh}h_{f^{-1}(V)} ([s]) \\
-      &= (\vp \circ f^{\sh}h)_{f^{-1}(V)} ([s]) \\
-      &= (\vp \circ f^{\sh}h )_V^{\fl} (s)
+      &= \vp_{f^{-1}(V)} \circ f\sh h_{f^{-1}(V)} ([s]) \\
+      &= (\vp \circ f\sh h)_{f^{-1}(V)} ([s]) \\
+      &= (\vp \circ f\sh h )_V\fl (s)
     \end{align*}
     であることからわかる。
 \end{description}
 
-\begin{rem}
-ここでは元をとり写像の対応を具体的に書くことによって示したが、前層の逆像が左Kan拡張であることを使えば元をとることなく示すことができる。
-\end{rem}
+\begin{ano}
+  Kan拡張の性質を利用した別証がある。まずKan拡張の定義を紹介する。
+\end{ano}
+
+  \begin{definition}
+    $\bfc$, $\bfd$, $\bfe$は圏であるとする。関手$F \colon \bfc \to \bfe$と$K \colon \bfc \to \bfd$が与えられているとする。
+  \begin{description}
+    \item[(1)] このとき、$F$の$K$に沿った左Kan拡張とは、次の図式
+    \[
+    \xymatrix{
+    \bfc \ar[rd]_K \ar[rr]^F & {} \ar@{}[d]|{\Downarrow \eta} & \bfe \\
+    {} &  \bfd \ar[ru]_{\Lan_K F} &{}
+    }
+    \]
+    に示されるような関手$\Lan_K F \colon \bfd \to \bfe$と自然変換$\eta \colon F \To \Lan_K F \cdot K$の組$(\Lan_K F, \eta)$であって、以下の普遍性を満たすものである。つまり、任意の関手$G \colon \bfd \to \bfe$
+    と自然変換$\grg \colon F \To G K$の組$(G,\grg)$に対して、自然変換$\gra \colon \Lan_K F \To G$であって図式
+    \[
+  \xymatrix{
+  F \ar[r]^-{\eta} \ar[rd]_-{\grg} & \Lan_K F \cdot K \ar@{.>}[d]^{\gra K} & \Lan_K F \ar@{.>}[d]^{\gra} \\
+  {} & GK & G
+  }
+    \]
+    を可換にするものが存在して、かつ一意である。
+    \item[(2)] このとき、$F$の$K$に沿った右Kan拡張とは、次の図式
+    \[
+    \xymatrix{
+    \bfc \ar[rd]_K \ar[rr]^F & {} \ar@{}[d]|{\Uparrow \ve} & \bfe \\
+    {} &  \bfd \ar[ru]_{\Ran_K F} &{}
+    }
+    \]
+    に示されるような関手$\Ran_K F \colon \bfd \to \bfe$と自然変換$\ve \colon \Ran_K F \cdot K \To F$の組$(\Ran_K F, \ve)$であって、次の普遍性を満たすものである。つまり、任意の関手$G \colon \bfd \to \bfe$
+    と自然変換$\grd \colon G K \To F $の組$(G,\grd)$に対して、自然変換$\beta \colon G \To \Ran_K F $であって図式
+    \[
+    \xymatrix{
+    F   & \Ran_K F \cdot K \ar[l]_-{\ve}  & \Ran_K F  \\
+    {} & GK \ar@{.>}[u]^{\beta K} \ar[lu]^-{\grd} & G \ar@{.>}[u]_{\beta}
+    }
+    \]
+    を可換にするものが存在して、かつ一意である。
+  \end{description}
+
+  \end{definition}
+
+
+
+  \prop{
+  (前層の逆像は左Kan拡張) \\
+$\scrg \colon \Top(Y)\op \to \Ab$を前層とし$f \colon X \to Y$を写像とする。$f$が誘導する射を$f^* \colon \Top(Y)\op \to \Top(X)\op$とする。このとき、自然な射$\eta \colon \scrg \to f\sh\scrg \cdot f^*$が存在して、
+$(f\sh\scrg, \eta)$は$\scrg$の$f^*$に沿う左Kan拡張である。
+\[
+\xymatrix{
+\Top(Y)\op \ar[dr]_-{f^*} \ar[rr]^-{\scrg} & {} \ar@{}[d]|{\Downarrow \eta}  & \Ab \\
+{} & \Top(X)\op \ar[ru]_-{f\sh \scrg} & {}
+}
+\]
+  }
+  \begin{proof}
+    $V \in \Top(Y)\op$に対して
+    \[
+    f\sh\scrg \cdot f^*(V) =  f\sh\scrg (f^{-1}(V)) = \rlim_{f(f^{-1}(V)) \subset V'} \scrg(V')
+    \]
+    であるから、自然な射$\eta \colon \scrg \to f\sh\scrg \cdot f^*$がある。これが左Kan拡張を定めることを示そう。次の（可換とは限らない）図式
+\[
+\xymatrix{
+\Top(Y)\op \ar[dr]_-{f^*} \ar[rr]^-{\scrg} & {} \ar@{}[d]|{\Downarrow \grg}  & \Ab \\
+{} & \Top(X)\op \ar[ru]_-{\scrf} & {}
+}
+\]
+に示されるような前層$\scrf$と自然変換$\grg$が与えられたとする。次の図式
+\[
+\xymatrix{
+\scrg \ar[rd]_-{\grg} \ar[r]^-{\eta} & f\sh \scrg \cdot f^* \ar@{.>}[d]^-{\grd \cdot f^*} & f\sh \scrg \ar@{.>}[d]^-{\grd} \\
+{} & \scrf \cdot f^* & \scrf
+}
+\]
+が可換になるような$\grd$の存在と一意性を言わなくてはいけない。
+
+$U \in \Top(X),V \in \Top(Y)  \st f(U) \subset V$とする。このときすべての$V$について
+\[
+\xymatrix{
+\scrg(V) \ar[d]_{\grg_V} \ar[r] & f\sh \scrg (U) \ar@{.>}[d]^-{\grd_U} \\
+\scrf(f^{-1}(V)) \ar[r] & \scrf(U)
+}
+\]
+を可換にするような$\grd_U$がある。この$\grd_U$の族が自然性を満たすことの証明は省略する。このとき定義から$\grg_V = \grd_{f^{-1}(V)} \circ \eta_V$が成り立つことがわかる。よって$\grd$の存在がいえた。
+
+一意性を示そう。$U \in \Top(X),V \in \Top(Y)  \st f(U) \subset V$とする。このときすべての$V$について、次の図式
+\[
+\xymatrix{
+{} & \scrg(V) \ar[dl]_-{\eta_V} \ar[dr] \ar[ddl]^(.3){\grg_V} & {} \\
+f\sh (f^{-1}(V) ) \ar[rr] \ar[d]_-{\grd_{ f^{-1}(V) }} & {} & f\sh \scrg(U) \ar[d]^-{\grd_U} \\
+\scrf( f^{-1}(V) )  \ar[rr] & {} & \scrf(U)
+}
+\]
+は可換である。したがって$\scrg(V) \to f\sh \scrg(U)$と$\grd_U$の合成は一意に定まる。ゆえに普遍性から、$\grd$は一意である。これで、$(f\sh \scrg, \eta)$が$\scrg$の$f^*$に沿う左Kan拡張であることが証明できた。
+  \end{proof}
