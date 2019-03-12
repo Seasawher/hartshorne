@@ -1407,7 +1407,7 @@ f\sh\scrf(U) \ar[r] & (f\sh\scrf)_P
 \end{description}
 
 \begin{ano}
-  Kan拡張の性質を利用した別証がある。まずKan拡張の定義を紹介する。
+  Kan拡張の性質を利用した別証がある。
 \end{ano}
 
   \begin{definition}
@@ -1503,13 +1503,60 @@ f\sh (f^{-1}(V) ) \ar[rr] \ar[d]_-{\grd_{ f^{-1}(V) }} & {} & f\sh \scrg(U) \ar[
 は可換である。したがって$\scrg(V) \to f\sh \scrg(U)$と$\grd_U$の合成は一意に定まる。ゆえに普遍性から、$\grd$は一意である。これで、$(f\sh \scrg, \eta)$が$\scrg$の$f^*$に沿う左Kan拡張であることが証明できた。
   \end{proof}
 
+\begin{rem}
+Kan拡張が自然変換を誘導することについて注意しておく。
+関手$K \colon \bfc \to \bfd$と圏$\bfe$を固定する。関手$F,T \colon \bfc \to \bfe$と自然変換$\gra \colon F \To T$が与えられていたとする。このときKan拡張の普遍性により
+\begin{description}
+  \item[(1)] $F$と$T$の$K$に沿う左Kan拡張$(\Lan_K F, \eta)$と$(\Lan_K T, \ve)$があったとする。このときある自然変換$\pi \colon \Lan_K F \To \Lan_K T$が存在して、
+$\pi_K \circ \eta = \ve \circ \gra$を満たす。
+  \item[(2)] $F$と$T$の$K$に沿う右Kan拡張$(\Ran_K F, \eta)$と$(\Ran_K T, \ve)$があったとする。このときある自然変換$\pi \colon \Ran_K F \To \Ran_K T$が存在して、
+$\ve \circ \pi_K  =  \gra \circ \eta$を満たす。
+\end{description}
+ということがわかる。
+\end{rem}
+
+
 
 
 \prop{
-(Kan拡張と合成の随伴) \\
-関手$K \colon \bfc \to \bfd$と圏$\bfe$を固定する。任意の関手$F \colon \bfc \to \bfe$について$F$の$K$に沿うKan拡張が存在すると仮定しよう。
-このとき…（以下、まだ理解できていないため口ごもる）
+(表現としてのKan拡張) \\
+関手$K \colon \bfc \to \bfd$と圏$\bfe$を固定する。関手$F \colon \bfc \to \bfe$が与えられたとする。このとき次が成り立つ。
+\begin{description}
+  \item[(1)] $F$の$K$に沿う左Kan拡張$(\Lan_K F,\eta)$が存在すると仮定しよう。
+  このとき$\eta$が定める自然変換
+  \[
+  \eta \colon \bfe^{\bfd}(\Lan_K F, -) \To \bfe^{\bfc}(F, - \cdot K)
+  \]
+  は同型である。
+  \item[(2)] $F$の$K$に沿う右Kan拡張$(\Ran_K F,\ve)$が存在すると仮定しよう。
+  このとき$\ve$が定める自然変換
+  \[
+  \ve \colon \bfe^{\bfd}(-, \Ran_K F) \To \bfe^{\bfc}(- \cdot K , F)
+  \]
+  は同型である。
+\end{description}
+
 }
 \begin{proof}
-  Riehl\cite{Riehl} 命題6.1.5を参照のこと。
+  Kan拡張の普遍性からただちに従う。
 \end{proof}
+
+
+\prop{
+(左Kan拡張は合成の左随伴) \\
+関手$K \colon \bfc \to \bfd$と圏$\bfe$を固定する。関手$F,T \colon \bfc \to \bfe$と自然変換$\gra \colon F \To T$が与えられていたとする。さらに$F,T$の$K$に沿う左Kan拡張$(\Lan_K, \eta)$, $(\Lan_K T,\ve)$が存在したとし、これにより誘導される自然変換$\Lan_K F \To \Lan_K T$を$\pi$とする。このとき次の図式
+\[
+\xymatrix{
+\bfe^{\bfd}(\Lan_K F, G)  \ar[r]^-{\eta} & \bfe^{\bfc}(F, G \cdot K) \\
+\bfe^{\bfd}(\Lan_K T, G) \ar[u]^-{\pi^*} \ar[r]^-{\ve} &  \bfe^{\bfc}(T, G \cdot K) \ar[u]_-{\gra^*}
+}
+\]
+は可換である。
+}
+\begin{proof}
+  $\pi$の定義からあきらか。
+\end{proof}
+
+\begin{rem}
+  右Kan拡張についても同様のことがいえて、右Kan拡張は合成の右随伴となる。
+\end{rem}
