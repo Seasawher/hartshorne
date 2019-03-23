@@ -1,6 +1,32 @@
 \bfsection{2.2 スキーム}
 
 
+
+\bfsubsection{補題 2.1 直前}
+\barquo{
+$\fraka$を$A$の任意のイデアルとして、部分集合$V(\fraka) \subset \Spec A$を$\fraka$を含むすべての素イデアルの集合と定める。
+}
+\begin{rem}
+  G\"{o}rtz Wedhorn\cite{GW}にならって補足。$\Spec A$の部分集合を$A$のイデアルに対応させるような写像$I$を
+  \[
+  I(Y) = \bigcap_{\frakp \in Y} \frakp
+  \]
+  により定める。このとき次が成り立つ。
+\end{rem}
+
+\prop{
+$Y \subset \Spec A$は部分集合、$\fraka \subset A$はイデアルとする。このとき次が成り立つ。
+\begin{description}
+  \item[(1)] $\sqrt{I(Y)} = I(Y)$
+  \item[(2)] $I(V(\fraka)) = \sqrt{\fraka}$
+  \item[(3)] $V(I(Y)) = \ol{Y}$
+\end{description}
+}
+\begin{proof}
+  G\"{o}rtz Wedhorn\cite{GW} Proposition 2.3を参照のこと。
+\end{proof}
+
+
 \bfsubsection{定義-スペクトラム 直前}
 \barquo{
 定義の局所性から$\calo$が層であることも明らかである。
@@ -34,6 +60,19 @@
   h^{\#}_W = f^{\#}_{g^{-1}(W)} \circ g^{\#}_W
   \]
   により定める。
+\end{rem}
+
+\begin{rem}
+  G\"{o}rtz Wedhorn\cite{GW}に従って補足をする。構造層というのは、開集合$U$に対して$U$上で定義された「良い性質を満たす」写像の集まりを返すようなものだというイメージがあるらしい。そして層の射$f^{\#}_V \colon \calo_Y(V) \to \calo_X(f^{-1}(V)) $は$f$を口の方につなぐような写像だというイメージだそうだ。このとき$f$を合成することで「良い性質を満たす」ことは変わってはいけないこともこのイメージには含まれている。自然性が成り立ち、$f^{\#}$が層の射でなくてはならないことはこのイメージから説明できそうだ。
+
+  同書は「Since viewing sections of the structure sheaves as functions is only a heuristic, we cannot acturally compose sections with the map $f$.」と書いているが、環のスペクトラムの場合は本当に$f$をつなぐ写像だと思うことができる。環準同型$\vp \colon A \to B$が与えられており、$f \colon \Spec B \to \Spec A$と$f^{\#} \colon \calo_A \to f_* \calo_B$は$\vp$から誘導される射とする。このとき$g \in A$に対して$f^{\#}_{D(g)}$はどのような写像かという事を考える。すると次の図式
+  \[
+  \xymatrix{
+  A_g \ar[d]_{f\fl} & \coprod_{\frakq \in D(\vp(g))} D(g) \ar[r]  &  \coprod_{\frakq \in D(\vp(g))} A_{f(\frakq)} \ar[d]^-{\vp} \\
+B_{\vp(g)} & D(\vp(g)) \ar[r] \ar[u]^-f & \coprod_{\frakq \in D(\vp(g))} B_{\frakq}
+  }
+  \]
+  により定められるような、「口に$f$をつないで$\vp$を尻に継ぎ足す」写像$f\fl$は$f^{\#}_{D(g)} $と一致することがわかる。
 \end{rem}
 
 
@@ -121,3 +160,27 @@ $f^{\#}$もまた$\vp$から誘導されることは直ちに分かるので、�
   \end{description}
   このとき、$g_P$と$f^{\#}_P$は一致するか？
 \end{que}
+\begin{sol}
+  実際に元をとってみればすぐにわかる。$t \in \calo_{Y,f(P)}$とし、$t$の代表元$s \in \coprod_{f(P) \in V} \calo_Y(V)$をとる。このとき
+  \[
+  f^{\#}_P (t) = g_P(t) = (f^{\#}_V(s))_P
+  \]
+  となるから一致する。では、元を取らないような別証があるだろうか？
+\end{sol}
+
+
+
+
+
+
+\bfsubsection{例 2.3.1}
+\barquo{
+一方$t_0$は閉点で、
+}
+\begin{rem}
+  $X = \Spec A$とする。次の事実が成り立つことに注意する。証明は省略する。
+  \begin{description}
+    \item[(1)] $x \in X$が閉点、つまり$\{x \} \clsub X$であることは$x \subset A$が極大イデアルであることと同値
+    \item[(2)] $x \in X$が生成点であること、つまり$\ol{\{x\}}=X$であることは$x \subset A$が唯一の極小素イデアルであることと同値
+  \end{description}
+\end{rem}
