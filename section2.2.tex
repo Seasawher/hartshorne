@@ -29,6 +29,23 @@ $Y \subset \Spec A$は部分集合、$\fraka \subset A$はイデアルとする�
 
 \bfsubsection{定義-スペクトラム 直前}
 \barquo{
+$\Spec A$上に位相を、$V(\fraka)$の形をした部分集合を閉部分集合全体とすることで定義する。
+}
+\begin{rem}
+  定義からただちに従う結果として、次がある。
+\end{rem}
+
+\prop{
+$A$は環、$X = \Spec A$かつ$f \in A$で、$\fraka \subset A$はイデアルとする。このとき次が成り立つ。
+\begin{description}
+  \item[(1)] $A \to A_f$が誘導する射$\Spec A_f \to \Spec A$の像は$D(f)$であり、また像への同相写像である。
+  \item[(2)] $A \to A/\fraka$が誘導する射$\Spec A/\fraka \to \Spec A$の像は$V(\fraka )$であり、また像への同相写像である。
+\end{description}
+}
+
+
+\bfsubsection{定義-スペクトラム 直前}
+\barquo{
 定義の局所性から$\calo$が層であることも明らかである。
 }
 \begin{proof}
@@ -42,10 +59,33 @@ $Y \subset \Spec A$は部分集合、$\fraka \subset A$はイデアルとする�
 
 \bfsubsection{命題 2.2}
 \barquo{
+任意の元$f \in A$に対して、環$\calo(D(f))$は局所化された環$A_f$と同型である。
+}
+\begin{rem}
+  これは開基上でのスペクトラムの振る舞いを定める性質なので、これを全体に延長して環の層の定義とすることができる。この性質$\calo(D(f)) = A_f$を定義とする流儀を採用した場合、$D(f)=D(g)$ならば$A_f = A_g$であること、開基上で層の条件を満たすことは保証しておかなくてはならないが、それについては実際にその定義を採用しているG\"{o}rtz Wedhorn\cite{GW}を参照すればわかる。
+
+  しかし一応ここでも少し説明する。まず次の同値変形
+  \begin{align*}
+    D(f) \subset D(g) &\iff \forall \frakp \in \Spec A \; g \in \frakp \to f \in \frakp \\
+    &\iff f \in \bigcap_{g \in \frakp} \frakp \\
+    &\iff f \in \sqrt{gA} \\
+    &\iff \exists n \; f^n \in gA \\
+    &\iff g/1 \in (A_f)^{\tm}
+  \end{align*}
+  ができることに気を付ける。このとき自然な写像$A \to A_f$は$\rho_{f,g} \colon A_g \to A_f$を誘導する。(これを制限写像にする) もしも$D(f) \subset D(g) \subset D(h)$ならば
+  \[
+  \rho_{f,g} \circ \rho_{g,h} = \rho_{f,h}
+  \]
+  が成り立つ。とくに$h=f$のときには$\rho_{f,g}$は同型であり、$A_f = A_g$であることがわかる。
+\end{rem}
+
+
+\bfsubsection{命題 2.2}
+\barquo{
 既に示した$\psi$の単射性を$D(h_ih_j)$に適用することによって、$A_{h_ih_j}$で$a_i / h_i = a_j / h_j$であることを得る必要がある。
 }
 \begin{rem}
-  原著では『Hence, according to the injectivity of $\psi$ proved above, applied to $D(h_ih_j)$ we must have $a_i / h_i = a_j / h_j$ in $A_{h_i h_j}$.』と書いてある部分である。\textblue{誤訳。}
+  原著では『Hence, according to the injectivity of $\psi$ proved above, applied to $D(h_ih_j)$ we must have $a_i / h_i = a_j / h_j$ in $A_{h_i h_j}$.』と書いてある部分である。
 \end{rem}
 
 
@@ -75,7 +115,13 @@ B_{\vp(g)} & D(\vp(g)) \ar[r] \ar[u]^-f & \coprod_{\frakq \in D(\vp(g))} B_{\fra
   により定められるような、「口に$f$をつないで$\vp$を尻に継ぎ足す」写像$f\fl$は$f^{\#}_{D(g)} $と一致することがわかる。
 \end{rem}
 
-
+\begin{rem}
+  さらにG\"{o}rtz Wedhorn\cite{GW}に従って補足をする。局所環付き空間$(X,\calo_X)$が与えられていたとし、$U \opsub X$とする。$j \colon U \to X$を包含写像とする。このとき制限写像が
+  \[
+  \calo_X(V) \to \calo_X(V \cap U) = \calo_{X}|_U (j^{-1}(V)) = j_* \calo_{X}|_U (V)
+  \]
+  と見なせるため、射$j\fl \colon \calo_X \to \calo_{X}|_U$が導かれる。この写像はもとは制限写像なので、茎をとると恒等写像になることが予想される。したがって局所環付き空間の射$(j,j\fl) \colon (U, \calo_{X}|_U) \to (X,\calo_X)$が誘導される。これによって開部分対象だと見なせる。
+\end{rem}
 
 
 
@@ -165,8 +211,12 @@ $f^{\#}$もまた$\vp$から誘導されることは直ちに分かるので、�
   \[
   f^{\#}_P (t) = g_P(t) = (f^{\#}_V(s))_P
   \]
-  となるから一致する。では、元を取らないような別証があるだろうか？
+  となるから一致する。\textblue{では、元を取らないような別証があるだろうか？}
 \end{sol}
+
+
+
+
 
 
 
@@ -178,9 +228,40 @@ $f^{\#}$もまた$\vp$から誘導されることは直ちに分かるので、�
 一方$t_0$は閉点で、
 }
 \begin{rem}
-  $X = \Spec A$とする。次の事実が成り立つことに注意する。証明は省略する。
+  $X = \Spec A$とする。次の事実が成り立つことに注意する。証明は$V( x ) = \ol{\{ x \} }$から直ちに従うので省略する。
   \begin{description}
     \item[(1)] $x \in X$が閉点、つまり$\{x \} \clsub X$であることは$x \subset A$が極大イデアルであることと同値
     \item[(2)] $x \in X$が生成点であること、つまり$\ol{\{x\}}=X$であることは$x \subset A$が唯一の極小素イデアルであることと同値
   \end{description}
+\end{rem}
+
+
+
+\bfsubsection{例 2.3.2}
+\barquo{
+これとは別の環付き空間の射$\Spec K \to T$もあり、それは$\Spec K$の唯一の点を$t_0$に移し、付随する構造層の射$f^{\#}$は包含写像$R \to K$を用いて定義される。
+}
+\begin{proof}
+  $(f,f^{\#}) \colon (\Spec K, \calo_K) \to (\Spec R, \calo_R)$であって、次のように定められている射である。まず$f \colon \Spec K \to \Spec R$は$g(\{ 0 \} ) = \frakm_R$により定まる写像である。$g^{\# } \colon \calo_R \to g_* \calo_K$は、$\Spec R$の開集合が$\{0\}$と$\Spec R$全体しか存在しないことに注意すると
+  $g_{ \{0\} }^{\#} \colon K \to 0$と$g^{\#}_{\Spec R} \colon R \to K$の２つだけしかない。包含射像で定めるというのは、$g^{\#}_{\Spec R}$を包含射像として定めるという意味であろう。
+\end{proof}
+
+
+
+\bfsubsection{例 2.3.4}
+\barquo{
+さらに、$\A_k^2$の閉点全体の集合は誘導位相の下で第１章で$\A^2$と表された多様体と同相である。
+}
+\begin{rem}
+  ほぼあきらかだが一応説明する。$\A_k^2$の閉点全体の集合に誘導位相をいれたものを$C$とする。$k$は代数閉体なので、$C$の元は$\frakp = (x-a,y-b)$という形をしている。$\frakp = (x-a,y-b)$を$(a,b) \in \A^2$に対応させる写像を$s$とする。このとき$s$は全単射かつ連続かつ閉写像であり、同相射像である。
+\end{rem}
+
+
+
+\bfsubsection{例 2.3.4}
+\barquo{
+また、各既約多項式$f(x,y)$に対し、点$\eta$で、その閉包が$\eta$および$f(a,b)=0$となるすべての閉点$(a,b)$であるようなものがある。$\eta$を曲線$f(x,y)=0$の生成点という。
+}
+\begin{rem}
+  $f \in k[x,y]$が定数でない既約多項式なら、$k[x,y]$はUFDなので$(f)$は素イデアルである。そこで$\eta = (f)$とおく。すると$\ol{\{ \eta \} } = V(\eta)$である。$\dim k[x,y] =2$より、$\eta$でない$V(\eta)$の元は極大イデアル、つまり閉点である。
 \end{rem}
