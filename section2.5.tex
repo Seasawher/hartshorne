@@ -1,0 +1,40 @@
+\bfsection{2.5 加群の層}
+
+\bfsubsection{定義-$\calo_X$加群の逆像}
+\barquo{
+正確には、任意の$\calo_X$加群$\calf$および任意の$\calo_Y$加群$\scrg$に対して自然な群の同型
+\[
+\Hom_{\calo_X}(f^*\scrg, \scrf ) \cong \Hom_{\calo_Y}(\scrg, f_*\scrf )
+\]
+が存在する。
+}
+\begin{proof}
+  Bosch\cite{Bosch} section 6.9 Proposition 3 を参照のこと。
+\end{proof}
+
+
+\bfsubsection{命題 5.1}
+\barquo{
+(e) 任意の$A$加群$M$に対して$f^*(\wt{M}) \cong (M \ts_A B)\wt{}$
+}
+\begin{proof}
+  詳しい証明はBosch\cite{Bosch} Section6.9 Cor.4を参照のこと。
+\end{proof}
+
+
+\bfsubsection{定義-連接層}
+\barquo{
+$(X,\calo_X)$をスキームとする。$\calo_X$加群$\calf$が準連接であるとは、$X$が開アファイン部分集合$U_i = \Spec A_i$で覆うことができ、各$i$に対して$A_i$加群$M$が存在し、$\calf|_{U_i} \cong \wt{M_i}$となるときをいう。さらに$M_i$が有限生成$A_i$加群ととれるとき$\calf$を連接という。
+}
+\begin{rem}
+  連接層の定義に疑問。$X$が局所Noehterでないときにこれは正しいのか？
+\end{rem}
+
+
+\bfsubsection{命題 5.8}
+\barquo{
+(a) $\calf$を$\calo_X$加群の準連接層とすると、$f^*\scrg$は$\calo_X$加群の準連接層である。
+}
+\begin{proof}
+  なぜアファインの場合に帰着できるのかについてはLiu\cite{Liu} 命題1.14を参照のこと。
+\end{proof}
