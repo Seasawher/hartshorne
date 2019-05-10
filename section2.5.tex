@@ -31,10 +31,31 @@ $(X,\calo_X)$をスキームとする。$\calo_X$加群$\calf$が準連接であ
 \end{rem}
 
 
+\bfsubsection{命題5.8 (c)}
+\barquo{
+$X$がNoetherであるか、$f$が準コンパクトかつ分離的であると仮定する。このとき$\scrf$が$\calo_X$加群の準連接層とすると、$f_*\scrf$は$\calo_Y$加群の準連接層となる。
+}
+\begin{rem}
+  $X$がNoetherなら、任意のスキーム$Y$と射$f \colon X \to Y$について$f$は準コンパクトかつquasi-separatedである。これはG\"ortz Wedhorn\cite{GW} Cor 10.24 と Remark 10.2から従うことである。さらに同書の Cor 10.27 より、$f$が準コンパクトかつquasi-separatedであるならば$f_*$は準連接性を保つことがわかる。つまり$X$がNoetherという仮定や準コンパクトかつ分離的という仮定は緩めることができる。
+\end{rem}
+
+
 \bfsubsection{命題 5.8}
 \barquo{
-(a) $\calf$を$\calo_X$加群の準連接層とすると、$f^*\scrg$は$\calo_X$加群の準連接層である。
+(a) 問題は$X$および$Y$双方について局所的なものなので、$X$および$Y$を双方アファインとして良い。 (中略) (c) 問題は$Y$についてのみ局所的なものなので、$Y$をアファインと仮定して良い。
 }
 \begin{proof}
-  なぜアファインの場合に帰着できるのかについてはLiu\cite{Liu} 命題1.14を参照のこと。
+局所的という言葉の意味が詳しく書かれていないようなのでBosch\cite{Bosch} section 6.9の記述に沿って補足を行う。$f \colon X \to Y$がスキームの射、$\calg$が$\calo_Y$加群だったとする。このとき任意の$U \opsub X$と$f(U) \subset V \opsub Y$に対して
+\[
+(f^* \calg)|_U \cong f^*_U(\calg|V)
+\]
+が成り立つ。ただし$f_U \colon U \to V$は$f$を制限して得られるものである。この事を以て、$f^*\scrg$は$X$についても$Y$についても局所的だといっているのである。
+
+一方で$\calf$が$\calo_X$加群とするとき、任意の$V \opsub Y$について
+\[
+(f_* \calf)|_V \cong (f_V)_* (\calf_{f^{-1}(V)})
+\]
+でしかない。ただし$f_V \colon f^{-1}(V) \to V$は$f$の制限である。この事を以て、$f_*  \scrf$は$Y$についてしか局所的でないとしたのである。
+
+なお、命題5.8の証明についてなお不明点がある場合はLiu\cite{Liu} section 5.1 Proposition 1.14も参照のこと。
 \end{proof}
