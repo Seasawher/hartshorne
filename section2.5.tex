@@ -9,16 +9,16 @@
 が存在する。
 }
 \begin{proof}
-  Bosch\cite{Bosch} section 6.9 Proposition 3 を参照のこと。
+  詳しくはBosch\cite{Bosch} section 6.9 Proposition 3 を参照のこと。
 \end{proof}
 
 
 \bfsubsection{命題 5.1}
 \barquo{
-(e) 任意の$A$加群$M$に対して$f^*(\wt{M}) \cong (M \ts_A B)\wt{}$
+(e) 任意の$A$加群$M$に対して$f^*(\wt{M}) \cong (M \ts_A B) \ \wt{}$
 }
 \begin{proof}
-  詳しい証明はBosch\cite{Bosch} Section6.9 Cor.4を参照のこと。
+  詳しくはBosch\cite{Bosch} Section 6.9 Cor.4を参照のこと。
 \end{proof}
 
 
@@ -47,7 +47,7 @@ $X$がNoetherであるか、$f$が準コンパクトかつ分離的であると�
 \begin{proof}
 局所的という言葉の意味が詳しく書かれていないようなのでBosch\cite{Bosch} section 6.9の記述に沿って補足を行う。$f \colon X \to Y$がスキームの射、$\calg$が$\calo_Y$加群だったとする。このとき任意の$U \opsub X$と$f(U) \subset V \opsub Y$に対して
 \[
-(f^* \calg)|_U \cong f^*_U(\calg|V)
+(f^* \calg)|_U \cong f^*_U(\calg|_V)
 \]
 が成り立つ。ただし$f_U \colon U \to V$は$f$を制限して得られるものである。この事を以て、$f^*\scrg$は$X$についても$Y$についても局所的だといっているのである。
 
@@ -57,5 +57,20 @@ $X$がNoetherであるか、$f$が準コンパクトかつ分離的であると�
 \]
 でしかない。ただし$f_V \colon f^{-1}(V) \to V$は$f$の制限である。この事を以て、$f_*  \scrf$は$Y$についてしか局所的でないとしたのである。
 
-なお、命題5.8の証明についてなお不明点がある場合はLiu\cite{Liu} section 5.1 Proposition 1.14も参照のこと。
+命題5.8の証明についてなお不明点がある場合はLiu\cite{Liu} section 5.1 Proposition 1.14も参照のこと。
 \end{proof}
+
+
+
+
+\bfsubsection{定義 Serreのねじり層}
+\barquo{
+任意の$n \in \Z$に対し、層$\calo_X(n)$を$S(n) \ \wt{}$と定義する。$\calo_X(1)$をSerreのねじり層と呼ぶ。
+}
+\begin{rem}
+  $S(n)$とは何だろうか。前後の記述にあたったが、どうも定義されていないように見える。一般に、次数付き環$S$の上の次数付き加群$M = \oplus_{n \in \Z} M_n$に対して、$M(m)$とは
+  \[
+  M(m)_d = M_{m+d}
+  \]
+  で定義されるような次数つき$S$加群のことである。たとえば Bosch\cite{Bosch} section 9.2 に詳しく説明があるので参照のこと。
+\end{rem}

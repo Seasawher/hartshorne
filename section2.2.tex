@@ -281,7 +281,7 @@ $f^{\#}$もまた$\vp$から誘導されることは直ちに分かるので、�
 \begin{rem}
   \textblue{誤植であろうと思われる。}$(\vp,\vp\fl) \colon (U_1,\calo_{X_1}|_{U_1}) \to (U_2,\calo_{X_2}|_{U_2})$を局所環付き空間の同型とする。このとき$x \in U_1$に対して
   \begin{align*}
-   &\quad  x \in \vp^{-1}(i_2^{-1}(V) \cap U_2) \\
+    x \in \vp^{-1}(i_2^{-1}(V) \cap U_2)
     &\iff \vp(x) \in i_2^{-1}(V) \cap U_2 \\
     &\iff \vp(x) \in  U_2 \text{かつ}  (X_2,\vp(X)) \in V \\
     &\iff x \in U_1 \text{かつ}  (X_2,\vp(X)) \in V \\
@@ -293,4 +293,14 @@ $f^{\#}$もまた$\vp$から誘導されることは直ちに分かるので、�
   \vp\fl (s_2|_{i_2^{-1}(V) \cap U_2 }) = s_1|_{i_1^{-1}(V) \cap U_1 }
   \]
   という条件を考えることができる。
+\end{rem}
+
+
+
+\bfsubsection{演習問題 2.7}
+\barquo{
+$\Spec K$から$X$へ射を与えることは点$x \in X$と包含写像$k(x) \to K$を与えることと同値であることを示せ。
+}
+\begin{rem}
+  $X$が局所有限型な$K$-スキームで$K$が代数閉体なら、$\Hom_K(\Spec K, X)$と$X$の閉点全体との間に canonical な全単射があることが知られている。証明は、たとえばG\"ortz Wedhorn\cite{GW} Corollary 3.36 を参照のこと。
 \end{rem}
